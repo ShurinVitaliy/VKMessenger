@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		316D9474949C0DD1AD537065 /* Pods_VKMessenger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E475AE8CF103871D96274327 /* Pods_VKMessenger.framework */; };
 		F46DBE0B21DD038900C1277A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46DBE0A21DD038900C1277A /* AppDelegate.swift */; };
 		F46DBE0D21DD038900C1277A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46DBE0C21DD038900C1277A /* ViewController.swift */; };
 		F46DBE1021DD038900C1277A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F46DBE0E21DD038900C1277A /* Main.storyboard */; };
@@ -38,6 +39,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		54A77DCFAF450168CD22A719 /* Pods-VKMessenger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKMessenger.release.xcconfig"; path = "Pods/Target Support Files/Pods-VKMessenger/Pods-VKMessenger.release.xcconfig"; sourceTree = "<group>"; };
+		B9B6C7C0D593FFB0B9A63277 /* Pods-VKMessenger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKMessenger.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VKMessenger/Pods-VKMessenger.debug.xcconfig"; sourceTree = "<group>"; };
+		E475AE8CF103871D96274327 /* Pods_VKMessenger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VKMessenger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F46DBE0721DD038900C1277A /* VKMessenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKMessenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F46DBE0A21DD038900C1277A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F46DBE0C21DD038900C1277A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				316D9474949C0DD1AD537065 /* Pods_VKMessenger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +87,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D2CE009E9C2D7BCC2F907D4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E475AE8CF103871D96274327 /* Pods_VKMessenger.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AF6884D2C41FD78274B537A1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B9B6C7C0D593FFB0B9A63277 /* Pods-VKMessenger.debug.xcconfig */,
+				54A77DCFAF450168CD22A719 /* Pods-VKMessenger.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		F46DBDFE21DD038900C1277A = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +112,8 @@
 				F46DBE1E21DD038A00C1277A /* VKMessengerTests */,
 				F46DBE2921DD038A00C1277A /* VKMessengerUITests */,
 				F46DBE0821DD038900C1277A /* Products */,
+				AF6884D2C41FD78274B537A1 /* Pods */,
+				4D2CE009E9C2D7BCC2F907D4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -152,9 +176,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F46DBE2F21DD038A00C1277A /* Build configuration list for PBXNativeTarget "VKMessenger" */;
 			buildPhases = (
+				3AE344178783E068A37D945E /* [CP] Check Pods Manifest.lock */,
 				F46DBE0321DD038900C1277A /* Sources */,
 				F46DBE0421DD038900C1277A /* Frameworks */,
 				F46DBE0521DD038900C1277A /* Resources */,
+				E7E17246005D930C58D0DECC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -270,6 +296,53 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3AE344178783E068A37D945E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VKMessenger-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E7E17246005D930C58D0DECC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-VKMessenger/Pods-VKMessenger-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/VK-ios-sdk/VK_ios_sdk.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VK_ios_sdk.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VKMessenger/Pods-VKMessenger-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F46DBE0321DD038900C1277A /* Sources */ = {
@@ -454,6 +527,7 @@
 		};
 		F46DBE3021DD038A00C1277A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9B6C7C0D593FFB0B9A63277 /* Pods-VKMessenger.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -471,6 +545,7 @@
 		};
 		F46DBE3121DD038A00C1277A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 54A77DCFAF450168CD22A719 /* Pods-VKMessenger.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
