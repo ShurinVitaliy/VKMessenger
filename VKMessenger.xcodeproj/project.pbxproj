@@ -14,6 +14,10 @@
 		F46DBE1521DD038A00C1277A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F46DBE1321DD038A00C1277A /* LaunchScreen.storyboard */; };
 		F46DBE2021DD038A00C1277A /* VKMessengerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46DBE1F21DD038A00C1277A /* VKMessengerTests.swift */; };
 		F46DBE2B21DD038A00C1277A /* VKMessengerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46DBE2A21DD038A00C1277A /* VKMessengerUITests.swift */; };
+		F46DBE3A21DD042C00C1277A /* InitializationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46DBE3921DD042C00C1277A /* InitializationViewController.swift */; };
+		F46DBE3C21DD044200C1277A /* InitializationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46DBE3B21DD044200C1277A /* InitializationViewModel.swift */; };
+		F46DBE3E21DD045000C1277A /* InitializationViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46DBE3D21DD045000C1277A /* InitializationViewRouter.swift */; };
+		F46DBE4021DD046200C1277A /* InitializationViewControllerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46DBE3F21DD046200C1277A /* InitializationViewControllerAssembly.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,10 @@
 		F46DBE2621DD038A00C1277A /* VKMessengerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VKMessengerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F46DBE2A21DD038A00C1277A /* VKMessengerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKMessengerUITests.swift; sourceTree = "<group>"; };
 		F46DBE2C21DD038A00C1277A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F46DBE3921DD042C00C1277A /* InitializationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitializationViewController.swift; sourceTree = "<group>"; };
+		F46DBE3B21DD044200C1277A /* InitializationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitializationViewModel.swift; sourceTree = "<group>"; };
+		F46DBE3D21DD045000C1277A /* InitializationViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitializationViewRouter.swift; sourceTree = "<group>"; };
+		F46DBE3F21DD046200C1277A /* InitializationViewControllerAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitializationViewControllerAssembly.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +85,7 @@
 		F46DBDFE21DD038900C1277A = {
 			isa = PBXGroup;
 			children = (
+				F46DBE3821DD03EF00C1277A /* Initialization */,
 				F46DBE0921DD038900C1277A /* VKMessenger */,
 				F46DBE1E21DD038A00C1277A /* VKMessengerTests */,
 				F46DBE2921DD038A00C1277A /* VKMessengerUITests */,
@@ -123,6 +132,17 @@
 				F46DBE2C21DD038A00C1277A /* Info.plist */,
 			);
 			path = VKMessengerUITests;
+			sourceTree = "<group>";
+		};
+		F46DBE3821DD03EF00C1277A /* Initialization */ = {
+			isa = PBXGroup;
+			children = (
+				F46DBE3921DD042C00C1277A /* InitializationViewController.swift */,
+				F46DBE3B21DD044200C1277A /* InitializationViewModel.swift */,
+				F46DBE3D21DD045000C1277A /* InitializationViewRouter.swift */,
+				F46DBE3F21DD046200C1277A /* InitializationViewControllerAssembly.swift */,
+			);
+			path = Initialization;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,8 +276,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F46DBE3E21DD045000C1277A /* InitializationViewRouter.swift in Sources */,
+				F46DBE3C21DD044200C1277A /* InitializationViewModel.swift in Sources */,
 				F46DBE0D21DD038900C1277A /* ViewController.swift in Sources */,
 				F46DBE0B21DD038900C1277A /* AppDelegate.swift in Sources */,
+				F46DBE4021DD046200C1277A /* InitializationViewControllerAssembly.swift in Sources */,
+				F46DBE3A21DD042C00C1277A /* InitializationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
