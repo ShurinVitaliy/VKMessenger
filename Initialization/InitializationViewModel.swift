@@ -9,17 +9,16 @@
 import Foundation
 
 protocol InitializationViewModel {
-    func initializationWithVKApp(_ initializationSuccess: @escaping() -> Void)
+    func initializationWithVKApp()
 }
 
 class InitializationViewModelImp: InitializationViewModel {
     
     private let router: InitializationViewRouter
+    private let vk_app_id: String = "6804688"
     
-    func initializationWithVKApp(_ initializationSuccess: @escaping () -> Void) {
-        router.createAlerInitialization({
-            initializationSuccess()
-        })
+    func initializationWithVKApp() {
+        router.createAlerInitialization(vk_app_id)
     }
     
     init(router: InitializationViewRouter) {
