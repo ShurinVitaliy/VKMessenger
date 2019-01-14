@@ -58,7 +58,7 @@ class AuthorizationController: UIViewController {
         present(friendsController, animated: true, completion: nil)
         /*
         if let token = UserDefaults.standard.object(forKey: "accesToken") as? String, let userId = UserDefaults.standard.object(forKey: "userId") as? String {
-            print(token)
+            print(token
             print(userId)
         } else {
             print("acces Token - nil, userId - nil")

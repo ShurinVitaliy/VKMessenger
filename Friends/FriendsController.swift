@@ -26,7 +26,12 @@ class FriendsController: UITableViewController {
     }
     
     override func viewDidLoad() {
+        print(UserDefaults.standard.object(forKey: "accesToken") as? String)
+        print(UserDefaults.standard.object(forKey: "userId") as? String)
         
+        
+        
+        Requests().getJSONFriends()
     }
     
     
