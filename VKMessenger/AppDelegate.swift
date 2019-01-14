@@ -17,21 +17,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = InitializationViewControllerAssembly().createController()
+        window?.rootViewController = AuthorizationController()
         window?.makeKeyAndVisible()
-        
         return true
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        print("hello")
-        print("----------------------------------------------------------------------")
+        /*print("----------------------------------------------------------------------")
         print(app)
         print("----------------------------------------------------------------------")
         print(url)
-        print("----------------------------------------------------------------------")
-        
-        
+        print("----------------------------------------------------------------------")*/
+   
         VKSdk.processOpen(url, fromApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String)
         
         return true
