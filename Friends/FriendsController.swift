@@ -16,6 +16,7 @@ class FriendsController: UIViewController {
     convenience init() {
         self.init(nibName: nil, bundle: nil)
         friendsModel = FriendsModelImp(friendsController: self)
+        friendsModel.delegate = self
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -48,8 +49,14 @@ extension FriendsController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = Bundle.main.loadNibNamed("FriendTableViewCell", owner: self, options: nil)?.first as! FriendTableViewCell
+        let friend = friendsModel.getFriends()[indexPath.row]
+        cell.firstNameLabel.text = friend.first_name
+        cell.lastNameLabel.text = friend.last_name
+        cell.photoImageView.image = friendsModel.getImageFromUser(friend: friend)
+        /*
         let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
-        cell.textLabel?.text = friendsModel.getFriends()[indexPath.row].last_name
+        cell.textLabel?.text = friendsModel.getFriends()[indexPath.row].last_name*/
         return cell
     }
 }
@@ -60,21 +67,10 @@ extension FriendsController: UITableViewDelegate {
     }
 }
 
-    
-    
-   /* override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3//friendsModel.countOfFriends()
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
-        cell.textLabel?.text = "weqwe"//friendsModel.getFriends()[indexPath.row].first_name
-        return cell
-    }
-    /*
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+extension FriendsController: FriendsModelDelegate {
+    func didAcsess() {
         
-    }*/
-    
-*/
+    }
+}
+
 

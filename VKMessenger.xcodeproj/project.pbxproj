@@ -19,6 +19,9 @@
 		F46DBE2B21DD038A00C1277A /* VKMessengerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46DBE2A21DD038A00C1277A /* VKMessengerUITests.swift */; };
 		F479D25221ECC5C90070F9C0 /* FriendsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479D25121ECC5C90070F9C0 /* FriendsModel.swift */; };
 		F479D25421ECC6D90070F9C0 /* FriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479D25321ECC6D90070F9C0 /* FriendsController.swift */; };
+		F479D25D21EDDDCE0070F9C0 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479D25B21EDDDCE0070F9C0 /* FriendTableViewCell.swift */; };
+		F479D25E21EDDDCE0070F9C0 /* FriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F479D25C21EDDDCE0070F9C0 /* FriendTableViewCell.xib */; };
+		F479D26021EE03D40070F9C0 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479D25F21EE03D40070F9C0 /* AuthorizationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +62,9 @@
 		F46DBE2C21DD038A00C1277A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F479D25121ECC5C90070F9C0 /* FriendsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsModel.swift; sourceTree = "<group>"; };
 		F479D25321ECC6D90070F9C0 /* FriendsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsController.swift; sourceTree = "<group>"; };
+		F479D25B21EDDDCE0070F9C0 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
+		F479D25C21EDDDCE0070F9C0 /* FriendTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendTableViewCell.xib; sourceTree = "<group>"; };
+		F479D25F21EE03D40070F9C0 /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +123,7 @@
 			children = (
 				F42FCFD721EC6EB300890BC0 /* AuthorizationCntroller.swift */,
 				F42FCFD521EC6EA200890BC0 /* AuthorizationProvider.swift */,
+				F479D25F21EE03D40070F9C0 /* AuthorizationView.swift */,
 			);
 			path = Authorization;
 			sourceTree = "<group>";
@@ -181,6 +188,8 @@
 			children = (
 				F479D25321ECC6D90070F9C0 /* FriendsController.swift */,
 				F479D25121ECC5C90070F9C0 /* FriendsModel.swift */,
+				F479D25B21EDDDCE0070F9C0 /* FriendTableViewCell.swift */,
+				F479D25C21EDDDCE0070F9C0 /* FriendTableViewCell.xib */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -294,6 +303,7 @@
 				F46DBE1521DD038A00C1277A /* LaunchScreen.storyboard in Resources */,
 				F46DBE1221DD038A00C1277A /* Assets.xcassets in Resources */,
 				F46DBE1021DD038900C1277A /* Main.storyboard in Resources */,
+				F479D25E21EDDDCE0070F9C0 /* FriendTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +381,8 @@
 				F46DBE0B21DD038900C1277A /* AppDelegate.swift in Sources */,
 				F42FCFD321E8F0D800890BC0 /* FriendsRequests.swift in Sources */,
 				F42FCFD821EC6EB300890BC0 /* AuthorizationCntroller.swift in Sources */,
+				F479D26021EE03D40070F9C0 /* AuthorizationView.swift in Sources */,
+				F479D25D21EDDDCE0070F9C0 /* FriendTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

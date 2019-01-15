@@ -7,14 +7,23 @@
 //
 
 import Foundation
+import UIKit
 
 protocol FriendsModel {
     func countOfFriends() -> Int
     func getFriends() -> [Friend]
+    func getImageFromUser(friend: Friend) -> UIImage
+    var delegate: FriendsModelDelegate? {get set}
+}
+
+protocol FriendsModelDelegate: class {
+    func didAcsess()
 }
 
 class FriendsModelImp: FriendsModel {
-
+    
+    weak var delegate: FriendsModelDelegate?
+    var image: UIImage?
     var friendsController: FriendsController!
     var friendsResponse: FriendListResponse?
     
@@ -24,7 +33,9 @@ class FriendsModelImp: FriendsModel {
     }
     func copleteGetFreiendsResponse(friendsResponseComplete: FriendListResponse) {
         self.friendsResponse = friendsResponseComplete
+        delegate?.didAcsess()
     }
+    
     
     func countOfFriends() -> Int {
         return friendsResponse?.response.count ?? 0
@@ -32,6 +43,16 @@ class FriendsModelImp: FriendsModel {
     func getFriends() -> [Friend] {
         return (friendsResponse?.response.items)!
     }
+    
+    func getImageFromUser(friend: Friend) -> UIImage {
+        //Requests().getImageFromUser(friend: friend, completeGetPhoto)
+        return image ?? #imageLiteral(resourceName: "defaultImage.png")
+    }
+    
+    func completeGetPhoto(image: UIImage) {
+        self.image = image
+    }
+    
 }
 
 

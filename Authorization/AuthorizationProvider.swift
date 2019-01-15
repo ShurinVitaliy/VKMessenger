@@ -11,14 +11,17 @@ import VK_ios_sdk
 
 protocol AuthorizationProvider {
     func logIn()
+    var delegate: AuthorizationProviderDelegate? {get set}
+}
+
+protocol AuthorizationProviderDelegate: class{
+    func controllerPresent(_ controller: UIViewController!)
+    func complete()
 }
 
 class AuthorizationProviderImp: NSObject, AuthorizationProvider {
-    let vk_app_id: String = "6804688"
-    var controllerAuth: AuthorizationController!
-    init(controllerAuth: AuthorizationController) {
-        self.controllerAuth = controllerAuth
-    }
+    private let vk_app_id: String = "6804688"
+    weak var delegate: AuthorizationProviderDelegate?
     
     func logIn() -> Void {
         let sdkInstance = VKSdk.initialize(withAppId: vk_app_id)
@@ -42,7 +45,7 @@ extension AuthorizationProviderImp: VKSdkDelegate, VKSdkUIDelegate {
     }
     
     func vkSdkShouldPresent(_ controller: UIViewController!) {
-        controllerAuth.present(controller, animated: true, completion: nil)
+        delegate?.controllerPresent(controller)
     }
     
     func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!) {
@@ -52,9 +55,10 @@ extension AuthorizationProviderImp: VKSdkDelegate, VKSdkUIDelegate {
                 UserDefaults.standard.synchronize()
                 UserDefaults.standard.set(userId, forKey: "userId")
                 UserDefaults.standard.synchronize()
-                controllerAuth.complete()
+                delegate?.complete()
             }
         }
     }
     
 }
+//VKSdk.accessToken()?.userId

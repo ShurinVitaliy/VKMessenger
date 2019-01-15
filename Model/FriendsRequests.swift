@@ -16,9 +16,12 @@ class Requests {
         let url = URL(string: urlString)
         URLSession.shared.dataTask(with: url!) {(data, response, error) in
             do {
-                //let json = try JSONSerialization.jsonObject(with: data!, options: [])
-                //print(json)
+                let json = try JSONSerialization.jsonObject(with: data!, options: [])
+                print(json)
                 var friends = try JSONDecoder().decode(FriendListResponse.self, from: data!)
+                DispatchQueue.main.async {
+                    
+                }
                 complete(friends)
             } catch {
                 print(error)
