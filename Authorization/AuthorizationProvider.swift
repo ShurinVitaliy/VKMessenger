@@ -30,6 +30,8 @@ class AuthorizationProviderImp: NSObject, AuthorizationProvider {
         VKSdk.wakeUpSession(["friends", "email"], complete: { (state: VKAuthorizationState, error: Error?) in
             if state != .authorized {
                 VKSdk.authorize([])
+            } else {
+                self.delegate?.didAcces()
             }
         })
     }
@@ -49,11 +51,6 @@ extension AuthorizationProviderImp: VKSdkDelegate, VKSdkUIDelegate {
     }
     
     func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!) {
-        if let token = result.token {
-            if let accesToken = token.accessToken, let userId = token.userId {
-                delegate?.didAcces()
-            }
-        }
+        delegate?.didAcces()
     }
-    
 }

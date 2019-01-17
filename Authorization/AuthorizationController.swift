@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import VK_ios_sdk
 
 class AuthorizationController: UIViewController {
     private var authorizationProvider: AuthorizationProvider!
@@ -23,14 +24,15 @@ class AuthorizationController: UIViewController {
     }
     
     override func loadView() {
+        authorizationProvider.delegate = self
         let authotizationView = AuthorizationView()
         authotizationView.buttonLogIn.addTarget(self, action: #selector(logIn), for: .touchUpInside)
         self.view = authotizationView
-        authorizationProvider.delegate = self
     }
     
     @objc private func logIn(_ sender: UIButton) {
         authorizationProvider.logIn()
+        print(VKSdk.accessToken()?.accessToken)
     }
     
     required init?(coder aDecoder: NSCoder) {

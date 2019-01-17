@@ -9,9 +9,9 @@
 import Foundation
 import VK_ios_sdk
 
-class Constants {
-    let apiVk: String = "https://api.vk.com/method/"
-    var accessToken: String {
+struct Constants {
+    static let apiVk = "https://api.vk.com/method/"
+    static var accessToken: String {
         if let accesToken = VKSdk.accessToken()?.accessToken {
             return accesToken
         } else {
@@ -19,14 +19,16 @@ class Constants {
         }
     }
     
-    var userId: String {
+    static var userId: String {
         if let userId = VKSdk.accessToken()?.userId {
             return userId
         } else {
             return ""
         }
     }
-    var friendsURL: String {
+    static var friendsURL: String {
         return "friends.get?user_ids=\(userId)&fields=photo_100&v=5.8&access_token=\(accessToken)"
     }
+    
+    
 }

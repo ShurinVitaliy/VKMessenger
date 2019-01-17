@@ -24,14 +24,14 @@ class FriendsModelImp: FriendsModel {
     weak var delegate: FriendsModelDelegate?
     var image: UIImage?
     var friendsController: FriendsController!
-    var friendsResponse: FriendListResponse?
+    var friendsResponse: FriendList?
     
     init(friendsController: FriendsController) {
         self.friendsController = friendsController
-        Requests().getJSONFriends(copleteGetFreiendsResponse)
+        FrendsProvider().getStructOfFriends(copleteGetFreiendsResponse)
     }
-    func copleteGetFreiendsResponse(friendsResponseComplete: FriendListResponse) {
-        self.friendsResponse = friendsResponseComplete
+    func copleteGetFreiendsResponse(friendsStructureReceivedSuccessfully: FriendList) {
+        self.friendsResponse = friendsStructureReceivedSuccessfully
         delegate?.didComplete()
     }
     

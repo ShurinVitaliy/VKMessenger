@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		316D9474949C0DD1AD537065 /* Pods_VKMessenger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E475AE8CF103871D96274327 /* Pods_VKMessenger.framework */; };
-		F42FCFD321E8F0D800890BC0 /* FriendsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42FCFD221E8F0D800890BC0 /* FriendsRequests.swift */; };
+		F42FCFD321E8F0D800890BC0 /* FriendsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42FCFD221E8F0D800890BC0 /* FriendsProvider.swift */; };
 		F42FCFD621EC6EA200890BC0 /* AuthorizationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42FCFD521EC6EA200890BC0 /* AuthorizationProvider.swift */; };
-		F42FCFD821EC6EB300890BC0 /* AuthorizationCntroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42FCFD721EC6EB300890BC0 /* AuthorizationCntroller.swift */; };
+		F42FCFD821EC6EB300890BC0 /* AuthorizationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42FCFD721EC6EB300890BC0 /* AuthorizationController.swift */; };
 		F46DBE0B21DD038900C1277A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46DBE0A21DD038900C1277A /* AppDelegate.swift */; };
 		F46DBE1021DD038900C1277A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F46DBE0E21DD038900C1277A /* Main.storyboard */; };
 		F46DBE1221DD038A00C1277A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F46DBE1121DD038A00C1277A /* Assets.xcassets */; };
@@ -46,9 +46,9 @@
 		54A77DCFAF450168CD22A719 /* Pods-VKMessenger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKMessenger.release.xcconfig"; path = "Pods/Target Support Files/Pods-VKMessenger/Pods-VKMessenger.release.xcconfig"; sourceTree = "<group>"; };
 		B9B6C7C0D593FFB0B9A63277 /* Pods-VKMessenger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKMessenger.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VKMessenger/Pods-VKMessenger.debug.xcconfig"; sourceTree = "<group>"; };
 		E475AE8CF103871D96274327 /* Pods_VKMessenger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VKMessenger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F42FCFD221E8F0D800890BC0 /* FriendsRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsRequests.swift; sourceTree = "<group>"; };
+		F42FCFD221E8F0D800890BC0 /* FriendsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsProvider.swift; sourceTree = "<group>"; };
 		F42FCFD521EC6EA200890BC0 /* AuthorizationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationProvider.swift; sourceTree = "<group>"; };
-		F42FCFD721EC6EB300890BC0 /* AuthorizationCntroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationCntroller.swift; sourceTree = "<group>"; };
+		F42FCFD721EC6EB300890BC0 /* AuthorizationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationController.swift; sourceTree = "<group>"; };
 		F46DBE0721DD038900C1277A /* VKMessenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKMessenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F46DBE0A21DD038900C1277A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F46DBE0F21DD038900C1277A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 		F42FCFCB21E8CF8D00890BC0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F42FCFD221E8F0D800890BC0 /* FriendsRequests.swift */,
+				F42FCFD221E8F0D800890BC0 /* FriendsProvider.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -123,7 +123,7 @@
 		F42FCFD421EC6E5C00890BC0 /* Authorization */ = {
 			isa = PBXGroup;
 			children = (
-				F42FCFD721EC6EB300890BC0 /* AuthorizationCntroller.swift */,
+				F42FCFD721EC6EB300890BC0 /* AuthorizationController.swift */,
 				F42FCFD521EC6EA200890BC0 /* AuthorizationProvider.swift */,
 				F479D25F21EE03D40070F9C0 /* AuthorizationView.swift */,
 			);
@@ -390,8 +390,8 @@
 				F479D25421ECC6D90070F9C0 /* FriendsController.swift in Sources */,
 				F479D25221ECC5C90070F9C0 /* FriendsModel.swift in Sources */,
 				F46DBE0B21DD038900C1277A /* AppDelegate.swift in Sources */,
-				F42FCFD321E8F0D800890BC0 /* FriendsRequests.swift in Sources */,
-				F42FCFD821EC6EB300890BC0 /* AuthorizationCntroller.swift in Sources */,
+				F42FCFD321E8F0D800890BC0 /* FriendsProvider.swift in Sources */,
+				F42FCFD821EC6EB300890BC0 /* AuthorizationController.swift in Sources */,
 				F479D26021EE03D40070F9C0 /* AuthorizationView.swift in Sources */,
 				F479D25D21EDDDCE0070F9C0 /* FriendTableViewCell.swift in Sources */,
 				F479D26321F082320070F9C0 /* Constants.swift in Sources */,

@@ -9,16 +9,15 @@
 import Foundation
 import UIKit
 
-class Requests {
+class FrendsProvider {
     
-    func getJSONFriends(_ complete: @escaping(_ friendListResponse: FriendListResponse) -> Void) {
-        let urlString: String = Constants().apiVk + Constants().friendsURL
+    func getStructOfFriends(_ gettingFriendsSuccessfully: @escaping(_ friendListResponse: FriendList) -> Void) {
+        let urlString: String = Constants.apiVk + Constants.friendsURL
         let url = URL(string: urlString)
         URLSession.shared.dataTask(with: url!) {(data, response, error) in
             do {
-                let json = try JSONSerialization.jsonObject(with: data!, options: [])
-                let friends = try JSONDecoder().decode(FriendListResponse.self, from: data!)
-                complete(friends)
+                let friends = try JSONDecoder().decode(FriendList.self, from: data!)
+                gettingFriendsSuccessfully(friends)
             } catch {
                 print(error)
             }
@@ -27,7 +26,7 @@ class Requests {
     
 }
 
-struct FriendListResponse: Decodable {
+struct FriendList: Decodable {
     enum CodingKeys: String, CodingKey {
         case response
     }
@@ -84,3 +83,13 @@ struct Friend: Decodable {
         
     }
 }
+
+
+
+
+
+
+
+
+
+
