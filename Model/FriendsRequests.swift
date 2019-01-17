@@ -12,16 +12,12 @@ import UIKit
 class Requests {
     
     func getJSONFriends(_ complete: @escaping(_ friendListResponse: FriendListResponse) -> Void) {
-        let urlString: String = "https://api.vk.com/method/friends.get?user_ids=\(UserDefaults.standard.object(forKey: "userId") as! String)&fields=photo_100&v=5.8&access_token=\(UserDefaults.standard.object(forKey: "accesToken") as! String)"
+        let urlString: String = Constants().apiVk + Constants().friendsURL
         let url = URL(string: urlString)
         URLSession.shared.dataTask(with: url!) {(data, response, error) in
             do {
                 let json = try JSONSerialization.jsonObject(with: data!, options: [])
-                print(json)
-                var friends = try JSONDecoder().decode(FriendListResponse.self, from: data!)
-                DispatchQueue.main.async {
-                    
-                }
+                let friends = try JSONDecoder().decode(FriendListResponse.self, from: data!)
                 complete(friends)
             } catch {
                 print(error)
@@ -61,6 +57,15 @@ struct Friend: Decodable {
     var online: Int?
     var photo_100: String?
     
+    var photoImageView: UIImage? {
+        let url = URL(string: photo_100!)
+        if let data = try? Data(contentsOf: url!) {
+            return UIImage(data: data)
+        } else {
+            return #imageLiteral(resourceName: "defaultImage.png")
+        }
+    }
+    
     enum CodingKeys: String, CodingKey {
         case first_name
         case id
@@ -76,5 +81,6 @@ struct Friend: Decodable {
         self.last_name = try? container.decode(String.self, forKey: .last_name)
         self.online = try? container.decode(Int.self, forKey: .online)
         self.photo_100 = try? container.decode(String.self, forKey: .photo_100)
+        
     }
 }

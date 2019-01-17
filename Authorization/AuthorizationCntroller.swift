@@ -23,10 +23,10 @@ class AuthorizationController: UIViewController {
     }
     
     override func loadView() {
-        authorizationProvider.delegate = self
-        let authotizationView = AuthorizationView(frame: CGRect.zero)
+        let authotizationView = AuthorizationView()
         authotizationView.buttonLogIn.addTarget(self, action: #selector(logIn), for: .touchUpInside)
         self.view = authotizationView
+        authorizationProvider.delegate = self
     }
     
     @objc private func logIn(_ sender: UIButton) {
@@ -39,11 +39,11 @@ class AuthorizationController: UIViewController {
 }
 
 extension AuthorizationController: AuthorizationProviderDelegate {
-    func controllerPresent(_ controller: UIViewController!) {
+    func willPresentController(_ controller: UIViewController!) {
         present(controller, animated: true, completion: nil)
     }
     
-    func complete() {
+    func didAcces() {
         let friendsController = FriendsController()
         print("present")
         self.dismiss(animated: true, completion: nil)

@@ -53,23 +53,26 @@ extension FriendsController: UITableViewDataSource {
         let friend = friendsModel.getFriends()[indexPath.row]
         cell.firstNameLabel.text = friend.first_name
         cell.lastNameLabel.text = friend.last_name
-        cell.photoImageView.image = friendsModel.getImageFromUser(friend: friend)
-        /*
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
-        cell.textLabel?.text = friendsModel.getFriends()[indexPath.row].last_name*/
+        // не оптимально!
+        cell.photoImageView.image = friend.photoImageView
         return cell
     }
 }
 extension FriendsController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("fdf")
+
     }
 }
 
 extension FriendsController: FriendsModelDelegate {
-    func didAcsess() {
-        
+    func didComplete() {
+        DispatchQueue.main.async {
+            if (self.tableView != nil) {
+                print("1")
+                self.tableView.reloadData()
+            }
+        }
     }
 }
 

@@ -23,14 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        /*print("----------------------------------------------------------------------")
-        print(app)
-        print("----------------------------------------------------------------------")
-        print(url)
-        print("----------------------------------------------------------------------")*/
-   
         VKSdk.processOpen(url, fromApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String)
-        
         return true
     }
     

@@ -15,8 +15,8 @@ protocol AuthorizationProvider {
 }
 
 protocol AuthorizationProviderDelegate: class{
-    func controllerPresent(_ controller: UIViewController!)
-    func complete()
+    func willPresentController(_ controller: UIViewController!)
+    func didAcces()
 }
 
 class AuthorizationProviderImp: NSObject, AuthorizationProvider {
@@ -45,20 +45,15 @@ extension AuthorizationProviderImp: VKSdkDelegate, VKSdkUIDelegate {
     }
     
     func vkSdkShouldPresent(_ controller: UIViewController!) {
-        delegate?.controllerPresent(controller)
+        delegate?.willPresentController(controller)
     }
     
     func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!) {
         if let token = result.token {
             if let accesToken = token.accessToken, let userId = token.userId {
-                UserDefaults.standard.set(accesToken, forKey: "accesToken")
-                UserDefaults.standard.synchronize()
-                UserDefaults.standard.set(userId, forKey: "userId")
-                UserDefaults.standard.synchronize()
-                delegate?.complete()
+                delegate?.didAcces()
             }
         }
     }
     
 }
-//VKSdk.accessToken()?.userId

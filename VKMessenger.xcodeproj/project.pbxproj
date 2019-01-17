@@ -22,6 +22,7 @@
 		F479D25D21EDDDCE0070F9C0 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479D25B21EDDDCE0070F9C0 /* FriendTableViewCell.swift */; };
 		F479D25E21EDDDCE0070F9C0 /* FriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F479D25C21EDDDCE0070F9C0 /* FriendTableViewCell.xib */; };
 		F479D26021EE03D40070F9C0 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479D25F21EE03D40070F9C0 /* AuthorizationView.swift */; };
+		F479D26321F082320070F9C0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479D26221F082320070F9C0 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		F479D25B21EDDDCE0070F9C0 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		F479D25C21EDDDCE0070F9C0 /* FriendTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendTableViewCell.xib; sourceTree = "<group>"; };
 		F479D25F21EE03D40070F9C0 /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
+		F479D26221F082320070F9C0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 		F46DBDFE21DD038900C1277A = {
 			isa = PBXGroup;
 			children = (
+				F479D26121F082070070F9C0 /* Constants */,
 				F42FCFCB21E8CF8D00890BC0 /* Model */,
 				F479D24E21ECC5830070F9C0 /* Friends */,
 				F42FCFD421EC6E5C00890BC0 /* Authorization */,
@@ -192,6 +195,14 @@
 				F479D25C21EDDDCE0070F9C0 /* FriendTableViewCell.xib */,
 			);
 			path = Friends;
+			sourceTree = "<group>";
+		};
+		F479D26121F082070070F9C0 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				F479D26221F082320070F9C0 /* Constants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -383,6 +394,7 @@
 				F42FCFD821EC6EB300890BC0 /* AuthorizationCntroller.swift in Sources */,
 				F479D26021EE03D40070F9C0 /* AuthorizationView.swift in Sources */,
 				F479D25D21EDDDCE0070F9C0 /* FriendTableViewCell.swift in Sources */,
+				F479D26321F082320070F9C0 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
