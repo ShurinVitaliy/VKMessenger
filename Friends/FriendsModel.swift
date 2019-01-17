@@ -16,7 +16,7 @@ protocol FriendsModel {
 }
 
 protocol FriendsModelDelegate: class {
-    func didComplete()
+    func gettingFriendsDidComplete()
 }
 
 class FriendsModelImp: FriendsModel {
@@ -28,25 +28,20 @@ class FriendsModelImp: FriendsModel {
     
     init(friendsController: FriendsController) {
         self.friendsController = friendsController
-        FrendsProvider().getStructOfFriends(copleteGetFreiendsResponse)
+        FrendsProvider().getStructOfFriends(completeGetFreiendsWithResult)
     }
-    func copleteGetFreiendsResponse(friendsStructureReceivedSuccessfully: FriendList) {
+    func completeGetFreiendsWithResult(friendsStructureReceivedSuccessfully: FriendList) {
         self.friendsResponse = friendsStructureReceivedSuccessfully
-        delegate?.didComplete()
+        delegate?.gettingFriendsDidComplete()
     }
-    
     
     func countOfFriends() -> Int {
         return friendsResponse?.response.count ?? 0
     }
+    
     func getFriends() -> [Friend] {
         return (friendsResponse?.response.items)!
     }
-    
-    func completeGetPhoto(image: UIImage) {
-        self.image = image
-    }
-    
 }
 
 

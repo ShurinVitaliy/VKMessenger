@@ -53,7 +53,7 @@ extension FriendsController: UITableViewDataSource {
         let friend = friendsModel.getFriends()[indexPath.row]
         cell.firstNameLabel.text = friend.first_name
         cell.lastNameLabel.text = friend.last_name
-        // не оптимально!
+        // не оптимально! нужно сделать загрузку изображений асинхронно
         cell.photoImageView.image = friend.photoImageView
         return cell
     }
@@ -66,13 +66,12 @@ extension FriendsController: UITableViewDelegate {
 }
 
 extension FriendsController: FriendsModelDelegate {
-    func didComplete() {
+    func gettingFriendsDidComplete() {
         DispatchQueue.main.async {
             if (self.tableView != nil) {
-                print("1")
                 self.tableView.reloadData()
             }
-        }
+        } // правилльно ли я сделал? знаю что так будет работать, если без проверки то работает через раз, потому что бывает что получаем друзей раньше чем создётся таблица
     }
 }
 

@@ -15,23 +15,25 @@ protocol AuthorizationProvider {
 }
 
 protocol AuthorizationProviderDelegate: class{
-    func willPresentController(_ controller: UIViewController!)
-    func didAcces()
+    func presentController(_ controller: UIViewController!)
+    func authorizationСompleted()
 }
 
 class AuthorizationProviderImp: NSObject, AuthorizationProvider {
-    private let vk_app_id: String = "6804688"
     weak var delegate: AuthorizationProviderDelegate?
-    
-    func logIn() -> Void {
-        let sdkInstance = VKSdk.initialize(withAppId: vk_app_id)
+    private let sdkInstance = VKSdk.initialize(withAppId: "6804688")
+    override init() {
+        super.init()
         sdkInstance?.register(self)
         sdkInstance?.uiDelegate = self
+    }
+    
+    func logIn() -> Void {
         VKSdk.wakeUpSession(["friends", "email"], complete: { (state: VKAuthorizationState, error: Error?) in
             if state != .authorized {
                 VKSdk.authorize([])
             } else {
-                self.delegate?.didAcces()
+                self.delegate?.authorizationСompleted()
             }
         })
     }
@@ -47,10 +49,10 @@ extension AuthorizationProviderImp: VKSdkDelegate, VKSdkUIDelegate {
     }
     
     func vkSdkShouldPresent(_ controller: UIViewController!) {
-        delegate?.willPresentController(controller)
+        delegate?.presentController(controller)
     }
     
     func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!) {
-        delegate?.didAcces()
+        delegate?.authorizationСompleted()
     }
 }

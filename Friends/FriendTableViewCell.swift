@@ -10,12 +10,9 @@ import UIKit
 
 class FriendTableViewCell: UITableViewCell {
 
-    
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var firstNameLabel: UILabel!
     @IBOutlet weak var lastNameLabel: UILabel!
-    
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,5 +21,4 @@ class FriendTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
 }

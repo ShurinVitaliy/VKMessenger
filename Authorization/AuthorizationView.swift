@@ -24,7 +24,7 @@ class AuthorizationView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupButton(title: String) -> UIButton{
+    private func setupButton(title: String) -> UIButton{
         let button = UIButton()
         button.setTitle(title, for: .normal)
         button.setTitleColor(.white, for: .normal)

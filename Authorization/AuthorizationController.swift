@@ -12,11 +12,10 @@ import VK_ios_sdk
 
 class AuthorizationController: UIViewController {
     private var authorizationProvider: AuthorizationProvider!
-    private var buttonLogIn: UIButton!
     
-    convenience init() {
+    convenience init(authorizationProvider: AuthorizationProvider) {
         self.init(nibName: nil, bundle: nil)
-        self.authorizationProvider = AuthorizationProviderImp()
+        self.authorizationProvider = authorizationProvider
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -32,7 +31,6 @@ class AuthorizationController: UIViewController {
     
     @objc private func logIn(_ sender: UIButton) {
         authorizationProvider.logIn()
-        print(VKSdk.accessToken()?.accessToken)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -41,13 +39,12 @@ class AuthorizationController: UIViewController {
 }
 
 extension AuthorizationController: AuthorizationProviderDelegate {
-    func willPresentController(_ controller: UIViewController!) {
+    func presentController(_ controller: UIViewController!) {
         present(controller, animated: true, completion: nil)
     }
     
-    func didAcces() {
+    func authorizationСompleted() {
         let friendsController = FriendsController()
-        print("present")
         self.dismiss(animated: true, completion: nil)
         present(friendsController, animated: true, completion: nil)
     }
