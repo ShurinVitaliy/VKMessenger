@@ -17,6 +17,7 @@ protocol FriendsModel {
 
 protocol FriendsModelDelegate: class {
     func gettingFriendsDidComplete()
+    func setupUploadedPhoto()
 }
 
 class FriendsModelImp: FriendsModel {
@@ -42,6 +43,13 @@ class FriendsModelImp: FriendsModel {
     func getFriends() -> [Friend] {
         return (friendsResponse?.response.items)!
     }
+    // попытка номер 1
+    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
+    
+
+    
 }
 
 

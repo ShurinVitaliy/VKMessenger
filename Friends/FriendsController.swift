@@ -54,7 +54,7 @@ extension FriendsController: UITableViewDataSource {
         cell.firstNameLabel.text = friend.first_name
         cell.lastNameLabel.text = friend.last_name
         // не оптимально! нужно сделать загрузку изображений асинхронно
-        cell.photoImageView.image = friend.photoImageView
+        //cell.photoImageView.image = friend.photoImageView
         return cell
     }
 }
