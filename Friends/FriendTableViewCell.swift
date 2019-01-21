@@ -14,21 +14,7 @@ class FriendTableViewCell: UITableViewCell {
     @IBOutlet weak var firstNameLabel: UILabel!
     @IBOutlet weak var lastNameLabel: UILabel!
     
-    func configureSelf(urlImage: String) {
-        let url = URL(string: urlImage)
-        URLSession.shared.dataTask(with: url!) {(data, response, error) in
-            do {
-                
-                DispatchQueue.main.sync {
-                    let imageView = UIImage(data: data!)
-                    self.photoImageView.image = imageView
-                }
-            } catch {
-                print(error)
-                self.photoImageView.image = #imageLiteral(resourceName: "defaultImage.png")
-            }
-        }.resume()
-    }
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -40,3 +26,21 @@ class FriendTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 }
+
+
+
+/*
+ func configureSelf(model: Friend) {
+ firstNameLabel.text = model.first_name
+ lastNameLabel.text = model.last_name
+ let url = URL(string: model.photo_50_URL!)
+ URLSession.shared.dataTask(with: url!) {(data, response, error) in
+ do {
+ DispatchQueue.main.sync {
+ let imageView = UIImage(data: data!)
+ self.photoImageView.image = imageView
+ }
+ }
+ }.resume()
+ }
+ */

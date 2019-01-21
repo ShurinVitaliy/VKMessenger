@@ -38,7 +38,9 @@ class FriendsController: UIViewController {
         let tableView = UITableView(frame: view.bounds)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
+        tableView.register(UINib(nibName: "FriendTableViewCell", bundle: nil), forCellReuseIdentifier: "FriendTableViewCell")
+        
+        //tableView.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
         return tableView
     }
     
@@ -54,30 +56,26 @@ extension FriendsController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = Bundle.main.loadNibNamed("FriendTableViewCell", owner: self, options: nil)?.first as! FriendTableViewCell
         let friend = friendsModel.getFriends()[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FriendTableViewCell", for: indexPath) as! FriendTableViewCell
         cell.firstNameLabel.text = friend.first_name
         cell.lastNameLabel.text = friend.last_name
-        // не оптимально! нужно сделать загрузку изображений асинхронно
-        /*DispatchQueue.main.async {
-            
-        } */
-        
-        cell.configureSelf(urlImage: friend.photo_50_URL!)
-        //friendsModel.getPhoto(friend: friend, index: indexPath.row)
+        friendsModel.getImage(indexPath: indexPath, friend: friend)
         return cell
     }
 }
 extension FriendsController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        
     }
 }
 
 extension FriendsController: FriendsModelDelegate {
-    func setupUploadedPhoto() {
-        
+    func gettingImageOfSpecificFriendDidComplete(indexPath: IndexPath, image: UIImage) {
+        DispatchQueue.main.async {
+            (self.tableView.cellForRow(at: indexPath) as? FriendTableViewCell)?.photoImageView.image = image
+        }
     }
     
     func gettingFriendsDidComplete() {

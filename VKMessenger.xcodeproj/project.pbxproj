@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		316D9474949C0DD1AD537065 /* Pods_VKMessenger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E475AE8CF103871D96274327 /* Pods_VKMessenger.framework */; };
+		F41C827E21F5ED9A0084B6F0 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41C827D21F5ED9A0084B6F0 /* ImageLoader.swift */; };
 		F42FCFD321E8F0D800890BC0 /* FriendsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42FCFD221E8F0D800890BC0 /* FriendsProvider.swift */; };
 		F42FCFD621EC6EA200890BC0 /* AuthorizationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42FCFD521EC6EA200890BC0 /* AuthorizationProvider.swift */; };
 		F42FCFD821EC6EB300890BC0 /* AuthorizationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42FCFD721EC6EB300890BC0 /* AuthorizationController.swift */; };
@@ -46,6 +47,7 @@
 		54A77DCFAF450168CD22A719 /* Pods-VKMessenger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKMessenger.release.xcconfig"; path = "Pods/Target Support Files/Pods-VKMessenger/Pods-VKMessenger.release.xcconfig"; sourceTree = "<group>"; };
 		B9B6C7C0D593FFB0B9A63277 /* Pods-VKMessenger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKMessenger.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VKMessenger/Pods-VKMessenger.debug.xcconfig"; sourceTree = "<group>"; };
 		E475AE8CF103871D96274327 /* Pods_VKMessenger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VKMessenger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F41C827D21F5ED9A0084B6F0 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		F42FCFD221E8F0D800890BC0 /* FriendsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsProvider.swift; sourceTree = "<group>"; };
 		F42FCFD521EC6EA200890BC0 /* AuthorizationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationProvider.swift; sourceTree = "<group>"; };
 		F42FCFD721EC6EB300890BC0 /* AuthorizationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationController.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				F42FCFD221E8F0D800890BC0 /* FriendsProvider.swift */,
+				F41C827D21F5ED9A0084B6F0 /* ImageLoader.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 			files = (
 				F42FCFD621EC6EA200890BC0 /* AuthorizationProvider.swift in Sources */,
 				F479D25421ECC6D90070F9C0 /* FriendsController.swift in Sources */,
+				F41C827E21F5ED9A0084B6F0 /* ImageLoader.swift in Sources */,
 				F479D25221ECC5C90070F9C0 /* FriendsModel.swift in Sources */,
 				F46DBE0B21DD038900C1277A /* AppDelegate.swift in Sources */,
 				F42FCFD321E8F0D800890BC0 /* FriendsProvider.swift in Sources */,

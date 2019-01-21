@@ -13,21 +13,19 @@ protocol FriendsModel {
     func countOfFriends() -> Int
     func getFriends() -> [Friend]
     var delegate: FriendsModelDelegate? {get set}
-    /*func getPhoto(friend: Friend, index: Int) -> UIImage */
+    func getImage(indexPath: IndexPath,friend: Friend)
 }
 
 protocol FriendsModelDelegate: class {
     func gettingFriendsDidComplete()
-    func setupUploadedPhoto()
+    func gettingImageOfSpecificFriendDidComplete(indexPath: IndexPath, image: UIImage)
 }
 
 class FriendsModelImp: FriendsModel {
     
     weak var delegate: FriendsModelDelegate?
-    var image: UIImage?
     var friendsController: FriendsController!
     var friendsResponse: FriendList?
-    
     
     init(friendsController: FriendsController) {
         self.friendsController = friendsController
@@ -46,17 +44,14 @@ class FriendsModelImp: FriendsModel {
         return (friendsResponse?.response.items)!
     }
     
-    
-    
-    /*
-    func getPhoto(friend: Friend, index: Int) -> UIImage {
-        friend.getPhoto(gettingPhotoImageForIndexPath: gettingPhotoImageForIndexPath)
-        return image ?? #imageLiteral(resourceName: "defaultImage.png")
+    func loadCompleteWithResult(indexPath: IndexPath, image: UIImage) {
+        delegate?.gettingImageOfSpecificFriendDidComplete(indexPath: indexPath, image: image)
     }
     
-    func gettingPhotoImageForIndexPath(_ image: UIImage) {
-        self.image = image
-    }*/
+    func getImage(indexPath: IndexPath,friend: Friend) {
+        let loader = ImageLoader(imageURLString: friend.photo_50_URL!)
+        loader.getImage(indexPath: indexPath, loadCompleteWithResult: loadCompleteWithResult)
+    }
 }
 
 
