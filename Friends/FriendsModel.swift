@@ -13,6 +13,7 @@ protocol FriendsModel {
     func countOfFriends() -> Int
     func getFriends() -> [Friend]
     var delegate: FriendsModelDelegate? {get set}
+    /*func getPhoto(friend: Friend, index: Int) -> UIImage */
 }
 
 protocol FriendsModelDelegate: class {
@@ -26,6 +27,7 @@ class FriendsModelImp: FriendsModel {
     var image: UIImage?
     var friendsController: FriendsController!
     var friendsResponse: FriendList?
+    
     
     init(friendsController: FriendsController) {
         self.friendsController = friendsController
@@ -43,13 +45,18 @@ class FriendsModelImp: FriendsModel {
     func getFriends() -> [Friend] {
         return (friendsResponse?.response.items)!
     }
-    // попытка номер 1
-    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    
+    
+    
+    /*
+    func getPhoto(friend: Friend, index: Int) -> UIImage {
+        friend.getPhoto(gettingPhotoImageForIndexPath: gettingPhotoImageForIndexPath)
+        return image ?? #imageLiteral(resourceName: "defaultImage.png")
     }
     
-
-    
+    func gettingPhotoImageForIndexPath(_ image: UIImage) {
+        self.image = image
+    }*/
 }
 
 

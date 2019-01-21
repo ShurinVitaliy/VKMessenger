@@ -27,7 +27,7 @@ struct Constants {
         }
     }
     static var friendsURL: String {
-        return "friends.get?user_ids=\(userId)&fields=photo_100&v=5.8&access_token=\(accessToken)"
+        return "friends.get?user_ids=\(userId)&fields=photo_50&v=5.8&access_token=\(accessToken)"
     }
     
     

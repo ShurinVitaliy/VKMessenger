@@ -23,7 +23,6 @@ class FrendsProvider {
             }
         }.resume()
     }
-    
 }
 
 struct FriendList: Decodable {
@@ -49,28 +48,28 @@ struct FriendListResponseItems: Decodable {
     var items: [Friend]?
 }
 
+struct Photo {
+    var image: [UIImage] = []
+    var index: [Int] = []
+    init(image: UIImage, index: Int) {
+        self.image.append(image)
+        self.index.append(index)
+    }
+}
+
 struct Friend: Decodable {
     var first_name: String?
     var id: Int?
     var last_name: String?
     var online: Int?
-    var photo_100: String?
-    
-    var photoImageView: UIImage? {
-        let url = URL(string: photo_100!)
-        if let data = try? Data(contentsOf: url!) {
-            return UIImage(data: data)
-        } else {
-            return #imageLiteral(resourceName: "defaultImage.png")
-        }
-    }
+    var photo_50_URL: String?
     
     enum CodingKeys: String, CodingKey {
         case first_name
         case id
         case last_name
         case online
-        case photo_100
+        case photo_50
     }
     
     init(from decoder: Decoder) throws {
@@ -79,8 +78,7 @@ struct Friend: Decodable {
         self.id = try? container.decode(Int.self, forKey: .id)
         self.last_name = try? container.decode(String.self, forKey: .last_name)
         self.online = try? container.decode(Int.self, forKey: .online)
-        self.photo_100 = try? container.decode(String.self, forKey: .photo_100)
-        
+        self.photo_50_URL = try? container.decode(String.self, forKey: .photo_50)
     }
 }
 
@@ -93,3 +91,12 @@ struct Friend: Decodable {
 
 
 
+/*
+ var photoImageView: UIImage? {
+ let url = URL(string: photo_100!)
+ if let data = try? Data(contentsOf: url!) {
+ return UIImage(data: data)
+ } else {
+ return #imageLiteral(resourceName: "defaultImage.png")
+ }
+ }*/
