@@ -12,6 +12,7 @@ import VK_ios_sdk
 struct Constants {
     static let apiVk = "https://api.vk.com/method/"
     static var accessToken: String {
+        //TODO: For such popuses it is better to use guard instead of if else
         if let accesToken = VKSdk.accessToken()?.accessToken {
             return accesToken
         } else {
@@ -20,6 +21,7 @@ struct Constants {
     }
     
     static var userId: String {
+        //TODO: For such popuses it is better to use guard instead of if else
         if let userId = VKSdk.accessToken()?.userId {
             return userId
         } else {

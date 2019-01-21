@@ -11,9 +11,12 @@ import UIKit
 
 class FrendsProvider {
     
+    //TODO: name should be func loadFriends(_ completionHandler: @escaping(_ friendListResponse: FriendList) -> Void).
+    //TODO: (_ friendListResponse: FriendList) should be (_ friendListResponse: [Friend]])
     func getStructOfFriends(_ gettingFriendsSuccessfully: @escaping(_ friendListResponse: FriendList) -> Void) {
         let urlString: String = Constants.apiVk + Constants.friendsURL
         let url = URL(string: urlString)
+        //TODO: Do not use forceunwrap. Use guard instead
         URLSession.shared.dataTask(with: url!) {(data, response, error) in
             do {
                 let friends = try JSONDecoder().decode(FriendList.self, from: data!)
@@ -26,19 +29,23 @@ class FrendsProvider {
     
 }
 
+//TODO: This is a private struct needed you only for parsing
 struct FriendList: Decodable {
+    //TODO: It is not needed to define CodingKeys enum in case if property name is the same as coding key response == response
     enum CodingKeys: String, CodingKey {
         case response
     }
     var response : FriendListResponseItems
 }
-
+//TODO: This is a private struct needed you only for parsing
 struct FriendListResponseItems: Decodable {
+    //TODO: It is not needed to define CodingKeys enum in case if property name is the same as coding key response == response
     enum CodingKeys: String, CodingKey {
         case items
         case count
     }
     
+    //TODO: It is not needed to override init
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.count = try? container.decode(Int.self, forKey: .count)
@@ -56,6 +63,7 @@ struct Friend: Decodable {
     var online: Int?
     var photo_100: String?
     
+    //TODO: Should be replaced with image loader logic
     var photoImageView: UIImage? {
         let url = URL(string: photo_100!)
         if let data = try? Data(contentsOf: url!) {
@@ -64,7 +72,7 @@ struct Friend: Decodable {
             return #imageLiteral(resourceName: "defaultImage.png")
         }
     }
-    
+    //TODO: It is not needed to define CodingKeys enum in case if property name is the same as coding key response == response
     enum CodingKeys: String, CodingKey {
         case first_name
         case id
@@ -72,6 +80,8 @@ struct Friend: Decodable {
         case online
         case photo_100
     }
+    
+    //TODO: It is not needed to override init
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
