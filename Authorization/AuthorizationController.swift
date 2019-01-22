@@ -44,8 +44,9 @@ extension AuthorizationController: AuthorizationProviderDelegate {
     }
     
     func authorizationСompleted() {
-        let friendsController = FriendsController()
+        let friendsController = FriendsController(friendsModel: FriendsModelImp())
         self.dismiss(animated: true, completion: nil)
         present(friendsController, animated: true, completion: nil)
     }
 }
+

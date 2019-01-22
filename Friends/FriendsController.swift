@@ -13,10 +13,10 @@ class FriendsController: UIViewController {
     var friendsModel: FriendsModel!
     private var tableView: UITableView!
     
-    convenience init() {
+    convenience init(friendsModel: FriendsModel) {
         self.init(nibName: nil, bundle: nil)
-        friendsModel = FriendsModelImp(friendsController: self)
-        friendsModel.delegate = self
+        self.friendsModel = friendsModel// FriendsModelImp()
+        self.friendsModel.delegate = self
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -33,7 +33,7 @@ class FriendsController: UIViewController {
         let tableView = UITableView(frame: view.bounds)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
+        tableView.register(UINib(nibName: "FriendTableViewCell", bundle: nil), forCellReuseIdentifier: "FriendTableViewCell")
         return tableView
     }
     
@@ -49,30 +49,37 @@ extension FriendsController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = Bundle.main.loadNibNamed("FriendTableViewCell", owner: self, options: nil)?.first as! FriendTableViewCell
         let friend = friendsModel.getFriends()[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FriendTableViewCell", for: indexPath) as! FriendTableViewCell
         cell.firstNameLabel.text = friend.first_name
         cell.lastNameLabel.text = friend.last_name
-        // не оптимально! нужно сделать загрузку изображений асинхронно
-        cell.photoImageView.image = friend.photoImageView
+        friendsModel.getImage(indexPath: indexPath, friend: friend)
         return cell
     }
 }
 extension FriendsController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        
     }
 }
 
 extension FriendsController: FriendsModelDelegate {
+    func gettingImageDidComplete(indexPath: IndexPath, image: UIImage) {
+        DispatchQueue.main.async {
+            (self.tableView.cellForRow(at: indexPath) as? FriendTableViewCell)?.photoImageView.image = image
+        }
+    }
+    
     func gettingFriendsDidComplete() {
         DispatchQueue.main.async {
             if (self.tableView != nil) {
                 self.tableView.reloadData()
             }
-        } // правилльно ли я сделал? знаю что так будет работать, если без проверки то работает через раз, потому что бывает что получаем друзей раньше чем создётся таблица
+        }
     }
 }
+
+
 
 

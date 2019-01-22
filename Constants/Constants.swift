@@ -12,23 +12,20 @@ import VK_ios_sdk
 struct Constants {
     static let apiVk = "https://api.vk.com/method/"
     static var accessToken: String {
-        if let accesToken = VKSdk.accessToken()?.accessToken {
-            return accesToken
-        } else {
+        guard let accesToken = VKSdk.accessToken()?.accessToken else {
             return ""
         }
+        return accesToken
     }
     
     static var userId: String {
-        if let userId = VKSdk.accessToken()?.userId {
-            return userId
-        } else {
+        guard let userId = VKSdk.accessToken()?.userId else {
             return ""
         }
+        return userId
     }
+    
     static var friendsURL: String {
-        return "friends.get?user_ids=\(userId)&fields=photo_100&v=5.8&access_token=\(accessToken)"
+        return "friends.get?user_ids=\(userId)&fields=photo_50&v=5.8&access_token=\(accessToken)"
     }
-    
-    
 }

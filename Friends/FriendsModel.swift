@@ -6,6 +6,7 @@
 //  Copyright © 2019 Vitaly Shurin. All rights reserved.
 //
 
+
 import Foundation
 import UIKit
 
@@ -13,34 +14,42 @@ protocol FriendsModel {
     func countOfFriends() -> Int
     func getFriends() -> [Friend]
     var delegate: FriendsModelDelegate? {get set}
+    func getImage(indexPath: IndexPath,friend: Friend)
 }
 
 protocol FriendsModelDelegate: class {
     func gettingFriendsDidComplete()
+    func gettingImageDidComplete(indexPath: IndexPath, image: UIImage)
 }
 
 class FriendsModelImp: FriendsModel {
     
     weak var delegate: FriendsModelDelegate?
-    var image: UIImage?
-    var friendsController: FriendsController!
-    var friendsResponse: FriendList?
+    private var friends: [Friend]?
     
-    init(friendsController: FriendsController) {
-        self.friendsController = friendsController
-        FrendsProvider().getStructOfFriends(completeGetFreiendsWithResult)
+    init() {
+        FrendsProvider().loadFriends(completeGetFreiendsWithResult)
     }
-    func completeGetFreiendsWithResult(friendsStructureReceivedSuccessfully: FriendList) {
-        self.friendsResponse = friendsStructureReceivedSuccessfully
+    private func completeGetFreiendsWithResult(friendsStructureReceivedSuccessfully: [Friend]) {
+        self.friends = friendsStructureReceivedSuccessfully
         delegate?.gettingFriendsDidComplete()
     }
     
+    private func loadCompleteWithResult(indexPath: IndexPath, image: UIImage) {
+        delegate?.gettingImageDidComplete(indexPath: indexPath, image: image)
+    }
+    
     func countOfFriends() -> Int {
-        return friendsResponse?.response.count ?? 0
+        return friends?.count ?? 0
     }
     
     func getFriends() -> [Friend] {
-        return (friendsResponse?.response.items)!
+        return friends ?? []
+    }
+    
+    func getImage(indexPath: IndexPath,friend: Friend) {
+        let loader = ImageLoader(imageURLString: friend.photo_50!)
+        loader.getImage(indexPath: indexPath, loadCompleteWithResult: loadCompleteWithResult)
     }
 }
 
