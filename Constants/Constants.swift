@@ -12,7 +12,7 @@ import VK_ios_sdk
 struct Constants {
     static let apiVk = "https://api.vk.com/method/"
     static var accessToken: String {
-        guard let accesToken = VKSdk.accessToken()?.accessToken else {
+        guard let accesToken = VKSdk.accessToken()?.accessToken else { //библиотека не предоставляет токен если на этапе логина нет интернета, ид тоже
             return ""
         }
         return accesToken

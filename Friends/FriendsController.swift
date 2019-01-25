@@ -55,18 +55,18 @@ class FriendsController: UIViewController {
         refreshControl.beginRefreshing()
         FrendsProvider.loadFriends(completeGetFreiendsWithResult)
     }
-
+    /*
     private func getImage(indexPath: IndexPath,friend: Friend) {
         let loader = ImageLoader(imageURLString: friend.photo_50!)
         loader.getImage(indexPath: indexPath, loadCompleteWithResult: loadCompleteWithResult)
     }
-    
+    */
     private func completeGetFreiendsWithResult(friendsStructureReceivedSuccessfully: [Friend]?) {
         friends = friendsStructureReceivedSuccessfully
         DispatchQueue.main.async {
             if self.friends == nil {
                 self.refreshControl.endRefreshing()
-                let alert = UIAlertController(title: "error", message: "friends not found, try again", preferredStyle: .alert)
+                let alert = UIAlertController(title: "error connection", message: "friends not found, try again", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "ok", style: .default, handler: {(action) in
                     self.loadFreinds()
                 }))
@@ -99,15 +99,17 @@ extension FriendsController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendTableViewCell", for: indexPath) as! FriendTableViewCell
         if let friend = friends?[indexPath.row] {
+            /*
             cell.firstNameLabel.text = friend.first_name
             cell.lastNameLabel.text = friend.last_name
-            
             if friend.online == 0 {
                 cell.onlineLabel.text = "offline"
             } else {
                 cell.onlineLabel.text = "online"
             }
             getImage(indexPath: indexPath, friend: friend)
+            */                      //не нашёл никаких методов для обращения к конкретной ячейке без indexPath, поэтому показалось правильней передевать определённого друга нашей ячейке
+            cell.loadCell(friend: friend)
         }
         return cell
     }
