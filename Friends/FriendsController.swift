@@ -10,9 +10,9 @@ import UIKit
 import VK_ios_sdk
 
 class FriendsController: UIViewController {
-    // реализую свою модель тут
     private var friends: [Friend]?
     private var tableView: UITableView!
+    private var imageLoader = ImageLoader()
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -25,7 +25,6 @@ class FriendsController: UIViewController {
         loadFreinds()
     }
 
-    
     convenience init() {
         self.init(nibName: nil, bundle: nil)
     }
@@ -50,17 +49,11 @@ class FriendsController: UIViewController {
         return tableView
     }
     
-    // реализую свою модель тут
     private func loadFreinds() {
         refreshControl.beginRefreshing()
         FrendsProvider.loadFriends(completeGetFreiendsWithResult)
     }
-    /*
-    private func getImage(indexPath: IndexPath,friend: Friend) {
-        let loader = ImageLoader(imageURLString: friend.photo_50!)
-        loader.getImage(indexPath: indexPath, loadCompleteWithResult: loadCompleteWithResult)
-    }
-    */
+    
     private func completeGetFreiendsWithResult(friendsStructureReceivedSuccessfully: [Friend]?) {
         friends = friendsStructureReceivedSuccessfully
         DispatchQueue.main.async {
@@ -79,10 +72,12 @@ class FriendsController: UIViewController {
         }
     }
     
-    private func loadCompleteWithResult(indexPath: IndexPath, image: UIImage) {
-        DispatchQueue.main.async {
-            (self.tableView.cellForRow(at: indexPath) as? FriendTableViewCell)?.photoImageView.image = image
-        }
+    private func getImage(indexPath: IndexPath,friend: Friend) {
+        imageLoader.getImage(imageURLString: friend.photo_50!, loadCompleteWithResult: { (image) in
+            DispatchQueue.main.sync { //вызывающий поток ожидает выполнения вашей задачи
+                (self.tableView.cellForRow(at: indexPath) as? FriendTableViewCell)?.photoImageView.image = image
+            }
+        })
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -99,17 +94,8 @@ extension FriendsController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendTableViewCell", for: indexPath) as! FriendTableViewCell
         if let friend = friends?[indexPath.row] {
-            /*
-            cell.firstNameLabel.text = friend.first_name
-            cell.lastNameLabel.text = friend.last_name
-            if friend.online == 0 {
-                cell.onlineLabel.text = "offline"
-            } else {
-                cell.onlineLabel.text = "online"
-            }
-            getImage(indexPath: indexPath, friend: friend)
-            */                      //не нашёл никаких методов для обращения к конкретной ячейке без indexPath, поэтому показалось правильней передевать определённого друга нашей ячейке
             cell.loadCell(friend: friend)
+            getImage(indexPath: indexPath, friend: friend)
         }
         return cell
     }

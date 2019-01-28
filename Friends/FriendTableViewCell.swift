@@ -29,8 +29,6 @@ class FriendTableViewCell: UITableViewCell {
         } else {
             onlineLabel.text = "online"
         }
-        let imageLoader = ImageLoader(imageURLString: friend.photo_50!)
-        imageLoader.getImage(/*indexPath: indexPath,*/ loadCompleteWithResult: loadCompleteWithResult)
     }
     
     private func loadCompleteWithResult(/*indexPath: IndexPath, */image: UIImage) {
