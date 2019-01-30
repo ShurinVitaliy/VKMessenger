@@ -13,7 +13,7 @@ class FriendsController: UIViewController {
     private var friends: [Friend]?
     private var tableView: UITableView!
     private lazy var imageLoader = ImageLoader()
-    private lazy var cache = FriendsCache()
+    //private lazy var cache = FriendsCache()
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -67,7 +67,6 @@ class FriendsController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
                 
             } else if (self.tableView != nil) {
-               // self.friendCache.uploadCache(friend: self.friends ?? [])
                 self.tableView.reloadData()
                 self.refreshControl.endRefreshing()
             }
@@ -77,15 +76,15 @@ class FriendsController: UIViewController {
     private func getImage(indexPath: IndexPath,friend: Friend) {
         
         let nameOfImageCurrentFriend = String(friend.id!)
-        if let image = cache.loadCache(name: nameOfImageCurrentFriend) {
+        if let image = imageLoader.loadCacheImage(nameOfImage: nameOfImageCurrentFriend) {
             DispatchQueue.main.sync {
                 (tableView.cellForRow(at: indexPath) as? FriendTableViewCell)?.photoImageView.image = image
             }
         } else {
             imageLoader.getImage(friend: friend, loadCompleteWithResult: {[weak self] (image) in
+                self?.imageLoader.uploadCacheImage(image: image, nameOfImage: nameOfImageCurrentFriend)
                 DispatchQueue.main.sync { //вызывающий поток ожидает выполнения вашей задачи
                     (self?.tableView.cellForRow(at: indexPath) as? FriendTableViewCell)?.photoImageView.image = image
-                    self?.cache.uploadCacheImage(image: image, name: nameOfImageCurrentFriend)
                 }
             })
         }
@@ -106,8 +105,7 @@ extension FriendsController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendTableViewCell", for: indexPath) as! FriendTableViewCell
         if let friend = friends?[indexPath.row] {
             cell.loadCell(friend: friend)
-            
-            DispatchQueue.global().async {
+            DispatchQueue.global().async { // устанавливаю фотографию по indexPath, но если вызываю эту функцию в главном потоке, то программа не работает нормально, так как мы пытаемся установать картинку на ещё не существующую ячейку с этим indexPath
                 self.getImage(indexPath: indexPath, friend: friend)
             }
         }
