@@ -12,7 +12,8 @@ import VK_ios_sdk
 class FriendsController: UIViewController {
     private var friends: [Friend]?
     private var tableView: UITableView!
-    private var imageLoader = ImageLoader()
+    private lazy var imageLoader = ImageLoader()
+    private lazy var cache = FriendsCache()
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -66,6 +67,7 @@ class FriendsController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
                 
             } else if (self.tableView != nil) {
+               // self.friendCache.uploadCache(friend: self.friends ?? [])
                 self.tableView.reloadData()
                 self.refreshControl.endRefreshing()
             }
@@ -73,11 +75,20 @@ class FriendsController: UIViewController {
     }
     
     private func getImage(indexPath: IndexPath,friend: Friend) {
-        imageLoader.getImage(imageURLString: friend.photo_50!, loadCompleteWithResult: { (image) in
-            DispatchQueue.main.sync { //вызывающий поток ожидает выполнения вашей задачи
-                (self.tableView.cellForRow(at: indexPath) as? FriendTableViewCell)?.photoImageView.image = image
+        
+        let nameOfImageCurrentFriend = String(friend.id!)
+        if let image = cache.loadCache(name: nameOfImageCurrentFriend) {
+            DispatchQueue.main.sync {
+                (tableView.cellForRow(at: indexPath) as? FriendTableViewCell)?.photoImageView.image = image
             }
-        })
+        } else {
+            imageLoader.getImage(friend: friend, loadCompleteWithResult: {[weak self] (image) in
+                DispatchQueue.main.sync { //вызывающий поток ожидает выполнения вашей задачи
+                    (self?.tableView.cellForRow(at: indexPath) as? FriendTableViewCell)?.photoImageView.image = image
+                    self?.cache.uploadCacheImage(image: image, name: nameOfImageCurrentFriend)
+                }
+            })
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -95,7 +106,10 @@ extension FriendsController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendTableViewCell", for: indexPath) as! FriendTableViewCell
         if let friend = friends?[indexPath.row] {
             cell.loadCell(friend: friend)
-            getImage(indexPath: indexPath, friend: friend)
+            
+            DispatchQueue.global().async {
+                self.getImage(indexPath: indexPath, friend: friend)
+            }
         }
         return cell
     }
@@ -106,13 +120,3 @@ extension FriendsController: UITableViewDelegate {
         
     }
 }
-
-
-
-/*
-func presentAlertController(title: String, message: String) -> UIAlertController {
-    let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
-    return alert
-}
-*/
