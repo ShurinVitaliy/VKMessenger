@@ -12,8 +12,9 @@ import VK_ios_sdk
 class FriendsController: UIViewController {
     private var friends: [Friend]?
     private var tableView: UITableView!
-    private lazy var imageLoader = CustomImageLoade()
+    //private lazy var imageLoader = CustomImageLoader()
     //private lazy var cache = FriendsCache()
+    private lazy var imageManager = ImageManager()
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -24,7 +25,7 @@ class FriendsController: UIViewController {
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         loadFreinds()
-        imageLoader.deleteCacheImage()
+        imageManager.clearCache()
     }
 
     convenience init() {
@@ -75,20 +76,11 @@ class FriendsController: UIViewController {
     }
     
     private func getImage(indexPath: IndexPath,friend: Friend) {
-        
-        let nameOfImageCurrentFriend = String(friend.id!)
-        if let image = imageLoader.loadCacheImage(nameOfImage: nameOfImageCurrentFriend) {
+        imageManager.getImage(friend: friend, complete: {[weak self] (image) in
             DispatchQueue.main.sync {
-                (tableView.cellForRow(at: indexPath) as? FriendTableViewCell)?.photoImageView.image = image
+                (self?.tableView.cellForRow(at: indexPath) as? FriendTableViewCell)?.photoImageView.image = image
             }
-        } else {
-            imageLoader.getImage(friend: friend, loadCompleteWithResult: {[weak self] (image) in
-                self?.imageLoader.saveCacheImage(image: image, nameOfImage: nameOfImageCurrentFriend)
-                DispatchQueue.main.sync { //вызывающий поток ожидает выполнения вашей задачи
-                    (self?.tableView.cellForRow(at: indexPath) as? FriendTableViewCell)?.photoImageView.image = image
-                }
-            })
-        }
+        })
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -106,7 +98,7 @@ extension FriendsController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendTableViewCell", for: indexPath) as! FriendTableViewCell
         if let friend = friends?[indexPath.row] {
             cell.loadCell(friend: friend)
-            // устанавливаю фотографию по indexPath, но если вызываю эту функцию в главном потоке, то программа не работает нормально, так как мы пытаемся установать картинку на ячейку с этим indexPath которая ещё не вернулась
+            cell.photoImageView.image = #imageLiteral(resourceName: "defaultImage.png")
             self.getImage(indexPath: indexPath, friend: friend)
         }
         return cell
