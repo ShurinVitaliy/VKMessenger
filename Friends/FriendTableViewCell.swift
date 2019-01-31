@@ -31,12 +31,6 @@ class FriendTableViewCell: UITableViewCell {
         }
     }
     
-    private func loadCompleteWithResult(/*indexPath: IndexPath, */image: UIImage) {
-        DispatchQueue.main.async {
-            self.photoImageView.image = image
-        }
-    }
-    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }

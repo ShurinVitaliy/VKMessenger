@@ -32,7 +32,7 @@ class CustomImageLoade{
         }
     }
     
-    func uploadCacheImage(image: UIImage, nameOfImage: String) {
+    func saveCacheImage(image: UIImage, nameOfImage: String) {
         do {
             let fileURL = documentsURL.appendingPathComponent("\(nameOfImage).jpg")
             print(fileURL)

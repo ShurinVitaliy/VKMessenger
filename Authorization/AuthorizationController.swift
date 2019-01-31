@@ -31,6 +31,7 @@ class AuthorizationController: UIViewController {
     
     @objc private func logIn(_ sender: UIButton) {
         authorizationProvider.logIn()
+        (self.view as? AuthorizationView)?.buttonLogIn.isEnabled = false
     }
     
     required init?(coder aDecoder: NSCoder) {

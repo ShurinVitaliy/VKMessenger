@@ -83,7 +83,7 @@ class FriendsController: UIViewController {
             }
         } else {
             imageLoader.getImage(friend: friend, loadCompleteWithResult: {[weak self] (image) in
-                self?.imageLoader.uploadCacheImage(image: image, nameOfImage: nameOfImageCurrentFriend)
+                self?.imageLoader.saveCacheImage(image: image, nameOfImage: nameOfImageCurrentFriend)
                 DispatchQueue.main.sync { //вызывающий поток ожидает выполнения вашей задачи
                     (self?.tableView.cellForRow(at: indexPath) as? FriendTableViewCell)?.photoImageView.image = image
                 }
@@ -106,9 +106,8 @@ extension FriendsController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendTableViewCell", for: indexPath) as! FriendTableViewCell
         if let friend = friends?[indexPath.row] {
             cell.loadCell(friend: friend)
-            DispatchQueue.global().async { // устанавливаю фотографию по indexPath, но если вызываю эту функцию в главном потоке, то программа не работает нормально, так как мы пытаемся установать картинку на ещё не существующую ячейку с этим indexPath
-                self.getImage(indexPath: indexPath, friend: friend)
-            }
+            // устанавливаю фотографию по indexPath, но если вызываю эту функцию в главном потоке, то программа не работает нормально, так как мы пытаемся установать картинку на ячейку с этим indexPath которая ещё не вернулась
+            self.getImage(indexPath: indexPath, friend: friend)
         }
         return cell
     }
