@@ -19,7 +19,7 @@ class CustomImageLoade{
                 let imageView = UIImage(data: data!)
                 loadCompleteWithResult(imageView ?? #imageLiteral(resourceName: "defaultImage.png"))
             }
-            }.resume()
+        }.resume()
     }
     
     func loadCacheImage(nameOfImage: String) -> UIImage? {
@@ -41,6 +41,14 @@ class CustomImageLoade{
             }
         } catch {
             print("error")
+        }
+    }
+    
+    func deleteCacheImage() {
+        let fileManager = FileManager.default
+        guard let filePaths = try? fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil, options: []) else { return }
+        for filePath in filePaths {
+            try? fileManager.removeItem(at: filePath)
         }
     }
 }

@@ -12,7 +12,7 @@ import VK_ios_sdk
 class FriendsController: UIViewController {
     private var friends: [Friend]?
     private var tableView: UITableView!
-    private lazy var imageLoader = ImageLoader()
+    private lazy var imageLoader = CustomImageLoade()
     //private lazy var cache = FriendsCache()
     
     lazy var refreshControl: UIRefreshControl = {
@@ -24,6 +24,7 @@ class FriendsController: UIViewController {
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         loadFreinds()
+        imageLoader.deleteCacheImage()
     }
 
     convenience init() {
