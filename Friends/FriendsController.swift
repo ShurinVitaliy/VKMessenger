@@ -75,8 +75,8 @@ class FriendsController: UIViewController {
         }
     }
     
-    private func getImage(indexPath: IndexPath,friend: Friend) {
-        imageManager.getImage(friend: friend, complete: {[weak self] (image) in
+    private func getImage(indexPath: IndexPath,imageURL: String) {
+        imageManager.getImage(imageURL: imageURL, complete: {[weak self] (image) in
             DispatchQueue.main.sync {
                 (self?.tableView.cellForRow(at: indexPath) as? FriendTableViewCell)?.photoImageView.image = image
             }
@@ -98,8 +98,8 @@ extension FriendsController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendTableViewCell", for: indexPath) as! FriendTableViewCell
         if let friend = friends?[indexPath.row] {
             cell.loadCell(friend: friend)
-            cell.photoImageView.image = #imageLiteral(resourceName: "defaultImage.png")
-            self.getImage(indexPath: indexPath, friend: friend)
+            cell.photoImageView.image = nil
+            self.getImage(indexPath: indexPath, imageURL: friend.photo_50!)
         }
         return cell
     }
