@@ -107,6 +107,7 @@ extension FriendsController: UITableViewDataSource {
 extension FriendsController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let friendPageController = FriendPageController()
+        present(friendPageController, animated: true, completion: nil)
     }
 }

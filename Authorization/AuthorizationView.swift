@@ -30,6 +30,7 @@ class AuthorizationView: UIView {
         button.setTitleColor(.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor.darkGray
+        
         return button
     }
     
