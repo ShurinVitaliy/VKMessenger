@@ -31,7 +31,7 @@ class CustomImageCache: FriendImageCache {
     //TODO: This should be a private API
     // не уверен, актуален ли данный коментарий после создания протокола
     func loadCacheImage(nameOfImage: String) -> UIImage? {
-        let filePath = self.pathURL.appendingPathComponent("\(nameOfImage).jpg").path
+        let filePath = self.pathURL.appendingPathComponent(nameOfImage).path
         if FileManager.default.fileExists(atPath: filePath) {
             print(filePath)
             return UIImage(contentsOfFile: filePath)
@@ -42,7 +42,7 @@ class CustomImageCache: FriendImageCache {
     //TODO: This should be a private API
     func saveCacheImage(image: UIImage, nameOfImage: String) {
         do {
-            let fileURL = pathURL.appendingPathComponent("\(nameOfImage).jpg")
+            let fileURL = pathURL.appendingPathComponent(nameOfImage)
             print(fileURL)
             if let pngImageData = image.pngData() {
                 try pngImageData.write(to: fileURL, options: .atomic)
