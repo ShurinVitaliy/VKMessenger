@@ -31,6 +31,7 @@ class FriendTableViewCell: UITableViewCell {
         }
     }
     
+    //TODO: What is the reason to override this method
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }

@@ -17,10 +17,14 @@ protocol FriendImageCache {
 
 class CustomImageCache: FriendImageCache {
     // я нашёл статью в интернете, там сказано что нужно сохранять кэш в папку Library/Caches, так как Cloud (и iTunes) исключает эту директорию из бэкапа
+    //TODO: Why is it called documentsURL?
     private let documentsURL = FileManager.default.urls(for: FileManager.SearchPathDirectory.cachesDirectory, in: .userDomainMask).first!
+    //TODO: non informative name
     private var pathURL: URL!
+    //TODO: Probably it will be better to use failable initializer here
     init() {
         do {
+            //ImageCach string is used across this file in several places so it should be a constant
             try FileManager.default.createDirectory(at: self.documentsURL.appendingPathComponent("ImageCach"), withIntermediateDirectories: false, attributes: nil)
         } catch {
             print("file is exists")

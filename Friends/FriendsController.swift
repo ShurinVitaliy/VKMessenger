@@ -12,6 +12,7 @@ import VK_ios_sdk
 class FriendsController: UIViewController {
     private var friends: [Friend]?
     private var tableView: UITableView!
+    //TODO: Remove commented code if you aren't going to use it
     //private lazy var imageLoader = CustomImageLoader()
     //private lazy var cache = FriendsCache()
     private lazy var imageManager = ImageManager()
@@ -48,16 +49,19 @@ class FriendsController: UIViewController {
         let tableView = UITableView(frame: view.bounds)
         tableView.dataSource = self
         tableView.delegate = self
+        //TODO: FriendTableViewCell should be eeither constant or you can use String(describing: FriendTableViewCell.self)
         tableView.register(UINib(nibName: "FriendTableViewCell", bundle: nil), forCellReuseIdentifier: "FriendTableViewCell")
         return tableView
     }
     
     private func loadFreinds() {
         refreshControl.beginRefreshing()
+        //TODO: Explain me what is wrong with this code
         FrendsProvider.loadFriends(completeGetFreiendsWithResult)
     }
     
     private func completeGetFreiendsWithResult(friendsStructureReceivedSuccessfully: [Friend]?) {
+        //TODO: Potential crash in the next line. Explain why
         friends = friendsStructureReceivedSuccessfully
         DispatchQueue.main.async {
             if self.friends == nil {
@@ -98,6 +102,7 @@ extension FriendsController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendTableViewCell", for: indexPath) as! FriendTableViewCell
         if let friend = friends?[indexPath.row] {
             cell.loadCell(friend: friend)
+            //TODO: This should be inside of prepareForReuse method. Read about this method and explain me when it can be used
             cell.photoImageView.image = nil
             self.getImage(indexPath: indexPath, imageURL: friend.photo_50!)
         }
