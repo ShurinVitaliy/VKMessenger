@@ -16,24 +16,21 @@ protocol FriendImageCache {
 }
 
 class CustomImageCache: FriendImageCache {
-    // я нашёл статью в интернете, там сказано что нужно сохранять кэш в папку Library/Caches, так как Cloud (и iTunes) исключает эту директорию из бэкапа
-    //TODO: Why is it called documentsURL?
-    private let documentsURL = FileManager.default.urls(for: FileManager.SearchPathDirectory.cachesDirectory, in: .userDomainMask).first!
-    //TODO: non informative name
-    private var pathURL: URL!
-    //TODO: Probably it will be better to use failable initializer here
+                                            // я нашёл статью в интернете, там сказано что нужно сохранять кэш в папку Library/Caches, так как Cloud (и iTunes) исключает эту директорию из бэкапа
+                                            //TODO: Why is it called documentsURL?
+    private let cachesDirectoryURL = FileManager.default.urls(for: FileManager.SearchPathDirectory.cachesDirectory, in: .userDomainMask).first!
+                                            //TODO: non informative name
+    private let pathOfCachDirectoryURL: URL!
+    private let nameOfImageCachDirectory = "ImageCach"
+                                            //TODO: Probably it will be better to use failable initializer here
     init() {
-        do {
-            //ImageCach string is used across this file in several places so it should be a constant
-            try FileManager.default.createDirectory(at: self.documentsURL.appendingPathComponent("ImageCach"), withIntermediateDirectories: false, attributes: nil)
-        } catch {
-            print("file is exists")
-        }
-        self.pathURL = documentsURL.appendingPathComponent("ImageCach")
+                                            //ImageCach string is used across this file in several places so it should be a constant
+        try? FileManager.default.createDirectory(at: self.cachesDirectoryURL.appendingPathComponent(nameOfImageCachDirectory), withIntermediateDirectories: false, attributes: nil)
+        self.pathOfCachDirectoryURL = cachesDirectoryURL.appendingPathComponent(nameOfImageCachDirectory)
     }
 
     func loadCacheImage(nameOfImage: String) -> UIImage? {
-        let filePath = self.pathURL.appendingPathComponent(nameOfImage).path
+        let filePath = self.pathOfCachDirectoryURL.appendingPathComponent(nameOfImage).path
         if FileManager.default.fileExists(atPath: filePath) {
             print(filePath)
             return UIImage(contentsOfFile: filePath)
@@ -44,7 +41,7 @@ class CustomImageCache: FriendImageCache {
 
     func saveCacheImage(image: UIImage, nameOfImage: String) {
         do {
-            let fileURL = pathURL.appendingPathComponent(nameOfImage)
+            let fileURL = pathOfCachDirectoryURL.appendingPathComponent(nameOfImage)
             print(fileURL)
             if let pngImageData = image.pngData() {
                 try pngImageData.write(to: fileURL, options: .atomic)
@@ -56,7 +53,7 @@ class CustomImageCache: FriendImageCache {
 
     func deleteCacheImage() {
         let fileManager = FileManager.default
-        guard let filePaths = try? fileManager.contentsOfDirectory(at: pathURL, includingPropertiesForKeys: nil, options: []) else { return }
+        guard let filePaths = try? fileManager.contentsOfDirectory(at: pathOfCachDirectoryURL, includingPropertiesForKeys: nil, options: []) else { return }
         for filePath in filePaths {
             try? fileManager.removeItem(at: filePath)
         }

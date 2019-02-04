@@ -21,6 +21,11 @@ class FriendTableViewCell: UITableViewCell {
         photoImageView.layer.masksToBounds = true
     }
     
+    override func prepareForReuse() {
+        photoImageView.image = nil
+        
+    }
+    
     func loadCell(friend: Friend) {
         firstNameLabel.text = friend.first_name
         lastNameLabel.text = friend.last_name
@@ -29,11 +34,6 @@ class FriendTableViewCell: UITableViewCell {
         } else {
             onlineLabel.text = "online"
         }
-    }
-    
-    //TODO: What is the reason to override this method
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
     }
 }
 

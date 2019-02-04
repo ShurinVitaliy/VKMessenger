@@ -12,10 +12,8 @@ import VK_ios_sdk
 class FriendsController: UIViewController {
     private var friends: [Friend]?
     private var tableView: UITableView!
-    //TODO: Remove commented code if you aren't going to use it
-    //private lazy var imageLoader = CustomImageLoader()
-    //private lazy var cache = FriendsCache()
     private lazy var imageManager = ImageManager()
+    let cellName = String(describing: FriendTableViewCell.self)
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -39,51 +37,48 @@ class FriendsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadFreinds()
+    }
+    
+    override func viewDidLayoutSubviews() {
         tableView = createTableView()
         view.addSubview(tableView)
         tableView.addSubview(refreshControl)
-        loadFreinds()
     }
     
     private func createTableView() -> UITableView {
         let tableView = UITableView(frame: view.bounds)
         tableView.dataSource = self
         tableView.delegate = self
-        //TODO: FriendTableViewCell should be eeither constant or you can use String(describing: FriendTableViewCell.self)
-        tableView.register(UINib(nibName: "FriendTableViewCell", bundle: nil), forCellReuseIdentifier: "FriendTableViewCell")
+        tableView.register(UINib(nibName: cellName, bundle: nil), forCellReuseIdentifier: cellName)
         return tableView
     }
     
     private func loadFreinds() {
         refreshControl.beginRefreshing()
-        //TODO: Explain me what is wrong with this code
-        FrendsProvider.loadFriends(completeGetFreiendsWithResult)
-    }
-    
-    private func completeGetFreiendsWithResult(friendsStructureReceivedSuccessfully: [Friend]?) {
-        //TODO: Potential crash in the next line. Explain why
-        friends = friendsStructureReceivedSuccessfully
-        DispatchQueue.main.async {
-            if self.friends == nil {
-                self.refreshControl.endRefreshing()
-                let alert = UIAlertController(title: "error connection", message: "friends not found, try again", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "ok", style: .default, handler: {(action) in
-                    self.loadFreinds()
-                }))
-                self.present(alert, animated: true, completion: nil)
-                
-            } else if (self.tableView != nil) {
-                self.tableView.reloadData()
-                self.refreshControl.endRefreshing()
+                            //TODO: Explain me what is wrong with this code
+                            //не было [weak self], поэтому возникл ретейн цикл, объекты никогда не удалялись из памяти,
+        FrendsProvider.loadFriends({[weak self] (friendsStructureReceivedSuccessfully) in
+            self?.friends = friendsStructureReceivedSuccessfully
+            DispatchQueue.main.sync {
+                if self?.friends == nil {
+                    self?.refreshControl.endRefreshing()
+                    let alert = UIAlertController(title: "error connection", message: "friends not found, try again", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "ok", style: .default, handler: {[weak self] (action) in
+                        self?.loadFreinds()
+                    }))
+                    self?.present(alert, animated: true, completion: nil)
+                } else {
+                    self?.tableView.reloadData()
+                    self?.refreshControl.endRefreshing()
+                }
             }
-        }
+        })
     }
     
     private func getImage(indexPath: IndexPath,imageURL: String) {
         imageManager.getImage(imageURL: imageURL, complete: {[weak self] (image) in
-            DispatchQueue.main.sync {
-                (self?.tableView.cellForRow(at: indexPath) as? FriendTableViewCell)?.photoImageView.image = image
-            }
+            (self?.tableView.cellForRow(at: indexPath) as? FriendTableViewCell)?.photoImageView.image = image
         })
     }
     
@@ -99,20 +94,24 @@ extension FriendsController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FriendTableViewCell", for: indexPath) as! FriendTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as! FriendTableViewCell
         if let friend = friends?[indexPath.row] {
             cell.loadCell(friend: friend)
-            //TODO: This should be inside of prepareForReuse method. Read about this method and explain me when it can be used
-            cell.photoImageView.image = nil
-            self.getImage(indexPath: indexPath, imageURL: friend.photo_50!)
+                                        //TODO: This should be inside of prepareForReuse method. Read about this method and explain me when it can be used
+                                        //Готовит многократно используемую ячейку для повторного использования делегатом табличного представления.
+                                        //cell.photoImageView.image = nil
+            DispatchQueue.main.async {
+                self.getImage(indexPath: indexPath, imageURL: friend.photo_50!)
+            }
         }
         return cell
     }
+    
 }
 extension FriendsController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let friendPageController = FriendPageController()
-        present(friendPageController, animated: true, completion: nil)
+       // let friendPageController = FriendPageController()
+       // present(friendPageController, animated: true, completion: nil)
     }
 }

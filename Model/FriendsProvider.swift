@@ -22,7 +22,6 @@ class FrendsProvider {
                 }
 
                 let friends = try JSONDecoder().decode(FriendList.self, from: data)
-                //print(try JSONSerialization.jsonObject(with: data, options: []))
                 completionHandler(friends.response.items)
             } catch {
                 print(error)

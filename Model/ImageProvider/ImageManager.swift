@@ -15,16 +15,16 @@ class ImageManager {
     func getImage(imageURL: String, complete: @escaping(_ image: UIImage)-> Void) {
         let nameOfImage = URL(string: imageURL)?.lastPathComponent
         
-        //TODO: You will load image in the main thread here
+                            //TODO: You will load image in the main thread here
         if let image = imageCache.loadCacheImage(nameOfImage: nameOfImage!) {
-            //TODO: What is the reason of async here?
-            DispatchQueue.global().async {
-                complete(image)
-            }
+                                //TODO: What is the reason of async here?
+            complete(image)
         } else {
             self.imageLoader.getImage(photoURL: imageURL, loadCompleteWithResult: {[weak self] (image) in
                 self?.imageCache.saveCacheImage(image: image, nameOfImage: nameOfImage!)
-                complete(image)
+                DispatchQueue.main.sync {
+                    complete(image)
+                }
             })
         }
     }
