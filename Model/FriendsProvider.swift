@@ -44,7 +44,7 @@ struct Friend: Decodable {
     var id: Int?
     var last_name: String?
     var online: Int?
-    var photo_50: String?
+    var photo_100: String?
 }
 
 

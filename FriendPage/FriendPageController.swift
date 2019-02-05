@@ -31,7 +31,7 @@ class FriendPageController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         setUpTextData()
-        getImage(imageURL: friend.photo_50!)
+        getImage(imageURL: friend.photo_100!)
     }
     
     private func getImage(imageURL: String) {

@@ -104,7 +104,7 @@ extension FriendsController: UITableViewDataSource {
                                         //TODO: This should be inside of prepareForReuse method. Read about this method and explain me when it can be used
                                         //Готовит многократно используемую ячейку для повторного использования делегатом табличного представления.
                                         //cell.photoImageView.image = nil
-                self.getImage(indexPath: indexPath, imageURL: friend.photo_50!)
+                self.getImage(indexPath: indexPath, imageURL: friend.photo_100!)
         }
         return cell
     }

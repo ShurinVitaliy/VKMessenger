@@ -18,7 +18,9 @@ class FriendPageHeader: UIView {
     var sendMessageButton: UIButton!
     var addToFreindsButton: UIButton!
     
-    override func layoutSubviews() {
+    
+    convenience init() {
+        self.init(frame: CGRect.zero)
         self.backgroundColor = .white
         userImageView = setupUserImageView()
         self.addSubview(userImageView)
@@ -34,15 +36,22 @@ class FriendPageHeader: UIView {
         self.addSubview(addToFreindsButton)
         infoImageView = setupInfoImageView()
         self.addSubview(infoImageView)
-        //Что такое layout? Это описание расположения элементов. если вы хотите определить кастомный layout для вью, нужно переопределить метод layoutSubviews() (или viewDidLayoutSubviews() у контроллера) и задать в нем frame дочерним элементам. Этот метод вызывается при изменении размеров вью, то есть повороты, Split View и пр. зафорсят вызов этого метода.
     }
     
-    override func layoutIfNeeded() {
-        print("1")//Используйте этот метод, чтобы заставить вид обновить свое расположение немедленно.когда переворачиваю
+    override init(frame: CGRect) {
+        super.init(frame: frame)
     }
+        //layoutSubviews()  Что такое layout? Это описание расположения элементов. если вы хотите определить кастомный layout для вью, нужно переопределить метод layoutSubviews() (или viewDidLayoutSubviews() у контроллера) и задать в нем frame дочерним элементам. Этот метод вызывается при изменении размеров вью, то есть повороты, Split View и пр. зафорсят вызов этого метода.         только в том случае, если авторазмер и основанные на ограничениях поведения подпредставлений не предлагают желаемого поведения.
+       //layoutIfNeeded() Используйте этот метод, чтобы заставить вид обновить свое расположение немедленно.когда переворачиваю
     
     override func setNeedsLayout() {
-        print("2") //вы можете использовать его для аннулирования макета нескольких представлений перед обновлением любого из этих представлений. Такое поведение позволяет консолидировать все обновления макета в один цикл обновления, что обычно лучше для производительности.
+        if UIDevice.current.orientation.isLandscape {
+            sendMessageButton.frame = CGRect(x: 370, y: 80, width: 200 , height: 40)
+            addToFreindsButton.frame = CGRect(x: 370, y: 135, width: 200 , height: 40)
+        } else {
+            sendMessageButton.frame = CGRect(x: 14, y: 196, width: 165 , height: 35)
+            addToFreindsButton.frame = CGRect(x: 195, y: 196, width: 165 , height: 35)
+        }//вы можете использовать его для аннулирования макета нескольких представлений перед обновлением любого из этих представлений. Такое поведение позволяет консолидировать все обновления макета в один цикл обновления, что обычно лучше для производительности.
     }
     
     private func setupUserImageView() -> UIImageView {
@@ -90,10 +99,14 @@ class FriendPageHeader: UIView {
     }
     
     private func setupInfoImageView() -> UIImageView {
-        let imageView = UIImageView(frame: CGRect(x: 331, y: 115, width: 30, height: 30))
+        let imageView = UIImageView(frame: CGRect(x: 301, y: 115, width: 30, height: 30))
         imageView.layer.cornerRadius = imageView.frame.height / 2
         imageView.image = #imageLiteral(resourceName: "info")
         imageView.clipsToBounds = true
         return imageView
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
