@@ -61,7 +61,7 @@ class FriendsController: UIViewController {
     private func loadFreinds() {
         refreshControl.beginRefreshing()
                             //TODO: Explain me what is wrong with this code
-                            //не было [weak self], поэтому возникл ретейн цикл, объекты никогда не удалялись из памяти,
+                            //не было [weak self], поэтому возникaл ретейн цикл, объекты никогда не удалялись из памяти,
         FrendsProvider.loadFriends({[weak self] (friendsStructureReceivedSuccessfully) in
             self?.friends = friendsStructureReceivedSuccessfully
             DispatchQueue.main.sync {

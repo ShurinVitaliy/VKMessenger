@@ -42,7 +42,7 @@ class FriendPageHeader: UIView {
         super.init(frame: frame)
     }
         //layoutSubviews()  Что такое layout? Это описание расположения элементов. если вы хотите определить кастомный layout для вью, нужно переопределить метод layoutSubviews() (или viewDidLayoutSubviews() у контроллера) и задать в нем frame дочерним элементам. Этот метод вызывается при изменении размеров вью, то есть повороты, Split View и пр. зафорсят вызов этого метода.         только в том случае, если авторазмер и основанные на ограничениях поведения подпредставлений не предлагают желаемого поведения.
-       //layoutIfNeeded() Используйте этот метод, чтобы заставить вид обновить свое расположение немедленно.когда переворачиваю
+        //layoutIfNeeded() Используйте этот метод, чтобы заставить вид обновить свое расположение немедленно.когда переворачиваю
     
     override func setNeedsLayout() {
         if UIDevice.current.orientation.isLandscape {
@@ -56,7 +56,6 @@ class FriendPageHeader: UIView {
     
     private func setupUserImageView() -> UIImageView {
         let imageView = UIImageView(frame: CGRect(x: 14, y: 80, width: 100, height: 100))
-        //imageView.image = #imageLiteral(resourceName: "defaultImage")
         imageView.layer.cornerRadius = imageView.frame.height / 2
         imageView.clipsToBounds = true
         return imageView

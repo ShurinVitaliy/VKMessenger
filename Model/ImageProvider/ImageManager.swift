@@ -17,7 +17,6 @@ class ImageManager {
             let nameOfImage = URL(string: imageURL)?.lastPathComponent
             //TODO: You will load image in the main thread here
             if let image = self.imageCache.loadCacheImage(nameOfImage: nameOfImage!) {
-                //TODO: What is the reason of async here?
                 complete(image)
             } else {
                 self.imageLoader.getImage(photoURL: imageURL, loadCompleteWithResult: {[weak self] (image) in
