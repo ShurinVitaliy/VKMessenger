@@ -45,9 +45,17 @@ extension AuthorizationController: AuthorizationProviderDelegate {
     }
     
     func authorizationСompleted() {
+        /*
         let friendsController = FriendsController()
         self.dismiss(animated: true, completion: nil)
         present(friendsController, animated: true, completion: nil)
+        */
+        let controller = UINavigationController()
+        let friendController = FriendsController(controller: controller)
+        controller.viewControllers = [friendController]
+        self.dismiss(animated: true, completion: nil)
+        present(controller, animated: true, completion: nil)
+
     }
 }
 

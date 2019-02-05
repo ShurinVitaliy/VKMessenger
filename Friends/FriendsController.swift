@@ -10,6 +10,7 @@ import UIKit
 import VK_ios_sdk
 
 class FriendsController: UIViewController {
+    private var controller: UINavigationController!
     private var friends: [Friend]?
     private var tableView: UITableView!
     private lazy var imageManager = ImageManager()
@@ -27,8 +28,9 @@ class FriendsController: UIViewController {
         imageManager.clearCache()
     }
 
-    convenience init() {
+    convenience init(controller: UINavigationController) {
         self.init(nibName: nil, bundle: nil)
+        self.controller = controller
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -37,21 +39,23 @@ class FriendsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadFreinds()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        tableView = createTableView()
-        view.addSubview(tableView)
         tableView.addSubview(refreshControl)
+        setupNavigationController()
     }
     
-    private func createTableView() -> UITableView {
-        let tableView = UITableView(frame: view.bounds)
-        tableView.dataSource = self
+    override func loadView() {
+        loadFreinds()
+        tableView = FriendsTableView()
         tableView.delegate = self
-        tableView.register(UINib(nibName: cellName, bundle: nil), forCellReuseIdentifier: cellName)
-        return tableView
+        tableView.dataSource = self
+        self.view = tableView
+    }
+    
+    private func setupNavigationController() {
+        navigationItem.title = "Friends"
+        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.282201767, green: 0.4674475789, blue: 0.6288158894, alpha: 1)
+        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
     
     private func loadFreinds() {
@@ -100,9 +104,7 @@ extension FriendsController: UITableViewDataSource {
                                         //TODO: This should be inside of prepareForReuse method. Read about this method and explain me when it can be used
                                         //Готовит многократно используемую ячейку для повторного использования делегатом табличного представления.
                                         //cell.photoImageView.image = nil
-            DispatchQueue.main.async {
                 self.getImage(indexPath: indexPath, imageURL: friend.photo_50!)
-            }
         }
         return cell
     }
@@ -111,7 +113,8 @@ extension FriendsController: UITableViewDataSource {
 extension FriendsController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       // let friendPageController = FriendPageController()
-       // present(friendPageController, animated: true, completion: nil)
+        let friendPageController = FriendPageController(friend: friends![indexPath.row], navigationController: controller)
+        
+        controller.pushViewController(friendPageController, animated: true)
     }
 }

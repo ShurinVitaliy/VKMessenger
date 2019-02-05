@@ -23,7 +23,6 @@ class FriendTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         photoImageView.image = nil
-        
     }
     
     func loadCell(friend: Friend) {

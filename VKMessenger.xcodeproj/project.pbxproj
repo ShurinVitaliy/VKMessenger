@@ -11,12 +11,8 @@
 		F4149D332201FD4000A13D77 /* FriendImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4149D322201FD4000A13D77 /* FriendImageLoader.swift */; };
 		F4149D352202FBAE00A13D77 /* FriendImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4149D342202FBAE00A13D77 /* FriendImageCache.swift */; };
 		F4149D372203183100A13D77 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4149D362203183100A13D77 /* ImageManager.swift */; };
-		F4149D3C2204570D00A13D77 /* FriendPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4149D3B2204570D00A13D77 /* FriendPageController.swift */; };
-		F4149D3F2204575000A13D77 /* FriendPageTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4149D3E2204575000A13D77 /* FriendPageTitleView.swift */; };
-		F4149D412204579100A13D77 /* FriendPageTopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4149D402204579100A13D77 /* FriendPageTopBarView.swift */; };
-		F4149D432204633100A13D77 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4149D422204633100A13D77 /* CustomView.swift */; };
-		F4149D452204774400A13D77 /* FriendPageButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4149D442204774400A13D77 /* FriendPageButtonView.swift */; };
-		F4149D47220479CD00A13D77 /* FriendPageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4149D46220479CD00A13D77 /* FriendPageHeaderView.swift */; };
+		F4149D4A220971E500A13D77 /* FriendPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4149D49220971E500A13D77 /* FriendPageController.swift */; };
+		F4149D4C2209720200A13D77 /* FriendPageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4149D4B2209720200A13D77 /* FriendPageHeader.swift */; };
 		F41C828821F8B1610084B6F0 /* FriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F41C828721F8B1600084B6F0 /* FriendTableViewCell.xib */; };
 		F42FCFD321E8F0D800890BC0 /* FriendsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42FCFD221E8F0D800890BC0 /* FriendsProvider.swift */; };
 		F42FCFD621EC6EA200890BC0 /* AuthorizationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42FCFD521EC6EA200890BC0 /* AuthorizationProvider.swift */; };
@@ -31,6 +27,7 @@
 		F479D25D21EDDDCE0070F9C0 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479D25B21EDDDCE0070F9C0 /* FriendTableViewCell.swift */; };
 		F479D26021EE03D40070F9C0 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479D25F21EE03D40070F9C0 /* AuthorizationView.swift */; };
 		F479D26321F082320070F9C0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479D26221F082320070F9C0 /* Constants.swift */; };
+		F4C043AB2209B3AB00DE7F64 /* FriendsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C043AA2209B3AB00DE7F64 /* FriendsTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,12 +54,8 @@
 		F4149D322201FD4000A13D77 /* FriendImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendImageLoader.swift; sourceTree = "<group>"; };
 		F4149D342202FBAE00A13D77 /* FriendImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendImageCache.swift; sourceTree = "<group>"; };
 		F4149D362203183100A13D77 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
-		F4149D3B2204570D00A13D77 /* FriendPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPageController.swift; sourceTree = "<group>"; };
-		F4149D3E2204575000A13D77 /* FriendPageTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPageTitleView.swift; sourceTree = "<group>"; };
-		F4149D402204579100A13D77 /* FriendPageTopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPageTopBarView.swift; sourceTree = "<group>"; };
-		F4149D422204633100A13D77 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
-		F4149D442204774400A13D77 /* FriendPageButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPageButtonView.swift; sourceTree = "<group>"; };
-		F4149D46220479CD00A13D77 /* FriendPageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPageHeaderView.swift; sourceTree = "<group>"; };
+		F4149D49220971E500A13D77 /* FriendPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPageController.swift; sourceTree = "<group>"; };
+		F4149D4B2209720200A13D77 /* FriendPageHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPageHeader.swift; sourceTree = "<group>"; };
 		F41C828721F8B1600084B6F0 /* FriendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FriendTableViewCell.xib; path = "../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/VKMessenger 4.32.40 PM/Friends/FriendTableViewCell.xib"; sourceTree = "<group>"; };
 		F42FCFD221E8F0D800890BC0 /* FriendsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsProvider.swift; sourceTree = "<group>"; };
 		F42FCFD521EC6EA200890BC0 /* AuthorizationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationProvider.swift; sourceTree = "<group>"; };
@@ -83,6 +76,7 @@
 		F479D25B21EDDDCE0070F9C0 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		F479D25F21EE03D40070F9C0 /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
 		F479D26221F082320070F9C0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		F4C043AA2209B3AB00DE7F64 /* FriendsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,25 +132,13 @@
 			path = ImageProvider;
 			sourceTree = "<group>";
 		};
-		F4149D3A220456CB00A13D77 /* FreindPage */ = {
+		F4149D482209717F00A13D77 /* FriendPage */ = {
 			isa = PBXGroup;
 			children = (
-				F4149D3D2204571100A13D77 /* FriendPageCustomView */,
-				F4149D3B2204570D00A13D77 /* FriendPageController.swift */,
+				F4149D49220971E500A13D77 /* FriendPageController.swift */,
+				F4149D4B2209720200A13D77 /* FriendPageHeader.swift */,
 			);
-			path = FreindPage;
-			sourceTree = "<group>";
-		};
-		F4149D3D2204571100A13D77 /* FriendPageCustomView */ = {
-			isa = PBXGroup;
-			children = (
-				F4149D402204579100A13D77 /* FriendPageTopBarView.swift */,
-				F4149D3E2204575000A13D77 /* FriendPageTitleView.swift */,
-				F4149D442204774400A13D77 /* FriendPageButtonView.swift */,
-				F4149D46220479CD00A13D77 /* FriendPageHeaderView.swift */,
-				F4149D422204633100A13D77 /* CustomView.swift */,
-			);
-			path = FriendPageCustomView;
+			path = FriendPage;
 			sourceTree = "<group>";
 		};
 		F42FCFCB21E8CF8D00890BC0 /* Model */ = {
@@ -183,7 +165,7 @@
 			children = (
 				F479D26121F082070070F9C0 /* Constants */,
 				F42FCFCB21E8CF8D00890BC0 /* Model */,
-				F4149D3A220456CB00A13D77 /* FreindPage */,
+				F4149D482209717F00A13D77 /* FriendPage */,
 				F479D24E21ECC5830070F9C0 /* Friends */,
 				F42FCFD421EC6E5C00890BC0 /* Authorization */,
 				F46DBE0921DD038900C1277A /* VKMessenger */,
@@ -239,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				F479D25321ECC6D90070F9C0 /* FriendsController.swift */,
+				F4C043AA2209B3AB00DE7F64 /* FriendsTableView.swift */,
 				F479D25B21EDDDCE0070F9C0 /* FriendTableViewCell.swift */,
 				F41C828721F8B1600084B6F0 /* FriendTableViewCell.xib */,
 			);
@@ -434,23 +417,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4149D432204633100A13D77 /* CustomView.swift in Sources */,
+				F4149D4A220971E500A13D77 /* FriendPageController.swift in Sources */,
 				F42FCFD621EC6EA200890BC0 /* AuthorizationProvider.swift in Sources */,
-				F4149D412204579100A13D77 /* FriendPageTopBarView.swift in Sources */,
 				F479D25421ECC6D90070F9C0 /* FriendsController.swift in Sources */,
-				F4149D47220479CD00A13D77 /* FriendPageHeaderView.swift in Sources */,
 				F46DBE0B21DD038900C1277A /* AppDelegate.swift in Sources */,
 				F42FCFD321E8F0D800890BC0 /* FriendsProvider.swift in Sources */,
 				F4149D332201FD4000A13D77 /* FriendImageLoader.swift in Sources */,
 				F42FCFD821EC6EB300890BC0 /* AuthorizationController.swift in Sources */,
-				F4149D3C2204570D00A13D77 /* FriendPageController.swift in Sources */,
 				F479D26021EE03D40070F9C0 /* AuthorizationView.swift in Sources */,
 				F479D25D21EDDDCE0070F9C0 /* FriendTableViewCell.swift in Sources */,
 				F4149D352202FBAE00A13D77 /* FriendImageCache.swift in Sources */,
-				F4149D452204774400A13D77 /* FriendPageButtonView.swift in Sources */,
 				F4149D372203183100A13D77 /* ImageManager.swift in Sources */,
-				F4149D3F2204575000A13D77 /* FriendPageTitleView.swift in Sources */,
 				F479D26321F082320070F9C0 /* Constants.swift in Sources */,
+				F4149D4C2209720200A13D77 /* FriendPageHeader.swift in Sources */,
+				F4C043AB2209B3AB00DE7F64 /* FriendsTableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
