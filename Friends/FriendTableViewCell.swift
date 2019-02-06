@@ -20,7 +20,7 @@ class FriendTableViewCell: UITableViewCell {
         photoImageView.layer.cornerRadius = 25
         photoImageView.layer.masksToBounds = true
     }
-    
+    //TODO: Documentation note: If you override this method, you must be sure to invoke the superclass implementation.
     override func prepareForReuse() {
         photoImageView.image = nil
     }

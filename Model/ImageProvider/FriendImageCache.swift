@@ -22,6 +22,7 @@ class CustomImageCache: FriendImageCache {
                                             //TODO: non informative name
     private let pathOfCachDirectoryURL: URL!
     private let nameOfImageCachDirectory = "ImageCach"
+    //TODO: The below comment is not adressed!!!
                                             //TODO: Probably it will be better to use failable initializer here
     init() {
                                             //ImageCach string is used across this file in several places so it should be a constant

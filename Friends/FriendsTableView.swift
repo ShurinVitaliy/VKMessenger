@@ -8,6 +8,7 @@
 
 import UIKit
 
+//TODO: What is the reason to create this subclass??
 class FriendsTableView: UITableView {
     let cellName = String(describing: FriendTableViewCell.self)
     var dataSourceTableView: UITableViewDataSource?

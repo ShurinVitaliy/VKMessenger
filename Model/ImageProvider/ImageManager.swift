@@ -15,6 +15,7 @@ class ImageManager {
     func getImage(imageURL: String, complete: @escaping(_ image: UIImage)-> Void) {
         DispatchQueue.main.async {
             let nameOfImage = URL(string: imageURL)?.lastPathComponent
+            //TODO: This comment is not adressed!!!!
             //TODO: You will load image in the main thread here
             if let image = self.imageCache.loadCacheImage(nameOfImage: nameOfImage!) {
                 complete(image)

@@ -28,11 +28,13 @@ class FriendsController: UIViewController {
         imageManager.clearCache()
     }
 
+    //TODO: What is the rewason to pass UINavigationController??? You already have navigationController property in UIViewController. The same situation with UITabBarController
     convenience init(controller: UINavigationController) {
         self.init(nibName: nil, bundle: nil)
         self.controller = controller
     }
     
+    //TODO: WEhat is the reason to override this method
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
@@ -60,6 +62,9 @@ class FriendsController: UIViewController {
     
     private func loadFreinds() {
         refreshControl.beginRefreshing()
+        //TODO: There are two problems left with this code:
+        //first problem is that you use friendsStructureReceivedSuccessfully method as closure and as result you will have retain cycle. We discussed similar situation in the past.
+        //second problem is that you access self.frieand from background thread. Explain me why it is bad
                             //TODO: Explain me what is wrong with this code
                             //не было [weak self], поэтому возникaл ретейн цикл, объекты никогда не удалялись из памяти,
         FrendsProvider.loadFriends({[weak self] (friendsStructureReceivedSuccessfully) in
@@ -85,6 +90,8 @@ class FriendsController: UIViewController {
             (self?.tableView.cellForRow(at: indexPath) as? FriendTableViewCell)?.photoImageView.image = image
         })
     }
+    
+    //TODO: All init should be located in one place in the file
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
