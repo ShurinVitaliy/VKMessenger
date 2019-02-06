@@ -41,6 +41,10 @@ class FriendPageHeader: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
         //layoutSubviews()  Что такое layout? Это описание расположения элементов. если вы хотите определить кастомный layout для вью, нужно переопределить метод layoutSubviews() (или viewDidLayoutSubviews() у контроллера) и задать в нем frame дочерним элементам. Этот метод вызывается при изменении размеров вью, то есть повороты, Split View и пр. зафорсят вызов этого метода.         только в том случае, если авторазмер и основанные на ограничениях поведения подпредставлений не предлагают желаемого поведения.
         //layoutIfNeeded() Используйте этот метод, чтобы заставить вид обновить свое расположение немедленно.когда переворачиваю
     
@@ -105,7 +109,5 @@ class FriendPageHeader: UIView {
         return imageView
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+
 }

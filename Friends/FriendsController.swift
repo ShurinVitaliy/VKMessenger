@@ -39,6 +39,10 @@ class FriendsController: UIViewController {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.addSubview(refreshControl)
@@ -90,12 +94,7 @@ class FriendsController: UIViewController {
             (self?.tableView.cellForRow(at: indexPath) as? FriendTableViewCell)?.photoImageView.image = image
         })
     }
-    
-    //TODO: All init should be located in one place in the file
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+
 }
 
 extension FriendsController: UITableViewDataSource {
@@ -108,10 +107,8 @@ extension FriendsController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as! FriendTableViewCell
         if let friend = friends?[indexPath.row] {
             cell.loadCell(friend: friend)
-                                        //TODO: This should be inside of prepareForReuse method. Read about this method and explain me when it can be used
-                                        //Готовит многократно используемую ячейку для повторного использования делегатом табличного представления.
-                                        //cell.photoImageView.image = nil
-                self.getImage(indexPath: indexPath, imageURL: friend.photo_100!)
+            cell.photoImageView.image = nil
+            self.getImage(indexPath: indexPath, imageURL: friend.photo_100!)
         }
         return cell
     }

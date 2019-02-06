@@ -22,6 +22,10 @@ class AuthorizationController: UIViewController {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func loadView() {
         authorizationProvider.delegate = self
         let authotizationView = AuthorizationView()
@@ -32,10 +36,6 @@ class AuthorizationController: UIViewController {
     @objc private func logIn(_ sender: UIButton) {
         authorizationProvider.logIn()
         (self.view as? AuthorizationView)?.buttonLogIn.isEnabled = false
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
 
