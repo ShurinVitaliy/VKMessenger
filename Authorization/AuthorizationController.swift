@@ -41,7 +41,6 @@ extension AuthorizationController: AuthorizationProviderDelegate {
     }
     
     func authorizationСompleted() {
-
         let controller = UINavigationController()
         let friendController = FriendsController()
         controller.viewControllers = [friendController]

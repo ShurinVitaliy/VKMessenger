@@ -12,8 +12,6 @@ import UIKit
 class FriendPageController: UIViewController {
     private var friend: Friend!
     
-    //TODO: It should be designed init not convinience. Explain me the difference
-    //нет необходимости в спомогательном инициализаторе
     init(friend: Friend) {
         super.init(nibName: nil, bundle: nil)
         self.friend = friend

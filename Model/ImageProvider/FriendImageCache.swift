@@ -10,40 +10,36 @@ import Foundation
 import UIKit
 
 protocol FriendImageCache {
-    func loadCacheImage(nameOfImage: String) -> UIImage?
+    func loadCacheImage(nameOfImage: String,loadCompleteWithResult: @escaping(_ image: UIImage?) -> Void)
     func saveCacheImage(image: UIImage, nameOfImage: String)
     func deleteCacheImage()
 }
 
 class CustomImageCache: FriendImageCache {
-                                            // я нашёл статью в интернете, там сказано что нужно сохранять кэш в папку Library/Caches, так как Cloud (и iTunes) исключает эту директорию из бэкапа
-                                            //TODO: Why is it called documentsURL?
     private let cachesDirectoryURL = FileManager.default.urls(for: FileManager.SearchPathDirectory.cachesDirectory, in: .userDomainMask).first
-                                            //TODO: non informative name
     private let pathOfCachDirectoryURL: URL?
     private let nameOfImageCachDirectory = "ImageCach"
-    //TODO: The below comment is not adressed!!!
-                                            //TODO: Probably it will be better to use failable initializer here
-    init?() {                                            //ImageCach string is used across this file in several places so it should be a constant
+
+    init?() {
         try? FileManager.default.createDirectory(at: self.cachesDirectoryURL!.appendingPathComponent(nameOfImageCachDirectory), withIntermediateDirectories: false, attributes: nil)
         if cachesDirectoryURL?.appendingPathComponent(nameOfImageCachDirectory) == nil {
-            self.pathOfCachDirectoryURL = nil
-            return
+            return nil
         } else {
             self.pathOfCachDirectoryURL = cachesDirectoryURL?.appendingPathComponent(nameOfImageCachDirectory)
         }
-        
     }
-
-    func loadCacheImage(nameOfImage: String) -> UIImage? {
-        guard let filePath = self.pathOfCachDirectoryURL?.appendingPathComponent(nameOfImage).path else {
-            return nil
-        }
-        if FileManager.default.fileExists(atPath: filePath) {
-            print(filePath)
-            return UIImage(contentsOfFile: filePath)
-        } else {
-            return nil
+    
+    func loadCacheImage(nameOfImage: String,loadCompleteWithResult: @escaping(_ image: UIImage?) -> Void) {
+        DispatchQueue.global().async {
+            guard let filePath = self.pathOfCachDirectoryURL?.appendingPathComponent(nameOfImage).path else {
+                return
+            }
+            if FileManager.default.fileExists(atPath: filePath) {
+                print(filePath)
+                loadCompleteWithResult(UIImage(contentsOfFile: filePath))
+            } else {
+                loadCompleteWithResult(nil)
+            }
         }
     }
 

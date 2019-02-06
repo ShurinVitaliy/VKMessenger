@@ -15,7 +15,7 @@ class FriendsController: UIViewController {
     private lazy var imageManager = ImageManager()
     let cellName = String(describing: FriendTableViewCell.self)
     
-    lazy var refreshControl: UIRefreshControl = {
+    private lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: UIControl.Event.valueChanged)
         refreshControl.tintColor = .darkGray
@@ -42,7 +42,6 @@ class FriendsController: UIViewController {
     }
     
     override func loadView() {
-        
         loadFreinds()
         tableView = UITableView()
         tableView.register(UINib(nibName: cellName, bundle: nil), forCellReuseIdentifier: cellName)
@@ -60,14 +59,6 @@ class FriendsController: UIViewController {
     
     private func loadFreinds() {
         refreshControl.beginRefreshing()
-        //TODO: There are two problems left with this code:
-        //first problem is that you use friendsStructureReceivedSuccessfully (friends) method as closure and as result you will have retain cycle. We discussed similar situation in the past.
-        //second problem is that you access self.frieand from background thread. Explain me why it is bad
-        //если дейстивия начнут проходить в главном потоке раньше чем self?.friends = friends выдаст что друзей нет
-                            //TODO: Explain me what is wrong with this code
-                            //не было [weak self], поэтому возникaл ретейн цикл, объекты никогда не удалялись из памяти,
-        
-        
         FrendsProvider.loadFriends({[weak self] (friends) in
             DispatchQueue.main.sync {
                 self?.friends = friends
@@ -91,7 +82,6 @@ class FriendsController: UIViewController {
             (self?.tableView.cellForRow(at: indexPath) as? FriendTableViewCell)?.photoImageView.image = image
         })
     }
-
 }
 
 extension FriendsController: UITableViewDataSource {
@@ -109,7 +99,6 @@ extension FriendsController: UITableViewDataSource {
         }
         return cell
     }
-    
 }
 extension FriendsController: UITableViewDelegate {
     

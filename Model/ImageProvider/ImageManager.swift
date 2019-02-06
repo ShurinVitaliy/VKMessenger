@@ -15,20 +15,20 @@ class ImageManager {
     func getImage(imageURL: String, complete: @escaping(_ image: UIImage)-> Void) {
 
         let nameOfImage = URL(string: imageURL)?.lastPathComponent
-        //TODO: This comment is not adressed!!!!
-        //TODO: You will load image in the main thread here
-        if let image = self.imageCache?.loadCacheImage(nameOfImage: nameOfImage!) {
-            DispatchQueue.main.async {
-                complete(image)
-            }
-        } else {
-            self.imageLoader.getImage(photoURL: imageURL, loadCompleteWithResult: {[weak self] (image) in
-                self?.imageCache!.saveCacheImage(image: image, nameOfImage: nameOfImage!)
+        imageCache?.loadCacheImage(nameOfImage: nameOfImage!, loadCompleteWithResult: {[weak self] (image) in
+            if image != nil {
                 DispatchQueue.main.sync {
-                    complete(image)
+                    complete(image!)
                 }
-            })
-        }
+            } else {
+                self?.imageLoader.getImage(photoURL: imageURL, loadCompleteWithResult: {[weak self] (image) in
+                    self?.imageCache!.saveCacheImage(image: image, nameOfImage: nameOfImage!)
+                    DispatchQueue.main.sync {
+                        complete(image)
+                    }
+                })
+            }
+        })
     }
     
     func clearCache() {

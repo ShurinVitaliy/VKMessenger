@@ -24,11 +24,7 @@ class FriendTableViewCell: UITableViewCell {
     func loadCell(friend: Friend) {
         firstNameLabel.text = friend.first_name
         lastNameLabel.text = friend.last_name
-        if friend.online == 0 {
-            onlineLabel.text = "offline"
-        } else {
-            onlineLabel.text = "online"
-        }
+        onlineLabel.text = (friend.online == 1 ? "online" : "ofline" )
     }
 }
 
