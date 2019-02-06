@@ -27,7 +27,6 @@
 		F479D25D21EDDDCE0070F9C0 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479D25B21EDDDCE0070F9C0 /* FriendTableViewCell.swift */; };
 		F479D26021EE03D40070F9C0 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479D25F21EE03D40070F9C0 /* AuthorizationView.swift */; };
 		F479D26321F082320070F9C0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479D26221F082320070F9C0 /* Constants.swift */; };
-		F4C043AB2209B3AB00DE7F64 /* FriendsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C043AA2209B3AB00DE7F64 /* FriendsTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +75,6 @@
 		F479D25B21EDDDCE0070F9C0 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		F479D25F21EE03D40070F9C0 /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
 		F479D26221F082320070F9C0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		F4C043AA2209B3AB00DE7F64 /* FriendsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,7 +219,6 @@
 			isa = PBXGroup;
 			children = (
 				F479D25321ECC6D90070F9C0 /* FriendsController.swift */,
-				F4C043AA2209B3AB00DE7F64 /* FriendsTableView.swift */,
 				F479D25B21EDDDCE0070F9C0 /* FriendTableViewCell.swift */,
 				F41C828721F8B1600084B6F0 /* FriendTableViewCell.xib */,
 			);
@@ -430,7 +427,6 @@
 				F4149D372203183100A13D77 /* ImageManager.swift in Sources */,
 				F479D26321F082320070F9C0 /* Constants.swift in Sources */,
 				F4149D4C2209720200A13D77 /* FriendPageHeader.swift in Sources */,
-				F4C043AB2209B3AB00DE7F64 /* FriendsTableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

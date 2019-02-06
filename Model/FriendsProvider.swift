@@ -20,7 +20,6 @@ class FrendsProvider {
                     completionHandler(nil)
                     return
                 }
-
                 let friends = try JSONDecoder().decode(FriendList.self, from: data)
                 completionHandler(friends.response.items)
             } catch {

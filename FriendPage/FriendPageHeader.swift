@@ -18,9 +18,8 @@ class FriendPageHeader: UIView {
     var sendMessageButton: UIButton!
     var addToFreindsButton: UIButton!
     
-    //TODO: Read about inits. This init should be designed.All other inits should be removed.
-    convenience init() {
-        self.init(frame: CGRect.zero)
+    init() {
+        super.init(frame: CGRect.zero)
         self.backgroundColor = .white
         userImageView = setupUserImageView()
         self.addSubview(userImageView)
@@ -36,10 +35,7 @@ class FriendPageHeader: UIView {
         self.addSubview(addToFreindsButton)
         infoImageView = setupInfoImageView()
         self.addSubview(infoImageView)
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+        super.layoutIfNeeded()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -49,14 +45,29 @@ class FriendPageHeader: UIView {
         //layoutIfNeeded() Используйте этот метод, чтобы заставить вид обновить свое расположение немедленно.когда переворачиваю
     
     //TODO: Why do you use this methos? When this method should be used according to the documentation?
-    override func setNeedsLayout() {
+    override func layoutSubviews() {
+        print("1")
+        
         if UIDevice.current.orientation.isLandscape {
             sendMessageButton.frame = CGRect(x: 370, y: 80, width: 200 , height: 40)
             addToFreindsButton.frame = CGRect(x: 370, y: 135, width: 200 , height: 40)
         } else {
             sendMessageButton.frame = CGRect(x: 14, y: 196, width: 165 , height: 35)
             addToFreindsButton.frame = CGRect(x: 195, y: 196, width: 165 , height: 35)
-        }//вы можете использовать его для аннулирования макета нескольких представлений перед обновлением любого из этих представлений. Такое поведение позволяет консолидировать все обновления макета в один цикл обновления, что обычно лучше для производительности.
+        }
+        
+        //чтобы выполнить более точную компоновку своих подпредставлений. Вы должны переопределить этот метод только в том случае, если авторазмер и основанные на ограничениях поведения подпредставлений не предлагают желаемого поведения. Вы можете использовать свою реализацию для прямой установки прямоугольников фрейма ваших подпредставлений.
+    }
+    
+    override func layoutIfNeeded() {
+        //это синхронный вызов, который сообщает системе, что вам нужен макет и перерисовка представления и его подпредставлений, и вы хотите, чтобы это было сделано немедленно, без ожидания цикла обновления.
+    }
+    
+    override func setNeedsLayout() {
+        //Это асинхронное действие, потому что метод завершается и возвращается немедленно, но только в течение некоторого более позднего времени происходит разметка и перерисовка, и вы не знаете, когда будет этот цикл обновления
+        //вызывайте этот метод в главном потоке приложения, если вы хотите настроить макет подпредставлений представления.
+        print("2")
+        // вы можете использовать его для аннулирования макета нескольких представлений перед обновлением любого из этих представлений
     }
     
     private func setupUserImageView() -> UIImageView {

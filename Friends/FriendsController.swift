@@ -10,7 +10,6 @@ import UIKit
 import VK_ios_sdk
 
 class FriendsController: UIViewController {
-    private var controller: UINavigationController!
     private var friends: [Friend]?
     private var tableView: UITableView!
     private lazy var imageManager = ImageManager()
@@ -28,15 +27,8 @@ class FriendsController: UIViewController {
         imageManager.clearCache()
     }
 
-    //TODO: What is the rewason to pass UINavigationController??? You already have navigationController property in UIViewController. The same situation with UITabBarController
-    convenience init(controller: UINavigationController) {
-        self.init(nibName: nil, bundle: nil)
-        self.controller = controller
-    }
-    
-    //TODO: WEhat is the reason to override this method
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    init() {
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -50,8 +42,10 @@ class FriendsController: UIViewController {
     }
     
     override func loadView() {
+        
         loadFreinds()
-        tableView = FriendsTableView()
+        tableView = UITableView()
+        tableView.register(UINib(nibName: cellName, bundle: nil), forCellReuseIdentifier: cellName)
         tableView.delegate = self
         tableView.dataSource = self
         self.view = tableView
@@ -67,13 +61,16 @@ class FriendsController: UIViewController {
     private func loadFreinds() {
         refreshControl.beginRefreshing()
         //TODO: There are two problems left with this code:
-        //first problem is that you use friendsStructureReceivedSuccessfully method as closure and as result you will have retain cycle. We discussed similar situation in the past.
+        //first problem is that you use friendsStructureReceivedSuccessfully (friends) method as closure and as result you will have retain cycle. We discussed similar situation in the past.
         //second problem is that you access self.frieand from background thread. Explain me why it is bad
+        //если дейстивия начнут проходить в главном потоке раньше чем self?.friends = friends выдаст что друзей нет
                             //TODO: Explain me what is wrong with this code
                             //не было [weak self], поэтому возникaл ретейн цикл, объекты никогда не удалялись из памяти,
-        FrendsProvider.loadFriends({[weak self] (friendsStructureReceivedSuccessfully) in
-            self?.friends = friendsStructureReceivedSuccessfully
+        
+        
+        FrendsProvider.loadFriends({[weak self] (friends) in
             DispatchQueue.main.sync {
+                self?.friends = friends
                 if self?.friends == nil {
                     self?.refreshControl.endRefreshing()
                     let alert = UIAlertController(title: "error connection", message: "friends not found, try again", preferredStyle: .alert)
@@ -108,7 +105,7 @@ extension FriendsController: UITableViewDataSource {
         if let friend = friends?[indexPath.row] {
             cell.loadCell(friend: friend)
             cell.photoImageView.image = nil
-            self.getImage(indexPath: indexPath, imageURL: friend.photo_100!)
+            getImage(indexPath: indexPath, imageURL: friend.photo_100!)
         }
         return cell
     }
@@ -117,8 +114,12 @@ extension FriendsController: UITableViewDataSource {
 extension FriendsController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let friendPageController = FriendPageController(friend: friends![indexPath.row], navigationController: controller)
-        
-        controller.pushViewController(friendPageController, animated: true)
+        let friendPageController = FriendPageController(friend: friends![indexPath.row])
+        self.navigationController?.pushViewController(friendPageController, animated: true)
     }
 }
+
+
+
+
+//не могу понять, почему? ведь всё нормально работает, и в замыкании передаю слабую ссылку на self, да и friendsStructureReceivedSuccessfully это масив моих друзей
