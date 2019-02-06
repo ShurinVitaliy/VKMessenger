@@ -18,7 +18,7 @@ class FriendPageHeader: UIView {
     var sendMessageButton: UIButton!
     var addToFreindsButton: UIButton!
     
-    
+    //TODO: Read about inits. This init should be designed.All other inits should be removed.
     convenience init() {
         self.init(frame: CGRect.zero)
         self.backgroundColor = .white
@@ -44,6 +44,7 @@ class FriendPageHeader: UIView {
         //layoutSubviews()  Что такое layout? Это описание расположения элементов. если вы хотите определить кастомный layout для вью, нужно переопределить метод layoutSubviews() (или viewDidLayoutSubviews() у контроллера) и задать в нем frame дочерним элементам. Этот метод вызывается при изменении размеров вью, то есть повороты, Split View и пр. зафорсят вызов этого метода.         только в том случае, если авторазмер и основанные на ограничениях поведения подпредставлений не предлагают желаемого поведения.
         //layoutIfNeeded() Используйте этот метод, чтобы заставить вид обновить свое расположение немедленно.когда переворачиваю
     
+    //TODO: Why do you use this methos? When this method should be used according to the documentation?
     override func setNeedsLayout() {
         if UIDevice.current.orientation.isLandscape {
             sendMessageButton.frame = CGRect(x: 370, y: 80, width: 200 , height: 40)
