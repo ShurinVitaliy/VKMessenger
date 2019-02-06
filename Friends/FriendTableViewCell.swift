@@ -27,4 +27,3 @@ class FriendTableViewCell: UITableViewCell {
         onlineLabel.text = (friend.online == 1 ? "online" : "ofline" )
     }
 }
-

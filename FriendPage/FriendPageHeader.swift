@@ -17,8 +17,9 @@ class FriendPageHeader: UIView {
     var regionLabel: UILabel!
     var sendMessageButton: UIButton!
     var addToFreindsButton: UIButton!
+    private var friend: Friend?
     
-    init() {
+    init(friend: Friend) {
         super.init(frame: CGRect.zero)
         self.backgroundColor = .white
         userImageView = setupUserImageView()
@@ -35,7 +36,9 @@ class FriendPageHeader: UIView {
         self.addSubview(addToFreindsButton)
         infoImageView = setupInfoImageView()
         self.addSubview(infoImageView)
-        super.layoutIfNeeded()
+        self.friend = friend
+        setupText()
+        setupImage()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -103,5 +106,16 @@ class FriendPageHeader: UIView {
         return imageView
     }
     
-
+    private func setupText() {
+        userLabel.text = friend!.first_name! + " " + friend!.last_name!
+        onlineLabel.text = (friend!.online == 1 ? "online" : "ofline" )
+        regionLabel.text = "not Found"
+    }
+    
+    private func setupImage() {
+        let imageManager = ImageManager()
+        imageManager.getImage(imageURL: friend!.photo_100! , complete: {[weak self] (image) in
+            self?.userImageView.image = image
+        })
+    }
 }
