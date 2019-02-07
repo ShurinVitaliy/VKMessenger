@@ -47,41 +47,41 @@ class FriendPageHeader: UIView {
     
     override func layoutSubviews() {
         if UIDevice.current.orientation.isLandscape {
-            sendMessageButton.frame = CGRect(x: 370, y: 80, width: 200 , height: 40)
-            addToFreindsButton.frame = CGRect(x: 370, y: 135, width: 200 , height: 40)
+            sendMessageButton.frame = CGRect(x: 350, y: 14, width: 200 , height: 40)
+            addToFreindsButton.frame = CGRect(x: 350, y: 69, width: 200 , height: 40)
         } else {
-            sendMessageButton.frame = CGRect(x: 14, y: 196, width: 165 , height: 35)
-            addToFreindsButton.frame = CGRect(x: 195, y: 196, width: 165 , height: 35)
+            sendMessageButton.frame = CGRect(x: 14, y: 130, width: 139 , height: 32)
+            addToFreindsButton.frame = CGRect(x: 167, y: 130, width: 139 , height: 32)
         }
     }
     
     private func setupUserImageView() -> UIImageView {
-        let imageView = UIImageView(frame: CGRect(x: 14, y: 80, width: 100, height: 100))
+        let imageView = UIImageView(frame: CGRect(x: 14, y: 14, width: 100, height: 100))
         imageView.layer.cornerRadius = imageView.frame.height / 2
         imageView.clipsToBounds = true
         return imageView
     }
     
     private func setupUserLabel() -> UILabel {
-        let label = UILabel(frame: CGRect(x: 128, y: 85, width: 200, height: 30))
-        label.font = label.font.withSize(20)
+        let label = UILabel(frame: CGRect(x: 128, y: 19, width: 200, height: 30))
+        label.font = label.font.withSize(17)
         return label
     }
     
     private func setupOnlineLabel() -> UILabel {
-        let label = UILabel(frame: CGRect(x: 128, y: 115, width: 50, height: 30))
+        let label = UILabel(frame: CGRect(x: 128, y: 49, width: 50, height: 30))
         label.font = label.font.withSize(12)
         return label
     }
     
     private func setupRegionLabel() -> UILabel {
-        let label = UILabel(frame: CGRect(x: 128, y: 145, width: 100, height: 30))
+        let label = UILabel(frame: CGRect(x: 128, y: 79, width: 100, height: 30))
         label.font = label.font.withSize(14)
         return label
     }
     
     private func setupSendMessageButton() -> UIButton {
-        let button = UIButton(frame: CGRect(x: 14, y: 196, width: 165 , height: 35))
+        let button = UIButton(frame: CGRect(x: 14, y: 130, width: 139 , height: 32))
         button.setTitle("Message", for: .normal)
         button.setTitleColor(#colorLiteral(red: 0.8239048719, green: 0.8419965506, blue: 0.8625177741, alpha: 1), for: UIControl.State.normal)
         button.backgroundColor = #colorLiteral(red: 0.282201767, green: 0.4674475789, blue: 0.6288158894, alpha: 1)
@@ -90,7 +90,7 @@ class FriendPageHeader: UIView {
     }
     
     private func setupAddToFreindsButton() -> UIButton {
-        let button = UIButton(frame: CGRect(x: 195, y: 196, width: 165 , height: 35))
+        let button = UIButton(frame: CGRect(x: 167, y: 130, width: 139 , height: 32))
         button.setTitle("Friends", for: .normal)
         button.setTitleColor(#colorLiteral(red: 0.282201767, green: 0.4674475789, blue: 0.6288158894, alpha: 1), for: UIControl.State.normal)
         button.backgroundColor = #colorLiteral(red: 0.8239048719, green: 0.8419965506, blue: 0.8625177741, alpha: 1)
@@ -99,7 +99,7 @@ class FriendPageHeader: UIView {
     }
     
     private func setupInfoImageView() -> UIImageView {
-        let imageView = UIImageView(frame: CGRect(x: 301, y: 115, width: 30, height: 30))
+        let imageView = UIImageView(frame: CGRect(x: 281, y: 49, width: 20, height: 20))
         imageView.layer.cornerRadius = imageView.frame.height / 2
         imageView.image = #imageLiteral(resourceName: "info")
         imageView.clipsToBounds = true
