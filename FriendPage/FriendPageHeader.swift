@@ -18,10 +18,6 @@ class FriendPageHeader: UIView {
     var sendMessageButton: UIButton!
     var addToFreindsButton: UIButton!
     
-    init(){
-        super.init(frame: CGRect.zero)
-    }
-    
     func setupData(friend: Friend) {
         let imageManager = ImageManager()
         imageManager.getImage(imageURL: friend.photo_100! , complete: {[weak self] (image) in
@@ -50,13 +46,6 @@ class FriendPageHeader: UIView {
         self.addSubview(addToFreindsButton)
         infoImageView = setupInfoImageView()
         self.addSubview(infoImageView)
-/*
-        setupText()
-        setupImage()*/
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
     }
     
     override func layoutSubviews() {
