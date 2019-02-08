@@ -18,6 +18,7 @@ class AuthorizationView: UIView {
         buttonLogIn = setupButton(title: "Log In")
         addSubview(buttonLogIn)
         setupConstraints()
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -30,7 +31,7 @@ class AuthorizationView: UIView {
         button.setTitleColor(.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor.darkGray
-        
+        button.layer.cornerRadius = 18
         return button
     }
     

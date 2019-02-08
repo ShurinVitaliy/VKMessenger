@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FriendPageController" customModule="VKMessenger" customModuleProvider="target">
             <connections>
+                <outlet property="bodyHorizontalStackView" destination="iZo-fH-VCF" id="NOe-2x-EYb"/>
                 <outlet property="friendPageHeader" destination="SG3-Fw-Wvk" id="ybK-JU-AJD"/>
                 <outlet property="scrollView" destination="Gte-bt-sxk" id="epE-7V-zsy"/>
                 <outlet property="stackView" destination="gH7-lo-3Qd" id="U7G-lL-1sg"/>
@@ -27,7 +28,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gH7-lo-3Qd">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="284"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SG3-Fw-Wvk" customClass="FriendPageHeader" customModule="VKMessenger" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
@@ -38,11 +39,32 @@
                                         </constraint>
                                     </constraints>
                                 </view>
+                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="Gfk-ig-frq">
+                                    <rect key="frame" x="0.0" y="170" width="320" height="114"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="iZo-fH-VCF">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="114"/>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="iZo-fH-VCF" firstAttribute="centerX" secondItem="Gfk-ig-frq" secondAttribute="centerX" placeholder="YES" id="9gH-hG-UqJ"/>
+                                        <constraint firstAttribute="trailing" secondItem="iZo-fH-VCF" secondAttribute="trailing" id="B4I-6O-1QI"/>
+                                        <constraint firstItem="iZo-fH-VCF" firstAttribute="top" secondItem="Gfk-ig-frq" secondAttribute="top" id="T4g-g7-gBp"/>
+                                        <constraint firstItem="iZo-fH-VCF" firstAttribute="leading" secondItem="Gfk-ig-frq" secondAttribute="leading" id="dsa-Rf-BkA"/>
+                                        <constraint firstItem="iZo-fH-VCF" firstAttribute="height" secondItem="Gfk-ig-frq" secondAttribute="height" id="tOV-vl-j4N"/>
+                                        <constraint firstAttribute="bottom" secondItem="iZo-fH-VCF" secondAttribute="bottom" id="vQM-jd-WFE"/>
+                                    </constraints>
+                                </scrollView>
                             </subviews>
                             <constraints>
+                                <constraint firstAttribute="bottom" secondItem="Gfk-ig-frq" secondAttribute="bottom" id="6iD-gd-HA7"/>
                                 <constraint firstItem="SG3-Fw-Wvk" firstAttribute="top" secondItem="gH7-lo-3Qd" secondAttribute="top" id="BW4-Hu-uYn"/>
                                 <constraint firstItem="SG3-Fw-Wvk" firstAttribute="leading" secondItem="gH7-lo-3Qd" secondAttribute="leading" id="HpH-C3-P3X"/>
+                                <constraint firstAttribute="height" constant="284" id="NOX-v6-HOm"/>
                                 <constraint firstAttribute="trailing" secondItem="SG3-Fw-Wvk" secondAttribute="trailing" id="PsZ-Ur-qJt"/>
+                                <constraint firstItem="Gfk-ig-frq" firstAttribute="top" secondItem="SG3-Fw-Wvk" secondAttribute="bottom" id="ZeO-Eg-fTj"/>
+                                <constraint firstAttribute="trailing" secondItem="Gfk-ig-frq" secondAttribute="trailing" id="dk9-bg-Atg"/>
+                                <constraint firstItem="Gfk-ig-frq" firstAttribute="leading" secondItem="gH7-lo-3Qd" secondAttribute="leading" id="hOG-ST-Iu1"/>
                             </constraints>
                         </stackView>
                     </subviews>

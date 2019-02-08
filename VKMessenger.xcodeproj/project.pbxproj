@@ -28,6 +28,7 @@
 		F479D26321F082320070F9C0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479D26221F082320070F9C0 /* Constants.swift */; };
 		F4B4DCC7220C31BB00BDA99E /* FriendPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B4DCC5220C31BB00BDA99E /* FriendPageController.swift */; };
 		F4B4DCC8220C31BB00BDA99E /* FriendPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4B4DCC6220C31BB00BDA99E /* FriendPageController.xib */; };
+		F4B4DCCA220DAA8500BDA99E /* UserPageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B4DCC9220DAA8500BDA99E /* UserPageProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		F479D26221F082320070F9C0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F4B4DCC5220C31BB00BDA99E /* FriendPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPageController.swift; sourceTree = "<group>"; };
 		F4B4DCC6220C31BB00BDA99E /* FriendPageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendPageController.xib; sourceTree = "<group>"; };
+		F4B4DCC9220DAA8500BDA99E /* UserPageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 			children = (
 				F4149D382203189500A13D77 /* ImageProvider */,
 				F42FCFD221E8F0D800890BC0 /* FriendsProvider.swift */,
+				F4B4DCC9220DAA8500BDA99E /* UserPageProvider.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				F46DBE0B21DD038900C1277A /* AppDelegate.swift in Sources */,
 				F42FCFD321E8F0D800890BC0 /* FriendsProvider.swift in Sources */,
 				F4149D332201FD4000A13D77 /* FriendImageLoader.swift in Sources */,
+				F4B4DCCA220DAA8500BDA99E /* UserPageProvider.swift in Sources */,
 				F42FCFD821EC6EB300890BC0 /* AuthorizationController.swift in Sources */,
 				F479D26021EE03D40070F9C0 /* AuthorizationView.swift in Sources */,
 				F479D25D21EDDDCE0070F9C0 /* FriendTableViewCell.swift in Sources */,
