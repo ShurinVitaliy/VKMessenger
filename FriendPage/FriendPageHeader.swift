@@ -17,10 +17,24 @@ class FriendPageHeader: UIView {
     var regionLabel: UILabel!
     var sendMessageButton: UIButton!
     var addToFreindsButton: UIButton!
-    private var friend: Friend?
     
-    init(friend: Friend) {
+    init(){
         super.init(frame: CGRect.zero)
+    }
+    
+    func setupData(friend: Friend) {
+        let imageManager = ImageManager()
+        imageManager.getImage(imageURL: friend.photo_100! , complete: {[weak self] (image) in
+            self?.userImageView.image = image
+        })
+        userLabel.text = friend.first_name! + " " + friend.last_name!
+        onlineLabel.text = (friend.online == 1 ? "online" : "ofline" )
+        regionLabel.text = "not Found"
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = .white
         userImageView = setupUserImageView()
         self.addSubview(userImageView)
@@ -36,13 +50,13 @@ class FriendPageHeader: UIView {
         self.addSubview(addToFreindsButton)
         infoImageView = setupInfoImageView()
         self.addSubview(infoImageView)
-        self.friend = friend
+/*
         setupText()
-        setupImage()
+        setupImage()*/
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
     override func layoutSubviews() {
@@ -105,8 +119,9 @@ class FriendPageHeader: UIView {
         imageView.clipsToBounds = true
         return imageView
     }
-    
+    /*
     private func setupText() {
+        print(friend)
         userLabel.text = friend!.first_name! + " " + friend!.last_name!
         onlineLabel.text = (friend!.online == 1 ? "online" : "ofline" )
         regionLabel.text = "not Found"
@@ -117,5 +132,5 @@ class FriendPageHeader: UIView {
         imageManager.getImage(imageURL: friend!.photo_100! , complete: {[weak self] (image) in
             self?.userImageView.image = image
         })
-    }
+    }*/
 }
