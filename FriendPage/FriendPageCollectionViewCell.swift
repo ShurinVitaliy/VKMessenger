@@ -13,10 +13,8 @@ class FriendPageCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        imageView.contentMode = .scaleAspectFill
     }
-
-    func setupImage(image: UIImage) {
-        imageView.image = image
-    }
+    
     
 }

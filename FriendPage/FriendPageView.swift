@@ -34,20 +34,15 @@ class FriendPageView: UIView {
         
         
     }
-    
-    private func getImage(indexPath: IndexPath){
-        delegate?.loadImage(indexImage: indexPath.row, completion: {[weak self] (image) in
-            (self?.bodyImageCollectionView.cellForItem(at: indexPath) as? FriendPageCollectionViewCell)?.imageView.image = image
-            //в чём проблема? обращаюсь к ячейке по indexPath и иногда выскакивает то что она равна нил(почти всегда)
-        })
-    }
 }
 
 extension FriendPageView: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = bodyImageCollectionView.dequeueReusableCell(withReuseIdentifier: cellName, for: indexPath) as! FriendPageCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellName, for: indexPath) as! FriendPageCollectionViewCell
         cell.imageView.image = nil
-        getImage(indexPath: indexPath)
+        delegate?.loadImage(indexImage: indexPath.row, completion: {[weak self] (image) in
+            (self?.bodyImageCollectionView.cellForItem(at: indexPath) as? FriendPageCollectionViewCell)?.imageView.image = image
+        })
         return cell
     }
     
