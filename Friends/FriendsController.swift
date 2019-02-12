@@ -96,8 +96,6 @@ extension FriendsController: UITableViewDataSource {
             cell.loadCell(friend: friend)
             cell.photoImageView.image = nil
             getImage(indexPath: indexPath, imageURL: friend.photo_100!)
-            print(indexPath.row)
-            print(tableView.indexPathsForVisibleRows)
         }
         return cell
     }

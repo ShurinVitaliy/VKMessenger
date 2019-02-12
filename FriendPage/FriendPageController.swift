@@ -30,19 +30,15 @@ class FriendPageController: UIViewController {
         (view as? FriendPageView)?.setupDataHeader(friend: friend)
         (view as? FriendPageView)?.delegate = self
     }
-    
 
-    
     private func loadImages() {
         UserPageProvider.loadFriendPageImage(friendId: String(friend!.id!), {[weak self] (images) in
             DispatchQueue.main.sync {
                 self?.images = images
                 (self?.view as? FriendPageView)?.bodyImageCollectionView.reloadData()
             }
-            
         })
     }
-    
 }
 
 extension FriendPageController: FriendPageViewDeleage {

@@ -13,7 +13,6 @@ class UserPageProvider {
     static func loadFriendPageImage(friendId: String, _ completionHandler: @escaping(_ friendListResponse: [PhotoImageListItems]?) -> Void) {
         let urlString: String = Constants.apiVk + Constants.userPhotosURL(ownerId: friendId)
         let url = URL(string: urlString)
-        print(url)
         URLSession.shared.dataTask(with: url!) {(data, response, error) in
             do {
                 guard let data = data else {

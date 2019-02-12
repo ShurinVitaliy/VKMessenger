@@ -30,12 +30,11 @@ class CustomImageCache: FriendImageCache {
     }
     
     func loadCacheImage(nameOfImage: String,loadCompleteWithResult: @escaping(_ image: UIImage?) -> Void) {
-        DispatchQueue.global().async {
+        DispatchQueue.main.async {
             guard let filePath = self.pathOfCachDirectoryURL?.appendingPathComponent(nameOfImage).path else {
                 return
             }
             if FileManager.default.fileExists(atPath: filePath) {
-                print(filePath)
                 loadCompleteWithResult(UIImage(contentsOfFile: filePath))
             } else {
                 loadCompleteWithResult(nil)

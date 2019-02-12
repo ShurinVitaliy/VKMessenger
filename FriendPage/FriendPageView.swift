@@ -31,8 +31,6 @@ class FriendPageView: UIView {
     
     func setupDataHeader(friend: Friend) {
         friendPageHeader.setupData(friend: friend)
-        
-        
     }
 }
 
@@ -40,7 +38,7 @@ extension FriendPageView: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellName, for: indexPath) as! FriendPageCollectionViewCell
         cell.imageView.image = nil
-        delegate?.loadImage(indexImage: indexPath.row, completion: {[weak self] (image) in
+        delegate?.loadImage(indexImage: indexPath.row, completion: {(image) in
             cell.imageView.image = image
         })
         return cell
