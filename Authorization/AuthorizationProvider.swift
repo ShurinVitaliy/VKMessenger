@@ -22,6 +22,7 @@ protocol AuthorizationProviderDelegate: class{
 class AuthorizationProviderImp: NSObject, AuthorizationProvider {
     weak var delegate: AuthorizationProviderDelegate?
     private let sdkInstance = VKSdk.initialize(withAppId: "6804688")
+    private let scope = ["friends", "email", "notify", "photos", "status", "groups"]
     override init() {
         super.init()
         sdkInstance?.register(self)
@@ -29,11 +30,11 @@ class AuthorizationProviderImp: NSObject, AuthorizationProvider {
     }
     
     func logIn() -> Void {
-        VKSdk.wakeUpSession(["friends", "email"], complete: { (state: VKAuthorizationState, error: Error?) in
+        VKSdk.wakeUpSession(scope, complete: {[weak self] (state: VKAuthorizationState, error: Error?) in
             if state != .authorized {
-                VKSdk.authorize([])
+                VKSdk.authorize(self?.scope)
             } else {
-                self.delegate?.authorizationСompleted()
+                self?.delegate?.authorizationСompleted()
             }
         })
     }

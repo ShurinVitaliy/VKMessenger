@@ -28,4 +28,8 @@ struct Constants {
     static var friendsURL: String {
         return "friends.get?user_ids=\(userId)&fields=photo_100&v=5.8&access_token=\(accessToken)"
     }
+    
+    static func userPhotosURL(ownerId: String) -> String {
+        return "photos.getAll?owner_id=\(ownerId)&extended=1&offset=0&count=200&v=5.77&access_token=\(accessToken)"
+    }
 }

@@ -26,9 +26,12 @@
 		F479D25D21EDDDCE0070F9C0 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479D25B21EDDDCE0070F9C0 /* FriendTableViewCell.swift */; };
 		F479D26021EE03D40070F9C0 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479D25F21EE03D40070F9C0 /* AuthorizationView.swift */; };
 		F479D26321F082320070F9C0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479D26221F082320070F9C0 /* Constants.swift */; };
-		F4B4DCC7220C31BB00BDA99E /* FriendPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B4DCC5220C31BB00BDA99E /* FriendPageController.swift */; };
-		F4B4DCC8220C31BB00BDA99E /* FriendPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4B4DCC6220C31BB00BDA99E /* FriendPageController.xib */; };
 		F4B4DCCA220DAA8500BDA99E /* UserPageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B4DCC9220DAA8500BDA99E /* UserPageProvider.swift */; };
+		F4B4DCCC220DD4C400BDA99E /* FriendPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B4DCCB220DD4C400BDA99E /* FriendPageView.swift */; };
+		F4E637AE220DE94800B61563 /* FriendPageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4E637AD220DE94800B61563 /* FriendPageView.xib */; };
+		F4E637B3221176DD00B61563 /* FriendPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E637B1221176DD00B61563 /* FriendPageController.swift */; };
+		F4E637B72212A77F00B61563 /* FriendPageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E637B52212A77F00B61563 /* FriendPageCollectionViewCell.swift */; };
+		F4E637B82212A77F00B61563 /* FriendPageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4E637B62212A77F00B61563 /* FriendPageCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,9 +79,12 @@
 		F479D25B21EDDDCE0070F9C0 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		F479D25F21EE03D40070F9C0 /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
 		F479D26221F082320070F9C0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		F4B4DCC5220C31BB00BDA99E /* FriendPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPageController.swift; sourceTree = "<group>"; };
-		F4B4DCC6220C31BB00BDA99E /* FriendPageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendPageController.xib; sourceTree = "<group>"; };
 		F4B4DCC9220DAA8500BDA99E /* UserPageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageProvider.swift; sourceTree = "<group>"; };
+		F4B4DCCB220DD4C400BDA99E /* FriendPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPageView.swift; sourceTree = "<group>"; };
+		F4E637AD220DE94800B61563 /* FriendPageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendPageView.xib; sourceTree = "<group>"; };
+		F4E637B1221176DD00B61563 /* FriendPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPageController.swift; sourceTree = "<group>"; };
+		F4E637B52212A77F00B61563 /* FriendPageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPageCollectionViewCell.swift; sourceTree = "<group>"; };
+		F4E637B62212A77F00B61563 /* FriendPageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendPageCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,9 +143,12 @@
 		F4149D482209717F00A13D77 /* FriendPage */ = {
 			isa = PBXGroup;
 			children = (
-				F4B4DCC5220C31BB00BDA99E /* FriendPageController.swift */,
+				F4E637B1221176DD00B61563 /* FriendPageController.swift */,
+				F4B4DCCB220DD4C400BDA99E /* FriendPageView.swift */,
 				F4149D4B2209720200A13D77 /* FriendPageHeader.swift */,
-				F4B4DCC6220C31BB00BDA99E /* FriendPageController.xib */,
+				F4E637AD220DE94800B61563 /* FriendPageView.xib */,
+				F4E637B52212A77F00B61563 /* FriendPageCollectionViewCell.swift */,
+				F4E637B62212A77F00B61563 /* FriendPageCollectionViewCell.xib */,
 			);
 			path = FriendPage;
 			sourceTree = "<group>";
@@ -345,10 +354,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4B4DCC8220C31BB00BDA99E /* FriendPageController.xib in Resources */,
 				F41C828821F8B1610084B6F0 /* FriendTableViewCell.xib in Resources */,
 				F46DBE1521DD038A00C1277A /* LaunchScreen.storyboard in Resources */,
+				F4E637AE220DE94800B61563 /* FriendPageView.xib in Resources */,
 				F46DBE1221DD038A00C1277A /* Assets.xcassets in Resources */,
+				F4E637B82212A77F00B61563 /* FriendPageCollectionViewCell.xib in Resources */,
 				F46DBE1021DD038900C1277A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -421,6 +431,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4B4DCCC220DD4C400BDA99E /* FriendPageView.swift in Sources */,
 				F42FCFD621EC6EA200890BC0 /* AuthorizationProvider.swift in Sources */,
 				F479D25421ECC6D90070F9C0 /* FriendsController.swift in Sources */,
 				F46DBE0B21DD038900C1277A /* AppDelegate.swift in Sources */,
@@ -432,8 +443,9 @@
 				F479D25D21EDDDCE0070F9C0 /* FriendTableViewCell.swift in Sources */,
 				F4149D352202FBAE00A13D77 /* FriendImageCache.swift in Sources */,
 				F4149D372203183100A13D77 /* ImageManager.swift in Sources */,
-				F4B4DCC7220C31BB00BDA99E /* FriendPageController.swift in Sources */,
 				F479D26321F082320070F9C0 /* Constants.swift in Sources */,
+				F4E637B72212A77F00B61563 /* FriendPageCollectionViewCell.swift in Sources */,
+				F4E637B3221176DD00B61563 /* FriendPageController.swift in Sources */,
 				F4149D4C2209720200A13D77 /* FriendPageHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
