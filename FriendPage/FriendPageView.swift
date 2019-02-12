@@ -41,7 +41,7 @@ extension FriendPageView: UICollectionViewDelegate, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellName, for: indexPath) as! FriendPageCollectionViewCell
         cell.imageView.image = nil
         delegate?.loadImage(indexImage: indexPath.row, completion: {[weak self] (image) in
-            (self?.bodyImageCollectionView.cellForItem(at: indexPath) as? FriendPageCollectionViewCell)?.imageView.image = image
+            cell.imageView.image = image
         })
         return cell
     }
@@ -50,3 +50,4 @@ extension FriendPageView: UICollectionViewDelegate, UICollectionViewDataSource {
         return delegate?.countOfImage() ?? 0
     }
 }
+
