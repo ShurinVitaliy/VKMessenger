@@ -12,15 +12,13 @@ protocol FriendPageViewDeleage: class {
     func loadImage(indexImage: Int, completion: @escaping (_ image: UIImage) -> Void)
     func countOfImage() -> Int
 }
-        //TODO: Fix UICOllectionView warnings in console //сделал, больше не вижу варнингов
+
 class FriendPageView: UIView {
 
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var stackView: UIStackView!
     @IBOutlet var bodyImageCollectionView: UICollectionView!
     @IBOutlet var friendPageHeader: FriendPageHeader? = FriendPageHeader()
-    
-        //Please create generic estention. So any cell will contain property cellName when you access this property String(describing: CellType.self) will be returned. Read about generics.
     private let cellName = FriendPageCollectionViewCell.cellName
     weak var delegate: FriendPageViewDeleage?
     

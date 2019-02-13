@@ -9,8 +9,6 @@
 import Foundation
 import UIKit
 
-//TODO: Discuss frame/bounds
-
 class FriendPageHeader: UIView {
     var userImageView: UIImageView!
     var infoImageView: UIImageView!

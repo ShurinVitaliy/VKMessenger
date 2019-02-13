@@ -12,7 +12,7 @@ import VK_ios_sdk
 class FriendsController: UIViewController {
     private var friends: [Friend]?
     private var tableView: UITableView!
-    private lazy var imageManager = ImageManager()
+    private var imageManager = ImageManager()
     let cellName = String(describing: FriendTableViewCell.self)
     
     private lazy var refreshControl: UIRefreshControl = {
@@ -82,11 +82,6 @@ class FriendsController: UIViewController {
             (self?.tableView.cellForRow(at: indexPath) as? FriendTableViewCell)?.photoImageView.image = image
         })
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        print(1)
-    }
 }
 
 extension FriendsController: UITableViewDataSource {
@@ -112,8 +107,3 @@ extension FriendsController: UITableViewDelegate {
         self.navigationController?.pushViewController(friendPageController, animated: true)
     }
 }
-
-
-
-
-//не могу понять, почему? ведь всё нормально работает, и в замыкании передаю слабую ссылку на self, да и friendsStructureReceivedSuccessfully это масив моих друзей
