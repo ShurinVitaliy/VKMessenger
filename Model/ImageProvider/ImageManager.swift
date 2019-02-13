@@ -13,6 +13,12 @@ class ImageManager {
     private let imageCache: FriendImageCache? = CustomImageCache()
     private var imageCacheInOperatonMemory: [String: UIImage] = [:]
     
+    init() {
+        NotificationCenter.default.addObserver(forName: UIApplication.didReceiveMemoryWarningNotification, object: nil, queue: .main) { [weak self] notification in
+            self?.imageCacheInOperatonMemory.removeAll()
+        }
+    }
+    
     func getImage(imageURL: String, complete: @escaping(_ image: UIImage)-> Void) {
         let nameOfImage = URL(string: imageURL)?.lastPathComponent
         if let image = self.imageCacheInOperatonMemory[nameOfImage!] {
@@ -39,6 +45,4 @@ class ImageManager {
     func clearCache() {
         imageCache?.deleteCacheImage()
     }
-    
-    
 }
