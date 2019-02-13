@@ -12,7 +12,7 @@ protocol FriendPageViewDeleage: class {
     func loadImage(indexImage: Int, completion: @escaping (_ image: UIImage) -> Void)
     func countOfImage() -> Int
 }
-
+//TODO: Fix UICOllectionView warnings in console
 class FriendPageView: UIView {
 
     @IBOutlet var scrollView: UIScrollView!
