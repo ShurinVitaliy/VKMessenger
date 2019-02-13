@@ -10,13 +10,18 @@ import UIKit
 
 class FriendPageController: UIViewController {
     private let imageManager = ImageManager()
-    private var friend: Friend?
+    private var friend: Friend
+    private var friendPageView: FriendPageView? {
+        return (view as? FriendPageView)
+    }
     private var images: [PhotoImageListItems]?
     
     init(friend: Friend) {
-        super.init(nibName: "FriendPageView", bundle: nil)
         self.friend = friend
-        loadImages()
+        //TODO: What nib name will be used if you will pass nil?
+        super.init(nibName: "FriendPageView", bundle: nil)
+        
+        loadImagesUrl()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -25,17 +30,19 @@ class FriendPageController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = friend?.first_name
+        navigationItem.title = friend.first_name
         print(view.frame)
-        //(view as? FriendPageView)?.setupDataHeader(friend: friend)
-        (view as? FriendPageView)?.delegate = self
+        friendPageView?.friendPageHeader?.setupData(friend: friend)
+        friendPageView?.delegate = self
     }
 
-    private func loadImages() {
-        UserPageProvider.loadFriendPageImage(friendId: String(friend!.id!), {[weak self] (images) in
+    private func loadImagesUrl() {
+        UserPageProvider.loadFriendPageImage(friendId: String(friend.id), {[weak self] (images) in
+            //TODO: What is the reason to use sync?
+            // я думаю что есть вероятность стучаться к images с разных потоков одновременно, также как у меня была ошибка в FriendsController где я стучался г друзьям из бэкграундного потока
             DispatchQueue.main.sync {
                 self?.images = images
-                (self?.view as? FriendPageView)?.bodyImageCollectionView.reloadData()
+                self?.friendPageView?.bodyImageCollectionView.reloadData()
             }
         })
     }

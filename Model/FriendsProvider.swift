@@ -39,7 +39,7 @@ private struct FriendListResponseItems: Decodable {
 
 struct Friend: Decodable {
     var first_name: String?
-    var id: Int?
+    var id: Int
     var last_name: String?
     var online: Int?
     var photo_100: String?

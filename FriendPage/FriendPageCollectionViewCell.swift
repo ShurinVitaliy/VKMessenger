@@ -8,13 +8,21 @@
 
 import UIKit
 
-class FriendPageCollectionViewCell: UICollectionViewCell {
+public protocol NibLoadableView: class {
+    static var cellName: String { get }
+}
+
+class FriendPageCollectionViewCell: UICollectionViewCell, NibLoadableView {
     @IBOutlet var imageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         imageView.contentMode = .scaleAspectFill
     }
-    
-    
+}
+
+extension NibLoadableView where Self: UICollectionViewCell {
+    static var cellName: String {
+        return String(describing: self)
+    }
 }
