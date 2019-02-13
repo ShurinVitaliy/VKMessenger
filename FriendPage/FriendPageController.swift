@@ -10,7 +10,7 @@ import UIKit
 
 class FriendPageController: UIViewController {
     private let imageManager = ImageManager()
-    private var friend: Friend!
+    private var friend: Friend?
     private var images: [PhotoImageListItems]?
     
     init(friend: Friend) {
@@ -25,9 +25,9 @@ class FriendPageController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = friend.first_name
+        navigationItem.title = friend?.first_name
         print(view.frame)
-        (view as? FriendPageView)?.setupDataHeader(friend: friend)
+        //(view as? FriendPageView)?.setupDataHeader(friend: friend)
         (view as? FriendPageView)?.delegate = self
     }
 

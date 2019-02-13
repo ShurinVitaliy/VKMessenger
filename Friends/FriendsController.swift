@@ -56,7 +56,7 @@ class FriendsController: UIViewController {
         navigationController?.navigationBar.tintColor = UIColor.white
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
-    
+
     private func loadFreinds() {
         refreshControl.beginRefreshing()
         FrendsProvider.loadFriends({[weak self] (friends) in
@@ -81,6 +81,11 @@ class FriendsController: UIViewController {
         imageManager.getImage(imageURL: imageURL, complete: {[weak self] (image) in
             (self?.tableView.cellForRow(at: indexPath) as? FriendTableViewCell)?.photoImageView.image = image
         })
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        print(1)
     }
 }
 

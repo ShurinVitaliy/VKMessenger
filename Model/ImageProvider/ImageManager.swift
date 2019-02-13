@@ -39,4 +39,6 @@ class ImageManager {
     func clearCache() {
         imageCache?.deleteCacheImage()
     }
+    
+    
 }
