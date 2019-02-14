@@ -13,6 +13,7 @@ class FriendsController: UIViewController {
     private var friends: [Friend]?
     private var tableView: UITableView!
     private var imageManager = ImageManager()
+    private var transitionAnimation: CATransition!
     let cellName = String(describing: FriendTableViewCell.self)
     
     private lazy var refreshControl: UIRefreshControl = {
@@ -38,6 +39,7 @@ class FriendsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.addSubview(refreshControl)
+        transitionAnimation = createTransitionAnimation()
         setupNavigationController()
     }
     
@@ -60,7 +62,7 @@ class FriendsController: UIViewController {
     private func loadFreinds() {
         refreshControl.beginRefreshing()
         FrendsProvider.loadFriends({[weak self] (friends) in
-            DispatchQueue.main.sync {
+            DispatchQueue.main.async {
                 self?.friends = friends
                 if self?.friends == nil {
                     self?.refreshControl.endRefreshing()
@@ -81,6 +83,15 @@ class FriendsController: UIViewController {
         imageManager.getImage(imageURL: imageURL, complete: {[weak self] (image) in
             (self?.tableView.cellForRow(at: indexPath) as? FriendTableViewCell)?.photoImageView.image = image
         })
+    }
+    
+    private func createTransitionAnimation() -> CATransition {
+        let transition = CATransition()
+        transition.duration = 0.7
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.moveIn
+        transition.subtype = CATransitionSubtype.fromBottom
+        return transition
     }
 }
 
@@ -104,6 +115,7 @@ extension FriendsController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let friendPageController = FriendPageController(friend: friends![indexPath.row])
-        self.navigationController?.pushViewController(friendPageController, animated: true)
+        self.navigationController?.view.layer.add(transitionAnimation, forKey: nil)
+        self.navigationController?.pushViewController(friendPageController, animated: false)
     }
 }

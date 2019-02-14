@@ -17,7 +17,6 @@
 		F42FCFD621EC6EA200890BC0 /* AuthorizationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42FCFD521EC6EA200890BC0 /* AuthorizationProvider.swift */; };
 		F42FCFD821EC6EB300890BC0 /* AuthorizationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42FCFD721EC6EB300890BC0 /* AuthorizationController.swift */; };
 		F46DBE0B21DD038900C1277A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46DBE0A21DD038900C1277A /* AppDelegate.swift */; };
-		F46DBE1021DD038900C1277A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F46DBE0E21DD038900C1277A /* Main.storyboard */; };
 		F46DBE1221DD038A00C1277A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F46DBE1121DD038A00C1277A /* Assets.xcassets */; };
 		F46DBE1521DD038A00C1277A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F46DBE1321DD038A00C1277A /* LaunchScreen.storyboard */; };
 		F46DBE2021DD038A00C1277A /* VKMessengerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46DBE1F21DD038A00C1277A /* VKMessengerTests.swift */; };
@@ -65,7 +64,6 @@
 		F42FCFD721EC6EB300890BC0 /* AuthorizationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationController.swift; sourceTree = "<group>"; };
 		F46DBE0721DD038900C1277A /* VKMessenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKMessenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F46DBE0A21DD038900C1277A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F46DBE0F21DD038900C1277A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F46DBE1121DD038A00C1277A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F46DBE1421DD038A00C1277A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F46DBE1621DD038A00C1277A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -167,8 +165,8 @@
 			isa = PBXGroup;
 			children = (
 				F42FCFD721EC6EB300890BC0 /* AuthorizationController.swift */,
-				F42FCFD521EC6EA200890BC0 /* AuthorizationProvider.swift */,
 				F479D25F21EE03D40070F9C0 /* AuthorizationView.swift */,
+				F42FCFD521EC6EA200890BC0 /* AuthorizationProvider.swift */,
 			);
 			path = Authorization;
 			sourceTree = "<group>";
@@ -204,7 +202,6 @@
 			isa = PBXGroup;
 			children = (
 				F46DBE0A21DD038900C1277A /* AppDelegate.swift */,
-				F46DBE0E21DD038900C1277A /* Main.storyboard */,
 				F46DBE1121DD038A00C1277A /* Assets.xcassets */,
 				F46DBE1321DD038A00C1277A /* LaunchScreen.storyboard */,
 				F46DBE1621DD038A00C1277A /* Info.plist */,
@@ -359,7 +356,6 @@
 				F4E637AE220DE94800B61563 /* FriendPageController.xib in Resources */,
 				F46DBE1221DD038A00C1277A /* Assets.xcassets in Resources */,
 				F4E637B82212A77F00B61563 /* FriendPageCollectionViewCell.xib in Resources */,
-				F46DBE1021DD038900C1277A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,14 +478,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		F46DBE0E21DD038900C1277A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F46DBE0F21DD038900C1277A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		F46DBE1321DD038A00C1277A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

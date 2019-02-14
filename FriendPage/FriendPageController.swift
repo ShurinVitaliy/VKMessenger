@@ -40,7 +40,7 @@ class FriendPageController: UIViewController {
         UserPageProvider.loadFriendPageImage(friendId: String(friend.id), {[weak self] (images) in
             //TODO: What is the reason to use sync?
             // я думаю что есть вероятность стучаться к images с разных потоков одновременно, также как у меня была ошибка в FriendsController где я стучался к друзьям из бэкграундного потока и основного 
-            DispatchQueue.main.sync {
+            DispatchQueue.main.async {
                 self?.images = images
                 self?.friendPageView?.bodyImageCollectionView.reloadData()
             }
