@@ -47,10 +47,4 @@ struct Friend: Decodable {
 
 
 
-//https://api.vk.com/method/friends.get?user_ids=182829034&fields=photo_100&v=5.8&access_token=64f20048f943aed5cc9ad1ab6969744683a9e88d5f9d8d8ccfd0941c84fdd3a8353f09b6908529fbc3bc7 // friends
-
-
-
-
-
 

@@ -12,7 +12,6 @@ import VK_ios_sdk
 
 class AuthorizationController: UIViewController {
     private var authorizationProvider: AuthorizationProvider!
-    private var coreAnimation: CABasicAnimation!
     private var authorizationView: AuthorizationView? {
         return (view as? AuthorizationView)
     }
@@ -20,7 +19,6 @@ class AuthorizationController: UIViewController {
     init(authorizationProvider: AuthorizationProvider) {
         super.init(nibName: nil, bundle: nil)
         self.authorizationProvider = authorizationProvider
-        coreAnimation = createAnimationbutton()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -35,18 +33,7 @@ class AuthorizationController: UIViewController {
         self.view = authotizationView
     }
     
-    private func createAnimationbutton() -> CABasicAnimation {
-        let coreAnimation = CABasicAnimation(keyPath: #keyPath(CALayer.cornerRadius))
-        coreAnimation.fromValue = 18
-        coreAnimation.toValue = 1
-        coreAnimation.duration = 0.1
-        return coreAnimation
-    }
-    
     @objc private func logIn(_ sender: UIButton) {
-        
-        //authorizationView?.buttonLogIn.layer.cornerRadius = 1
-        //authorizationView?.buttonLogIn.layer.add(coreAnimation, forKey: #keyPath(CALayer.cornerRadius))
         
         UIView.animate(withDuration: 0.2, animations: {[weak self] in
             self?.authorizationView?.buttonLogIn.transform = CGAffineTransform(translationX: -200, y: 0)
@@ -58,8 +45,6 @@ class AuthorizationController: UIViewController {
             self.authorizationView?.buttonLogIn.backgroundColor = #colorLiteral(red: 0.282201767, green: 0.4674475789, blue: 0.6288158894, alpha: 1)
             self.authorizationView?.buttonLogIn.titleLabel?.alpha = 0
         }, completion: nil)
-
-        
         authorizationProvider.logIn()
         authorizationView?.buttonLogIn.isEnabled = false
     }

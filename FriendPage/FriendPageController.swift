@@ -18,9 +18,7 @@ class FriendPageController: UIViewController {
     
     init(friend: Friend) {
         self.friend = friend
-        //TODO: What nib name will be used if you will pass nil? (describing: FriendPageView.self)
-        super.init(nibName: nil, bundle: nil)// он ищет файл пера с соответствующим именем (без расширения) и загружает этот ксиб файл всякий раз, когда запрашивается его представление. имя которого совпадает с именем класса без слова «Контроллер», как в .MyViewControllerMyView.nib ИЛИ  имя которого совпадает с именем класса контроллера представления. Например, если имя класса - это, он ищет файл.MyViewControllerMyViewController.nib
-        //нашёл)
+        super.init(nibName: nil, bundle: nil)
         loadImagesUrl()
     }
     
@@ -38,8 +36,6 @@ class FriendPageController: UIViewController {
 
     private func loadImagesUrl() {
         UserPageProvider.loadFriendPageImage(friendId: String(friend.id), {[weak self] (images) in
-            //TODO: What is the reason to use sync?
-            // я думаю что есть вероятность стучаться к images с разных потоков одновременно, также как у меня была ошибка в FriendsController где я стучался к друзьям из бэкграундного потока и основного 
             DispatchQueue.main.async {
                 self?.images = images
                 self?.friendPageView?.bodyImageCollectionView.reloadData()

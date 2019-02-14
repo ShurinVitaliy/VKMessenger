@@ -29,11 +29,6 @@ class FriendPageView: UIView {
         bodyImageCollectionView.delegate = self
         bodyImageCollectionView.dataSource = self
     }
-    
-        //TODO: This can be in controller. TODO: Remind me to explain why
-        /*func setupDataHeader(friend: Friend) {
-            friendPageHeader?.setupData(friend: friend)
-        }*/
 }
 
 extension FriendPageView: UICollectionViewDelegate, UICollectionViewDataSource {
