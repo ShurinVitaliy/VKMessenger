@@ -9,7 +9,7 @@
 import UIKit
 
 class FriendPageController: UIViewController {
-    private var imageManager = ImageManager()
+    private var imageManager = ImageManager.shared()
     private var friend: Friend
     private var friendPageView: FriendPageView? {
         return (view as? FriendPageView)

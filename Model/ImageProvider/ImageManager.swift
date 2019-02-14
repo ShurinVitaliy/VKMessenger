@@ -9,38 +9,35 @@
 import UIKit
 
 class ImageManager {
-    private let imageLoader: FriendImageLoader = CustomImageLoader()
-    private let imageCache: FriendImageCache? = CustomImageCache()
-    private var imageCacheInOperatonMemory: [String: UIImage]?
+    //TODO: I think it will be good to share cache across application so please make ImageManager as syngleton.
+    //Основная задача синглтона — предоставить пользователю один и только один объект определенного класса на весь жизненный цикл приложения. В iOS-разработке, как по мне — самый лучший пример необходимости такого объекта — класс UIApplication. Вполне логично, что в течение жизни нашего приложения у нас должен быть один-единственный объект класса UIApplication.
     
-    init() {
-        NotificationCenter.default.addObserver(forName: UIApplication.didReceiveMemoryWarningNotification, object: nil, queue: .main) { [weak self] notification in
-            self?.imageCacheInOperatonMemory?.removeAll()
+    private lazy var imageLoader: FriendImageLoader = CustomImageLoader()
+    private lazy var imageCache: FriendImageCache? = CustomImageCache()
+
+    private static var imageManager: ImageManager?
+    
+    static func shared() -> ImageManager {
+        if imageManager == nil {
+            imageManager = ImageManager()
         }
+        return imageManager!
     }
     
     func getImage(imageURL: String, complete: @escaping(_ image: UIImage)-> Void) {
         let nameOfImage = URL(string: imageURL)?.lastPathComponent
-        if let image = self.imageCacheInOperatonMemory?[nameOfImage!] {
-            DispatchQueue.main.async {
-                complete(image)
+        self.imageCache?.loadCacheImage(nameOfImage: nameOfImage!, loadCompleteWithResult: {[weak self] (image) in
+            if image != nil {
+                    complete(image!)
+            } else {
+                self?.imageLoader.getImage(photoURL: imageURL, loadCompleteWithResult: {[weak self] (image) in
+                    self?.imageCache!.saveCacheImage(image: image, nameOfImage: nameOfImage!)
+                    DispatchQueue.main.sync {
+                        complete(image)
+                    }
+                })
             }
-        } else {
-            self.imageCache?.loadCacheImage(nameOfImage: nameOfImage!, loadCompleteWithResult: {[weak self] (image) in
-                if image != nil {
-                        complete(image!)
-                    self?.imageCacheInOperatonMemory?[nameOfImage!] = image
-                } else {
-                    self?.imageLoader.getImage(photoURL: imageURL, loadCompleteWithResult: {[weak self] (image) in
-                        self?.imageCache!.saveCacheImage(image: image, nameOfImage: nameOfImage!)
-                        DispatchQueue.main.sync {
-                            complete(image)
-                            self?.imageCacheInOperatonMemory?[nameOfImage!] = image
-                        }
-                    })
-                }
-            })
-        }
+        })
     }
     func clearCache() {
         imageCache?.deleteCacheImage()

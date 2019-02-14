@@ -53,7 +53,7 @@ class AuthorizationController: UIViewController {
         })
         
         UIView.animate(withDuration: 0.3, delay: 0.2, options: UIView.AnimationOptions.allowAnimatedContent, animations: {
-            self.authorizationView?.buttonLogIn.transform = CGAffineTransform(translationX: 0, y: 0)
+            self.authorizationView?.buttonLogIn.transform = CGAffineTransform(translationX: 0, y: -100)
             self.authorizationView?.backgroundColor = #colorLiteral(red: 0.282201767, green: 0.4674475789, blue: 0.6288158894, alpha: 1)
             self.authorizationView?.buttonLogIn.backgroundColor = #colorLiteral(red: 0.282201767, green: 0.4674475789, blue: 0.6288158894, alpha: 1)
             self.authorizationView?.buttonLogIn.titleLabel?.alpha = 0

@@ -12,9 +12,9 @@ import VK_ios_sdk
 class FriendsController: UIViewController {
     private var friends: [Friend]?
     private var tableView: UITableView!
-    private var imageManager = ImageManager()
+    private var imageManager = ImageManager.shared()
     private var transitionAnimation: CATransition!
-    let cellName = String(describing: FriendTableViewCell.self)
+    private let cellName = String(describing: FriendTableViewCell.self)
     
     private lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()

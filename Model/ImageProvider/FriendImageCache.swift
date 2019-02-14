@@ -16,16 +16,23 @@ protocol FriendImageCache {
 }
 
 class CustomImageCache: FriendImageCache {
+    
     private let cachesDirectoryURL = FileManager.default.urls(for: FileManager.SearchPathDirectory.cachesDirectory, in: .userDomainMask).first
     private let pathOfCachDirectoryURL: URL?
     private let nameOfImageCachDirectory = "ImageCach"
-
+    private var imageCacheInOperatonMemory: [String: UIImage] = [:]
+    
     init?() {
+        
         try? FileManager.default.createDirectory(at: self.cachesDirectoryURL!.appendingPathComponent(nameOfImageCachDirectory), withIntermediateDirectories: false, attributes: nil)
         if cachesDirectoryURL?.appendingPathComponent(nameOfImageCachDirectory) == nil {
             return nil
         } else {
             self.pathOfCachDirectoryURL = cachesDirectoryURL?.appendingPathComponent(nameOfImageCachDirectory)
+        }
+        
+        NotificationCenter.default.addObserver(forName: UIApplication.didReceiveMemoryWarningNotification, object: nil, queue: .main) { [weak self] notification in
+            self?.imageCacheInOperatonMemory.removeAll()
         }
     }
     
@@ -34,7 +41,10 @@ class CustomImageCache: FriendImageCache {
             guard let filePath = self.pathOfCachDirectoryURL?.appendingPathComponent(nameOfImage).path else {
                 return
             }
-            if FileManager.default.fileExists(atPath: filePath) {
+            if let image = self.imageCacheInOperatonMemory[nameOfImage] {
+                loadCompleteWithResult(image)
+            } else if FileManager.default.fileExists(atPath: filePath) {
+                self.imageCacheInOperatonMemory[nameOfImage] = UIImage(contentsOfFile: filePath)
                 loadCompleteWithResult(UIImage(contentsOfFile: filePath))
             } else {
                 loadCompleteWithResult(nil)
@@ -47,7 +57,8 @@ class CustomImageCache: FriendImageCache {
             guard let fileURL = pathOfCachDirectoryURL?.appendingPathComponent(nameOfImage) else {
                 return
             }
-            print(fileURL)
+            imageCacheInOperatonMemory[nameOfImage] = image
+            print(imageCacheInOperatonMemory.count)
             if let pngImageData = image.pngData() {
                 try pngImageData.write(to: fileURL, options: .atomic)
             }
@@ -58,6 +69,7 @@ class CustomImageCache: FriendImageCache {
 
     func deleteCacheImage() {
         let fileManager = FileManager.default
+        imageCacheInOperatonMemory.removeAll()
         guard let filePaths = try? fileManager.contentsOfDirectory(at: pathOfCachDirectoryURL!, includingPropertiesForKeys: nil, options: []) else { return }
         for filePath in filePaths {
             try? fileManager.removeItem(at: filePath)
