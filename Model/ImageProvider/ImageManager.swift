@@ -9,11 +9,15 @@
 import UIKit
 
 class ImageManager {
+    //TODO: I think it will be good to share cache across application so please make ImageManager as syngleton.
     private let imageLoader: FriendImageLoader = CustomImageLoader()
     private let imageCache: FriendImageCache? = CustomImageCache()
+    //TODO: please move it to CustomImageCache. We can discuss if you do not understand why it should be at CustomImageCache
     private var imageCacheInOperatonMemory: [String: UIImage] = [:]
     
     init() {
+        //TODO: What about unregistering? Is it obligatory?
+        //TODO: please move it to CustomImageCache.
         NotificationCenter.default.addObserver(forName: UIApplication.didReceiveMemoryWarningNotification, object: nil, queue: .main) { [weak self] notification in
             self?.imageCacheInOperatonMemory.removeAll()
         }
