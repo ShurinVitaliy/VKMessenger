@@ -86,6 +86,7 @@ class FriendsController: UIViewController {
     }
     
     private func createTransitionAnimation() -> CATransition {
+        
         let transition = CATransition()
         transition.duration = 0.7
         transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)

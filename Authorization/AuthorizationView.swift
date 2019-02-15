@@ -31,9 +31,9 @@ class AuthorizationView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor.darkGray
         button.layer.cornerRadius = 18
-        //button.layer.masksToBounds = true
         button.layer.shadowOffset = CGSize(width: 5, height: 5)
         button.layer.shadowOpacity = 0.4
+        
         return button
     }
     

@@ -9,8 +9,6 @@
 import UIKit
 
 class ImageManager {
-    //TODO: I think it will be good to share cache across application so please make ImageManager as syngleton.
-    //Основная задача синглтона — предоставить пользователю один и только один объект определенного класса на весь жизненный цикл приложения. В iOS-разработке, как по мне — самый лучший пример необходимости такого объекта — класс UIApplication. Вполне логично, что в течение жизни нашего приложения у нас должен быть один-единственный объект класса UIApplication.
     
     private lazy var imageLoader: FriendImageLoader = CustomImageLoader()
     private lazy var imageCache: FriendImageCache? = CustomImageCache()
