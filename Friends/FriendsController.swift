@@ -12,7 +12,7 @@ import VK_ios_sdk
 class FriendsController: UIViewController {
     private var friends: [Friend]?
     private var tableView: UITableView!
-    private var imageManager = ImageManager.shared()
+    private var imageManager = ImageManager.shared
     private var transitionAnimation: CATransition!
     private let cellName = String(describing: FriendTableViewCell.self)
     
@@ -117,5 +117,6 @@ extension FriendsController: UITableViewDelegate {
         let friendPageController = FriendPageController(friend: friends![indexPath.row])
         self.navigationController?.view.layer.add(transitionAnimation, forKey: nil)
         self.navigationController?.pushViewController(friendPageController, animated: false)
+        self.tableView.cellForRow(at: indexPath)?.isSelected = false
     }
 }

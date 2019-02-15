@@ -19,13 +19,15 @@ class FriendPageHeader: UIView {
     var addToFreindsButton: UIButton!
     
     func setupData(friend: Friend) {
-        let imageManager = ImageManager()
+        let imageManager = ImageManager.shared
         imageManager.getImage(imageURL: friend.photo_100! , complete: {[weak self] (image) in
             self?.userImageView.image = image
         })
         userLabel.text = friend.first_name! + " " + friend.last_name!
         onlineLabel.text = (friend.online == 1 ? "online" : "ofline" )
         regionLabel.text = "not Found"
+        
+        
     }
     
     override func awakeFromNib() {
@@ -62,6 +64,7 @@ class FriendPageHeader: UIView {
         let imageView = UIImageView(frame: CGRect(x: 14, y: 14, width: 100, height: 100))
         imageView.layer.cornerRadius = imageView.frame.height / 2
         imageView.clipsToBounds = true
+        imageView.isUserInteractionEnabled = true
         return imageView
     }
     

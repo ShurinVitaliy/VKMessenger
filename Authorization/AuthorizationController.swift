@@ -28,9 +28,12 @@ class AuthorizationController: UIViewController {
     override func loadView() {
         authorizationProvider.delegate = self
         let authotizationView = AuthorizationView()
-        
         authotizationView.buttonLogIn.addTarget(self, action: #selector(logIn), for: .touchUpInside)
         self.view = authotizationView
+    }
+    
+    @objc private func testIn(_ sender: UIButton) {
+        print(123)
     }
     
     @objc private func logIn(_ sender: UIButton) {

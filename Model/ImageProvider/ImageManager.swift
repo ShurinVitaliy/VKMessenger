@@ -14,15 +14,9 @@ class ImageManager {
     
     private lazy var imageLoader: FriendImageLoader = CustomImageLoader()
     private lazy var imageCache: FriendImageCache? = CustomImageCache()
+    static let shared = ImageManager()
+    private init() {}
 
-    private static var imageManager: ImageManager?
-    
-    static func shared() -> ImageManager {
-        if imageManager == nil {
-            imageManager = ImageManager()
-        }
-        return imageManager!
-    }
     
     func getImage(imageURL: String, complete: @escaping(_ image: UIImage)-> Void) {
         let nameOfImage = URL(string: imageURL)?.lastPathComponent

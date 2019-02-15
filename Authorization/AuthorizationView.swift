@@ -18,7 +18,6 @@ class AuthorizationView: UIView {
         buttonLogIn = setupButton(title: "Log In")
         addSubview(buttonLogIn)
         setupConstraints()
-
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -26,16 +25,20 @@ class AuthorizationView: UIView {
     }
     
     private func setupButton(title: String) -> UIButton{
-        let button = UIButton()
+        let button = UIButton(type: .roundedRect)
         button.setTitle(title, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor.darkGray
         button.layer.cornerRadius = 18
+        //button.layer.masksToBounds = true
+        button.layer.shadowOffset = CGSize(width: 5, height: 5)
+        button.layer.shadowOpacity = 0.4
         return button
     }
     
     private func setupConstraints() {
+        
         buttonLogIn.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         buttonLogIn.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1/2).isActive = true
         buttonLogIn.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
