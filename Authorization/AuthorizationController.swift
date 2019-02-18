@@ -28,7 +28,7 @@ class AuthorizationController: UIViewController {
     override func loadView() {
         authorizationProvider.delegate = self
         let authotizationView = AuthorizationView()
-        authotizationView.buttonLogIn.addTarget(self, action: #selector(logIn), for: .touchUpInside)
+        authotizationView.buttonLogIn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(logIn)))
         self.view = authotizationView
     }
     
