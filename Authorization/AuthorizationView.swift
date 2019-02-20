@@ -42,7 +42,7 @@ class ButtonLogIn: UIButton {
         layer.cornerRadius = 18
         layer.shadowOffset = CGSize(width: 5, height: 5)
         layer.shadowOpacity = 0.4
-        setTitle("LogIn", for: .normal)
+        setTitle(NSLocalizedString("Log In", comment: "buttonLogIn"), for: .normal)
     }
     
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FriendTableViewCell: UITableViewCell {
+class FriendTableViewCell: UITableViewCell, NibLoadableTableViewCell {
 
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var firstNameLabel: UILabel!
@@ -27,3 +27,14 @@ class FriendTableViewCell: UITableViewCell {
         onlineLabel.text = (friend.online == 1 ? "online" : "ofline" )
     }
 }
+
+public protocol NibLoadableTableViewCell: class {
+    static var cellName: String { get }
+}
+
+extension NibLoadableTableViewCell where Self: UITableViewCell {
+    static var cellName: String {
+        return String(describing: self)
+    }
+}
+

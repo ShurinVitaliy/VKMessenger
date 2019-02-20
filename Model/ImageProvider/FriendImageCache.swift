@@ -34,7 +34,7 @@ class CustomImageCache: FriendImageCache {
         let observer = NotificationCenter.default.addObserver(forName: UIApplication.didReceiveMemoryWarningNotification, object: nil, queue: .main) { [weak self] notification in
             self?.imageCacheInOperatonMemory.removeAll()
         }
-        NotificationCenter.default.removeObserver(observer)
+        NotificationCenter.default.removeObserver(observer) //не работает
     }
     
     func loadCacheImage(nameOfImage: String,loadCompleteWithResult: @escaping(_ image: UIImage?) -> Void) {

@@ -12,6 +12,15 @@
 		F4149D352202FBAE00A13D77 /* FriendImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4149D342202FBAE00A13D77 /* FriendImageCache.swift */; };
 		F4149D372203183100A13D77 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4149D362203183100A13D77 /* ImageManager.swift */; };
 		F4149D4C2209720200A13D77 /* FriendPageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4149D4B2209720200A13D77 /* FriendPageHeader.swift */; };
+		F41A3B27221ACD3600E9391F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F41A3B25221ACD3600E9391F /* Localizable.strings */; };
+		F41A3B35221AE02F00E9391F /* DialogPageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A3B34221AE02F00E9391F /* DialogPageProvider.swift */; };
+		F41A3B39221BE7F000E9391F /* LeftTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A3B37221BE7F000E9391F /* LeftTableViewCell.swift */; };
+		F41A3B3A221BE7F000E9391F /* LeftTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F41A3B38221BE7F000E9391F /* LeftTableViewCell.xib */; };
+		F41A3B3D221BE80C00E9391F /* RightTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A3B3B221BE80C00E9391F /* RightTableViewCell.swift */; };
+		F41A3B3E221BE80C00E9391F /* RightTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F41A3B3C221BE80C00E9391F /* RightTableViewCell.xib */; };
+		F41A3B46221C3E3600E9391F /* DialogPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A3B44221C3E3600E9391F /* DialogPageController.swift */; };
+		F41A3B47221C3E3600E9391F /* DialogPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F41A3B45221C3E3600E9391F /* DialogPageController.xib */; };
+		F41A3B49221D34B000E9391F /* DialogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A3B48221D34B000E9391F /* DialogManager.swift */; };
 		F41C828821F8B1610084B6F0 /* FriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F41C828721F8B1600084B6F0 /* FriendTableViewCell.xib */; };
 		F42FCFD321E8F0D800890BC0 /* FriendsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42FCFD221E8F0D800890BC0 /* FriendsProvider.swift */; };
 		F42FCFD621EC6EA200890BC0 /* AuthorizationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42FCFD521EC6EA200890BC0 /* AuthorizationProvider.swift */; };
@@ -58,6 +67,15 @@
 		F4149D342202FBAE00A13D77 /* FriendImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendImageCache.swift; sourceTree = "<group>"; };
 		F4149D362203183100A13D77 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		F4149D4B2209720200A13D77 /* FriendPageHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPageHeader.swift; sourceTree = "<group>"; };
+		F41A3B26221ACD3600E9391F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F41A3B34221AE02F00E9391F /* DialogPageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogPageProvider.swift; sourceTree = "<group>"; };
+		F41A3B37221BE7F000E9391F /* LeftTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftTableViewCell.swift; sourceTree = "<group>"; };
+		F41A3B38221BE7F000E9391F /* LeftTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeftTableViewCell.xib; sourceTree = "<group>"; };
+		F41A3B3B221BE80C00E9391F /* RightTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightTableViewCell.swift; sourceTree = "<group>"; };
+		F41A3B3C221BE80C00E9391F /* RightTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RightTableViewCell.xib; sourceTree = "<group>"; };
+		F41A3B44221C3E3600E9391F /* DialogPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogPageController.swift; sourceTree = "<group>"; };
+		F41A3B45221C3E3600E9391F /* DialogPageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DialogPageController.xib; sourceTree = "<group>"; };
+		F41A3B48221D34B000E9391F /* DialogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogManager.swift; sourceTree = "<group>"; };
 		F41C828721F8B1600084B6F0 /* FriendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FriendTableViewCell.xib; path = "../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/VKMessenger 4.32.40 PM/Friends/FriendTableViewCell.xib"; sourceTree = "<group>"; };
 		F42FCFD221E8F0D800890BC0 /* FriendsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsProvider.swift; sourceTree = "<group>"; };
 		F42FCFD521EC6EA200890BC0 /* AuthorizationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationProvider.swift; sourceTree = "<group>"; };
@@ -145,10 +163,39 @@
 				F4B4DCCB220DD4C400BDA99E /* FriendPageView.swift */,
 				F4149D4B2209720200A13D77 /* FriendPageHeader.swift */,
 				F4E637AD220DE94800B61563 /* FriendPageController.xib */,
+				F41A3B43221C247100E9391F /* CustomCell */,
+			);
+			path = FriendPage;
+			sourceTree = "<group>";
+		};
+		F41A3B28221AD21A00E9391F /* DialogPage */ = {
+			isa = PBXGroup;
+			children = (
+				F41A3B36221BE72F00E9391F /* CustomCell */,
+				F41A3B44221C3E3600E9391F /* DialogPageController.swift */,
+				F41A3B45221C3E3600E9391F /* DialogPageController.xib */,
+			);
+			path = DialogPage;
+			sourceTree = "<group>";
+		};
+		F41A3B36221BE72F00E9391F /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				F41A3B37221BE7F000E9391F /* LeftTableViewCell.swift */,
+				F41A3B38221BE7F000E9391F /* LeftTableViewCell.xib */,
+				F41A3B3B221BE80C00E9391F /* RightTableViewCell.swift */,
+				F41A3B3C221BE80C00E9391F /* RightTableViewCell.xib */,
+			);
+			path = CustomCell;
+			sourceTree = "<group>";
+		};
+		F41A3B43221C247100E9391F /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
 				F4E637B52212A77F00B61563 /* FriendPageCollectionViewCell.swift */,
 				F4E637B62212A77F00B61563 /* FriendPageCollectionViewCell.xib */,
 			);
-			path = FriendPage;
+			path = CustomCell;
 			sourceTree = "<group>";
 		};
 		F42FCFCB21E8CF8D00890BC0 /* Model */ = {
@@ -157,6 +204,8 @@
 				F4149D382203189500A13D77 /* ImageProvider */,
 				F42FCFD221E8F0D800890BC0 /* FriendsProvider.swift */,
 				F4B4DCC9220DAA8500BDA99E /* UserPageProvider.swift */,
+				F41A3B34221AE02F00E9391F /* DialogPageProvider.swift */,
+				F41A3B48221D34B000E9391F /* DialogManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -176,6 +225,7 @@
 			children = (
 				F479D26121F082070070F9C0 /* Constants */,
 				F42FCFCB21E8CF8D00890BC0 /* Model */,
+				F41A3B28221AD21A00E9391F /* DialogPage */,
 				F4149D482209717F00A13D77 /* FriendPage */,
 				F479D24E21ECC5830070F9C0 /* Friends */,
 				F42FCFD421EC6E5C00890BC0 /* Authorization */,
@@ -205,6 +255,7 @@
 				F46DBE1121DD038A00C1277A /* Assets.xcassets */,
 				F46DBE1321DD038A00C1277A /* LaunchScreen.storyboard */,
 				F46DBE1621DD038A00C1277A /* Info.plist */,
+				F41A3B25221ACD3600E9391F /* Localizable.strings */,
 			);
 			path = VKMessenger;
 			sourceTree = "<group>";
@@ -333,6 +384,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = F46DBDFE21DD038900C1277A;
 			productRefGroup = F46DBE0821DD038900C1277A /* Products */;
@@ -351,9 +403,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F41A3B3E221BE80C00E9391F /* RightTableViewCell.xib in Resources */,
 				F41C828821F8B1610084B6F0 /* FriendTableViewCell.xib in Resources */,
+				F41A3B27221ACD3600E9391F /* Localizable.strings in Resources */,
 				F46DBE1521DD038A00C1277A /* LaunchScreen.storyboard in Resources */,
 				F4E637AE220DE94800B61563 /* FriendPageController.xib in Resources */,
+				F41A3B47221C3E3600E9391F /* DialogPageController.xib in Resources */,
+				F41A3B3A221BE7F000E9391F /* LeftTableViewCell.xib in Resources */,
 				F46DBE1221DD038A00C1277A /* Assets.xcassets in Resources */,
 				F4E637B82212A77F00B61563 /* FriendPageCollectionViewCell.xib in Resources */,
 			);
@@ -427,13 +483,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F41A3B3D221BE80C00E9391F /* RightTableViewCell.swift in Sources */,
 				F4B4DCCC220DD4C400BDA99E /* FriendPageView.swift in Sources */,
+				F41A3B35221AE02F00E9391F /* DialogPageProvider.swift in Sources */,
 				F42FCFD621EC6EA200890BC0 /* AuthorizationProvider.swift in Sources */,
 				F479D25421ECC6D90070F9C0 /* FriendsController.swift in Sources */,
 				F46DBE0B21DD038900C1277A /* AppDelegate.swift in Sources */,
 				F42FCFD321E8F0D800890BC0 /* FriendsProvider.swift in Sources */,
 				F4149D332201FD4000A13D77 /* FriendImageLoader.swift in Sources */,
 				F4B4DCCA220DAA8500BDA99E /* UserPageProvider.swift in Sources */,
+				F41A3B39221BE7F000E9391F /* LeftTableViewCell.swift in Sources */,
+				F41A3B49221D34B000E9391F /* DialogManager.swift in Sources */,
 				F42FCFD821EC6EB300890BC0 /* AuthorizationController.swift in Sources */,
 				F479D26021EE03D40070F9C0 /* AuthorizationView.swift in Sources */,
 				F479D25D21EDDDCE0070F9C0 /* FriendTableViewCell.swift in Sources */,
@@ -443,6 +503,7 @@
 				F4E637B72212A77F00B61563 /* FriendPageCollectionViewCell.swift in Sources */,
 				F4E637B3221176DD00B61563 /* FriendPageController.swift in Sources */,
 				F4149D4C2209720200A13D77 /* FriendPageHeader.swift in Sources */,
+				F41A3B46221C3E3600E9391F /* DialogPageController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,6 +539,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		F41A3B25221ACD3600E9391F /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F41A3B26221ACD3600E9391F /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		F46DBE1321DD038A00C1277A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -493,6 +562,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -554,6 +624,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

@@ -22,7 +22,7 @@ protocol AuthorizationProviderDelegate: class{
 class AuthorizationProviderImp: NSObject, AuthorizationProvider {
     weak var delegate: AuthorizationProviderDelegate?
     private let sdkInstance = VKSdk.initialize(withAppId: "6804688")
-    private let scope = ["friends", "email", "notify", "photos", "status", "groups"]
+    private let scope = ["friends", "email", "notify", "photos", "status", "groups", "messages"]
     override init() {
         super.init()
         sdkInstance?.register(self)

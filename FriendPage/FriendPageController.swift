@@ -30,9 +30,9 @@ class FriendPageController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = friend.first_name
-        print(view.frame)
-        friendPageView?.friendPageHeader?.setupData(friend: friend)
         friendPageView?.delegate = self
+        friendPageView?.friendPageHeader?.setupData(friend: friend)
+        friendPageView?.friendPageHeader?.sendMessageButton.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
     }
 
     private func loadImagesUrl() {
@@ -42,6 +42,13 @@ class FriendPageController: UIViewController {
                 self?.friendPageView?.bodyImageCollectionView.reloadData()
             }
         })
+    }
+    
+    @objc private func sendMessage(_ sender: UIButton) {
+        let dialogPageController = DialogPageController(friend: friend)
+        
+        self.navigationController?.pushViewController(dialogPageController, animated: true)
+        
     }
 }
 
