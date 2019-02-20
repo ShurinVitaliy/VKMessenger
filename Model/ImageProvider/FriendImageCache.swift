@@ -21,6 +21,7 @@ class CustomImageCache: FriendImageCache {
     private let pathOfCachDirectoryURL: URL?
     private let nameOfImageCachDirectory = "ImageCach"
     private var imageCacheInOperatonMemory: [String: UIImage] = [:]
+    private var observer: NSObjectProtocol?
     
     init?() {
         
@@ -31,10 +32,9 @@ class CustomImageCache: FriendImageCache {
             self.pathOfCachDirectoryURL = cachesDirectoryURL?.appendingPathComponent(nameOfImageCachDirectory)
         }
         
-        let observer = NotificationCenter.default.addObserver(forName: UIApplication.didReceiveMemoryWarningNotification, object: nil, queue: .main) { [weak self] notification in
+        observer = NotificationCenter.default.addObserver(forName: UIApplication.didReceiveMemoryWarningNotification, object: nil, queue: .main) { [weak self] notification in
             self?.imageCacheInOperatonMemory.removeAll()
         }
-        NotificationCenter.default.removeObserver(observer) //не работает
     }
     
     func loadCacheImage(nameOfImage: String,loadCompleteWithResult: @escaping(_ image: UIImage?) -> Void) {
@@ -75,5 +75,9 @@ class CustomImageCache: FriendImageCache {
         for filePath in filePaths {
             try? fileManager.removeItem(at: filePath)
         }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(observer!)
     }
 }

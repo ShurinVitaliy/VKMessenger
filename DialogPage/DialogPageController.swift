@@ -13,7 +13,7 @@ class DialogPageController: UIViewController {
     @IBOutlet var dialogSendMessageButton: UIButton!
     @IBOutlet var dialogTextField: UITextField!
     @IBOutlet var dialogTableView: UITableView!
-    //private var timer = Timer()
+    private var timer = Timer()
     
     private let leftCellName = LeftTableViewCell.cellName
     private let rightCellName = RightTableViewCell.cellName
@@ -21,9 +21,15 @@ class DialogPageController: UIViewController {
     private var friend: Friend
     private var messages: [DialogListItems]?
     
+    private var observerShowKeyBoard: NSObjectProtocol?
+    private var observerHideKeyBoard: NSObjectProtocol?
+    
+    private var spinner: UIActivityIndicatorView!
+    
     init(friend: Friend) {
         self.friend = friend
         super.init(nibName: nil, bundle: nil)
+        spinner = setupSpiner()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -33,53 +39,16 @@ class DialogPageController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = friend.first_name! + " " + friend.last_name!
+        self.hideKeyboard()
         setupTable()
-        dialogSendMessageButton.layer.cornerRadius = dialogSendMessageButton.bounds.height/2
         loadChatList()
-        //timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(loadChatList), userInfo: nil, repeats: true)
-        self.hideKeyboard() //непонятное поведение кода открываю второй раз клаиватуру то её размер уже не 253 а 216
-
-        /*
-        let sas = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main, using: {[weak self] notification in
-            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-                if self?.view.frame.origin.y == 0 {
-                    self?.view.frame.origin.y -= keyboardSize.height
-                    print(self?.view.frame.origin.y)
-                    print(keyboardSize.height)
-                }
-            }
-        })
-        //NotificationCenter.default.removeObserver(sas)
-        
-        let sis = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main, using:{[weak self] notification in
-            if self?.view.frame.origin.y != 0 {
-                self?.view.frame.origin.y = 0
-            }
-        })*/
-        //NotificationCenter.default.removeObserver(sis)
-        
-        let observerShowKeyBord = NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        
-        let observerHideKeyBord = NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
-        //NotificationCenter.default.removeObserver(observerHideKeyBord)
-        //NotificationCenter.default.removeObserver(observerShowKeyBord)
+        setupObserverKeyboard()
+        dialogSendMessageButton.layer.cornerRadius = dialogSendMessageButton.bounds.height/2
+        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(loadChatList), userInfo: nil, repeats: true)
     }
     
-    @objc private func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= keyboardSize.height
-                print(self.view.frame.origin.y)
-                print(keyboardSize.height)
-            }
-        }
-    }
-    
-    @objc private func keyboardWillHide(notification: NSNotification) {
-        if view.frame.origin.y != 0 {
-            self.view.frame.origin.y = 0
-        }
+    override func viewWillDisappear(_ animated: Bool) {
+        timer.invalidate()
     }
     
     @objc private func loadChatList() {
@@ -88,6 +57,29 @@ class DialogPageController: UIViewController {
                 self?.messages = messages
                 self?.dialogTableView.reloadData()
                 self?.dialogTableView.scrollToBottom()
+                self?.spinner.stopAnimating()
+            }
+        })
+    }
+    
+    private func setupSpiner() -> UIActivityIndicatorView! {
+        let spinner = UIActivityIndicatorView(style: .gray)
+        spinner.color = UIColor.darkGray
+        spinner.hidesWhenStopped = true
+        return spinner
+    }
+    
+    private func setupObserverKeyboard() {
+        observerShowKeyBoard = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main, using: {[weak self] notification in
+            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                if self?.view.frame.origin.y == 0 {
+                    self?.view.frame.origin.y -= keyboardSize.height
+                }
+            }
+        })
+        observerHideKeyBoard = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main, using:{[weak self] notification in
+            if self?.view.frame.origin.y != 0 {
+                self?.view.frame.origin.y = 0
             }
         })
     }
@@ -98,24 +90,36 @@ class DialogPageController: UIViewController {
         dialogTableView.separatorColor = .clear
         dialogTableView.allowsSelection = false
         dialogTableView.dataSource = self
+        dialogTableView.tableFooterView = spinner
     }
+    
     @IBAction func sendMessage(_ sender: Any) {
         if !(dialogTextField.text ?? "").isEmpty {
             DialogManager.sendMessage(userId: String(friend.id), message: dialogTextField.text!, {[weak self] (flag) in
                 DispatchQueue.main.async {
                     if flag {
-                        self?.loadChatList()
                         self?.dialogTextField.text = ""
+                        self?.loadChatList()
+                    } else {
+                        self?.dialogSendMessageButton.shake()
                     }
                 }
             })
+        } else {
+            dialogTextField.shake()
         }
     }
     
     deinit {
-        print(1)
+        NotificationCenter.default.removeObserver(observerShowKeyBoard!)
+        NotificationCenter.default.removeObserver(observerHideKeyBoard!)
     }
 }
+
+
+
+
+
 
 extension DialogPageController: UITableViewDataSource {
     
@@ -124,6 +128,19 @@ extension DialogPageController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //тут я
+        let contentSize = tableView.contentSize.height
+        let tableSize = tableView.frame.size.height - tableView.contentInset.top - tableView.contentInset.bottom
+        
+        let currentOffset = tableView.contentOffset.y
+        let maximumOffset = contentSize - tableView.frame.size.height
+        let difference = maximumOffset - currentOffset
+        
+        if contentSize > tableSize, difference <= -40.0 {
+            spinner.startAnimating()
+            loadChatList()
+        } // и вот до сюда
+        
         let message = messages?[indexPath.row]
         if message?.out == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: rightCellName, for: indexPath) as? RightTableViewCell
@@ -135,6 +152,7 @@ extension DialogPageController: UITableViewDataSource {
             return cell!
         }
     }
+    
 }
 
 extension UITableView {
@@ -149,16 +167,37 @@ extension UITableView {
 
 extension UIViewController
 {
-    func hideKeyboard()
-    {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
-            target: self,
-            action: #selector(UIViewController.dismissKeyboard))
+    func hideKeyboard() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
     
-    @objc func dismissKeyboard()
-    {
+    @objc func dismissKeyboard() {
         view.endEditing(true)
     }
 }
+
+extension UIView {
+    func shake() {
+        let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+        animation.duration = 0.6
+        animation.values = [-20.0, 20.0, -20.0, 20.0, -10.0, 10.0, -5.0, 5.0, 0.0 ]
+        layer.add(animation, forKey: "shake")
+    }
+}
+
+
+/* теперь новая проблема, с казалось бы последним заданием, суть проблемы заключается в том что если я собираюсь добавить в приложение анимацию добавления строки
+через insertRows у меня таблица обновляется перед вызовом анимации(тобишь к примеру у меня уже есть массив из 200 эллементов и 200 строк в таблице к примеру)
+(проблема в том что вместе с получением сообщений из интернета у меня перезагружается и таблица)
+ 
+ 
+ возможно сделать кастыль который добавляет именно наше сообщение в начало массива и при помощи (
+ let indexPath = IndexPath(row: messages.count - 1, section: 0)
+ 
+ tableView.beginUpdates()
+ tableView.insertRows(as: ,with .automatic)
+ tableView.endUpdates()
+ ) по сути пользователь не увидит существенной разницы, так как после обновления у нас просто пропадёт самый последний элемент массива messages и таблица перезагрузится
+ */
