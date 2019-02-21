@@ -59,7 +59,6 @@ class CustomImageCache: FriendImageCache {
                 return
             }
             imageCacheInOperatonMemory[nameOfImage] = image
-            print(imageCacheInOperatonMemory.count)
             if let pngImageData = image.pngData() {
                 try pngImageData.write(to: fileURL, options: .atomic)
             }

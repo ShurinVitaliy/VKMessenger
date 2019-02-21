@@ -10,9 +10,9 @@ import UIKit
 
 class RightTableViewCell: UITableViewCell, NibLoadableTableViewCell {
 
-
     @IBOutlet var messageView: UIView!
     @IBOutlet var messageLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         messageView.layer.cornerRadius = 10

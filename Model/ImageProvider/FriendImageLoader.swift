@@ -24,5 +24,3 @@ class CustomImageLoader: FriendImageLoader{
         }.resume()
     }
 }
-
-

@@ -21,8 +21,8 @@ class DialogPageController: UIViewController {
     private var friend: Friend
     private var messages: [DialogListItems]?
     
-    private var observerShowKeyBoard: NSObjectProtocol?
-    private var observerHideKeyBoard: NSObjectProtocol?
+    private var observerShowKeyBoard: NSObjectProtocol!
+    private var observerHideKeyBoard: NSObjectProtocol!
     
     private var spinner: UIActivityIndicatorView!
     
@@ -38,17 +38,13 @@ class DialogPageController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = friend.first_name! + " " + friend.last_name!
+        self.navigationItem.title = friend.last_name ?? "NoName"
         self.hideKeyboard()
         setupTable()
         loadChatList()
         setupObserverKeyboard()
         dialogSendMessageButton.layer.cornerRadius = dialogSendMessageButton.bounds.height/2
         timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(loadChatList), userInfo: nil, repeats: true)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        timer.invalidate()
     }
     
     @objc private func loadChatList() {
@@ -60,6 +56,32 @@ class DialogPageController: UIViewController {
                 self?.spinner.stopAnimating()
             }
         })
+    }
+    
+    @IBAction func sendMessage(_ sender: Any) {
+        if !(dialogTextField.text ?? "").isEmpty {
+            DialogPageProvider.sendMessage(userId: String(friend.id), message: dialogTextField.text!, {[weak self] (flag) in
+                DispatchQueue.main.async {
+                    if flag {
+                        self?.dialogTextField.text = ""
+                        self?.loadChatList()
+                    } else {
+                        self?.dialogSendMessageButton.shake()
+                    }
+                }
+            })
+        } else {
+            dialogTextField.shake()
+        }
+    }
+    
+    private func setupTable() {
+        dialogTableView.register(UINib(nibName: leftCellName, bundle: nil), forCellReuseIdentifier: leftCellName)
+        dialogTableView.register(UINib(nibName: rightCellName, bundle: nil), forCellReuseIdentifier: rightCellName)
+        dialogTableView.separatorColor = .clear
+        dialogTableView.allowsSelection = false
+        dialogTableView.dataSource = self
+        dialogTableView.tableFooterView = spinner
     }
     
     private func setupSpiner() -> UIActivityIndicatorView! {
@@ -84,41 +106,15 @@ class DialogPageController: UIViewController {
         })
     }
     
-    private func setupTable() {
-        dialogTableView.register(UINib(nibName: leftCellName, bundle: nil), forCellReuseIdentifier: leftCellName)
-        dialogTableView.register(UINib(nibName: rightCellName, bundle: nil), forCellReuseIdentifier: rightCellName)
-        dialogTableView.separatorColor = .clear
-        dialogTableView.allowsSelection = false
-        dialogTableView.dataSource = self
-        dialogTableView.tableFooterView = spinner
-    }
-    
-    @IBAction func sendMessage(_ sender: Any) {
-        if !(dialogTextField.text ?? "").isEmpty {
-            DialogManager.sendMessage(userId: String(friend.id), message: dialogTextField.text!, {[weak self] (flag) in
-                DispatchQueue.main.async {
-                    if flag {
-                        self?.dialogTextField.text = ""
-                        self?.loadChatList()
-                    } else {
-                        self?.dialogSendMessageButton.shake()
-                    }
-                }
-            })
-        } else {
-            dialogTextField.shake()
-        }
+    override func viewWillDisappear(_ animated: Bool) {
+        timer.invalidate()
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(observerShowKeyBoard!)
-        NotificationCenter.default.removeObserver(observerHideKeyBoard!)
+        NotificationCenter.default.removeObserver(observerShowKeyBoard)
+        NotificationCenter.default.removeObserver(observerHideKeyBoard)
     }
 }
-
-
-
-
 
 
 extension DialogPageController: UITableViewDataSource {
@@ -128,7 +124,7 @@ extension DialogPageController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //тут я
+        //тут я отслеживаю нужен ли спинер в низу таблицы
         let contentSize = tableView.contentSize.height
         let tableSize = tableView.frame.size.height - tableView.contentInset.top - tableView.contentInset.bottom
         
@@ -152,7 +148,6 @@ extension DialogPageController: UITableViewDataSource {
             return cell!
         }
     }
-    
 }
 
 extension UITableView {
@@ -182,22 +177,16 @@ extension UIView {
         let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
         animation.duration = 0.6
-        animation.values = [-20.0, 20.0, -20.0, 20.0, -10.0, 10.0, -5.0, 5.0, 0.0 ]
+        animation.values = [-20.0, 20.0, -15.0, 15.0, -10.0, 10.0, -5.0, 5.0, 0.0 ]
         layer.add(animation, forKey: "shake")
     }
 }
-
-
-/* теперь новая проблема, с казалось бы последним заданием, суть проблемы заключается в том что если я собираюсь добавить в приложение анимацию добавления строки
-через insertRows у меня таблица обновляется перед вызовом анимации(тобишь к примеру у меня уже есть массив из 200 эллементов и 200 строк в таблице к примеру)
-(проблема в том что вместе с получением сообщений из интернета у меня перезагружается и таблица)
- 
- 
- возможно сделать кастыль который добавляет именно наше сообщение в начало массива и при помощи (
+ /*
+ возможно сделать - добавление и удаление элементов из нашего массива сообщений(сравниваем наш массив с пришедшим - отслеживаем элементы которые изменились) вставляем и удаляем ячейки (
  let indexPath = IndexPath(row: messages.count - 1, section: 0)
  
  tableView.beginUpdates()
  tableView.insertRows(as: ,with .automatic)
  tableView.endUpdates()
  ) по сути пользователь не увидит существенной разницы, так как после обновления у нас просто пропадёт самый последний элемент массива messages и таблица перезагрузится
- */
+*/

@@ -12,7 +12,7 @@ import VK_ios_sdk
 struct Constants {
     static let apiVk = "https://api.vk.com/method/"
     static var accessToken: String {
-        guard let accesToken = VKSdk.accessToken()?.accessToken else { //библиотека не предоставляет токен если на этапе логина нет интернета, ид тоже
+        guard let accesToken = VKSdk.accessToken()?.accessToken else {
             return ""
         }
         return accesToken
@@ -40,10 +40,4 @@ struct Constants {
     static func sendMessage(ownerId: String, message: String) -> String {
         return "messages.send?user_id=\(ownerId)&random_id=\(Int(arc4random()))&message=\(message)&v=5.68&access_token=\(accessToken)"
     }
-    
-    
 }
-//https://api.vk.com/method/messages.getHistory?user_id=57371608&count=50&offset=0&v=5.8&access_token=559833547726ba2ab10463f8558213cae0eead25801efe6205d664883b186c55006397c4a864a55f3620c
-
-
-//"https://api.vk.com/method/" + "messages.send" + "?" + "user_id" + "=\(ownerId)&" +  "random_id" + "=\(randomId)&message=\(message)&v=5.68&access_token=\(accessToken)"

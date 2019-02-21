@@ -10,6 +10,19 @@ import Foundation
 
 class DialogPageProvider {
     
+    static func sendMessage(userId: String, message: String, _ completionHandler: @escaping(_ successfully: Bool) -> Void) {
+        var urlString: NSString = Constants.apiVk + Constants.sendMessage(ownerId: userId, message: message) as NSString
+        urlString = urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)! as NSString
+        if let url = URL(string: urlString as String) {
+            let request = URLRequest(url: url)
+            URLSession.shared.dataTask(with: request) {(data, response, error) in
+                completionHandler(true)
+                }.resume()
+        } else {
+            completionHandler(false)
+        }
+    }
+    
     static func loadFriendPageImage(friendId: String, _ completionHandler: @escaping(_ friendListResponse: [DialogListItems]?) -> Void) {
         let urlString: String = Constants.apiVk + Constants.userDialogURL(ownerId: friendId)
         let url = URL(string: urlString)
