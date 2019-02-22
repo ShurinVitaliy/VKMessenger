@@ -10,6 +10,8 @@ import UIKit
 import VK_ios_sdk
 
 class FriendsController: UIViewController {
+    private var dataManager = FriendDataManager.shared
+    
     private var friends: [Friend]?
     private var tableView: UITableView!
     private var imageManager = ImageManager.shared
@@ -70,10 +72,14 @@ class FriendsController: UIViewController {
                     alert.addAction(UIAlertAction(title: "ok", style: .default, handler: {[weak self] (action) in
                         self?.loadFreinds()
                     }))
+                    alert.addAction(UIAlertAction(title: "no", style: .cancel, handler: { (action) in
+                        self?.friends = self?.dataManager.getFriends()
+                    }))
                     self?.present(alert, animated: true, completion: nil)
                 } else {
                     self?.tableView.reloadData()
                     self?.refreshControl.endRefreshing()
+                    self?.dataManager.setFriends(friends: friends ?? [])
                 }
             }
         })
@@ -107,7 +113,7 @@ extension FriendsController: UITableViewDataSource {
         if let friend = friends?[indexPath.row] {
             cell.loadCell(friend: friend)
             cell.photoImageView.image = nil
-            getImage(indexPath: indexPath, imageURL: friend.photo_100!)
+            getImage(indexPath: indexPath, imageURL: friend.photo_100)
         }
         return cell
     }

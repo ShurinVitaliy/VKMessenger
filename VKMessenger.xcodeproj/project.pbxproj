@@ -20,6 +20,7 @@
 		F41A3B3E221BE80C00E9391F /* RightTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F41A3B3C221BE80C00E9391F /* RightTableViewCell.xib */; };
 		F41A3B46221C3E3600E9391F /* DialogPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A3B44221C3E3600E9391F /* DialogPageController.swift */; };
 		F41A3B47221C3E3600E9391F /* DialogPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F41A3B45221C3E3600E9391F /* DialogPageController.xib */; };
+		F41A3B88221EDB9D00E9391F /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A3B87221EDB9D00E9391F /* DatabaseManager.swift */; };
 		F41C828821F8B1610084B6F0 /* FriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F41C828721F8B1600084B6F0 /* FriendTableViewCell.xib */; };
 		F42FCFD321E8F0D800890BC0 /* FriendsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42FCFD221E8F0D800890BC0 /* FriendsProvider.swift */; };
 		F42FCFD621EC6EA200890BC0 /* AuthorizationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42FCFD521EC6EA200890BC0 /* AuthorizationProvider.swift */; };
@@ -74,6 +75,7 @@
 		F41A3B3C221BE80C00E9391F /* RightTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RightTableViewCell.xib; sourceTree = "<group>"; };
 		F41A3B44221C3E3600E9391F /* DialogPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogPageController.swift; sourceTree = "<group>"; };
 		F41A3B45221C3E3600E9391F /* DialogPageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DialogPageController.xib; sourceTree = "<group>"; };
+		F41A3B87221EDB9D00E9391F /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		F41C828721F8B1600084B6F0 /* FriendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FriendTableViewCell.xib; path = "../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/VKMessenger 4.32.40 PM/Friends/FriendTableViewCell.xib"; sourceTree = "<group>"; };
 		F42FCFD221E8F0D800890BC0 /* FriendsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsProvider.swift; sourceTree = "<group>"; };
 		F42FCFD521EC6EA200890BC0 /* AuthorizationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationProvider.swift; sourceTree = "<group>"; };
@@ -147,9 +149,9 @@
 		F4149D382203189500A13D77 /* ImageProvider */ = {
 			isa = PBXGroup;
 			children = (
+				F4149D362203183100A13D77 /* ImageManager.swift */,
 				F4149D322201FD4000A13D77 /* FriendImageLoader.swift */,
 				F4149D342202FBAE00A13D77 /* FriendImageCache.swift */,
-				F4149D362203183100A13D77 /* ImageManager.swift */,
 			);
 			path = ImageProvider;
 			sourceTree = "<group>";
@@ -196,9 +198,18 @@
 			path = CustomCell;
 			sourceTree = "<group>";
 		};
+		F41A3B86221EDB7400E9391F /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				F41A3B87221EDB9D00E9391F /* DatabaseManager.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
 		F42FCFCB21E8CF8D00890BC0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F41A3B86221EDB7400E9391F /* Database */,
 				F4149D382203189500A13D77 /* ImageProvider */,
 				F42FCFD221E8F0D800890BC0 /* FriendsProvider.swift */,
 				F4B4DCC9220DAA8500BDA99E /* UserPageProvider.swift */,
@@ -460,12 +471,16 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-VKMessenger/Pods-VKMessenger-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/VK-ios-sdk/VK_ios_sdk.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VK_ios_sdk.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -500,6 +515,7 @@
 				F4E637B3221176DD00B61563 /* FriendPageController.swift in Sources */,
 				F4149D4C2209720200A13D77 /* FriendPageHeader.swift in Sources */,
 				F41A3B46221C3E3600E9391F /* DialogPageController.swift in Sources */,
+				F41A3B88221EDB9D00E9391F /* DatabaseManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -42,11 +42,9 @@ class AuthorizationProviderImp: NSObject, AuthorizationProvider {
 
 extension AuthorizationProviderImp: VKSdkDelegate, VKSdkUIDelegate {
     func vkSdkUserAuthorizationFailed() {
-        
     }
     
     func vkSdkNeedCaptchaEnter(_ captchaError: VKError!) {
-        
     }
     
     func vkSdkShouldPresent(_ controller: UIViewController!) {

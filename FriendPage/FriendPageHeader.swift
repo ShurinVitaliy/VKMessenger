@@ -20,10 +20,10 @@ class FriendPageHeader: UIView {
     
     func setupData(friend: Friend) {
         let imageManager = ImageManager.shared
-        imageManager.getImage(imageURL: friend.photo_100! , complete: {[weak self] (image) in
+        imageManager.getImage(imageURL: friend.photo_100 , complete: {[weak self] (image) in
             self?.userImageView.image = image
         })
-        userLabel.text = friend.first_name! + " " + friend.last_name!
+        userLabel.text = friend.first_name + " " + friend.last_name
         onlineLabel.text = (friend.online == 1 ? "online" : "ofline" )
         regionLabel.text = "not Found"
         

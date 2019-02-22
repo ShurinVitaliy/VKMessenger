@@ -1,16 +1,26 @@
 PODS:
+  - Realm (3.13.0):
+    - Realm/Headers (= 3.13.0)
+  - Realm/Headers (3.13.0)
+  - RealmSwift (3.13.0):
+    - Realm (= 3.13.0)
   - VK-ios-sdk (1.4.6)
 
 DEPENDENCIES:
+  - RealmSwift
   - VK-ios-sdk
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Realm
+    - RealmSwift
     - VK-ios-sdk
 
 SPEC CHECKSUMS:
+  Realm: 5edd2ee65406aef591a4f9895de5a3440e51b3d8
+  RealmSwift: be5ebc7930e37cd3376b41cec7f21984528aaa16
   VK-ios-sdk: 7fd48bc5aaa6b96c3197c1987eb6593f2ea67331
 
-PODFILE CHECKSUM: 63f4da37cbd4d48779f59de1171995971598decd
+PODFILE CHECKSUM: 77d0be92d2334b38b3a317476bdf7077b04fe5fc
 
 COCOAPODS: 1.5.3

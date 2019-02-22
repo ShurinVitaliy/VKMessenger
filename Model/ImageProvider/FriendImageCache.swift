@@ -42,6 +42,7 @@ class CustomImageCache: FriendImageCache {
             guard let filePath = self.pathOfCachDirectoryURL?.appendingPathComponent(nameOfImage).path else {
                 return
             }
+            
             if let image = self.imageCacheInOperatonMemory[nameOfImage] {
                 loadCompleteWithResult(image)
             } else if FileManager.default.fileExists(atPath: filePath) {

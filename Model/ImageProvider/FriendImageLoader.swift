@@ -18,8 +18,11 @@ class CustomImageLoader: FriendImageLoader{
         let url = URL(string: photoURL)
         URLSession.shared.dataTask(with: url!) {(data, response, error) in
             do {
-                let imageView = UIImage(data: data!)
-                loadCompleteWithResult(imageView ?? #imageLiteral(resourceName: "defaultImage.png"))
+                if data != nil {
+                    if let imageView = UIImage(data: data!) {
+                        loadCompleteWithResult(imageView)
+                    }
+                }
             }
         }.resume()
     }

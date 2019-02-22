@@ -38,7 +38,7 @@ class DialogPageController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = friend.last_name ?? "NoName"
+        self.navigationItem.title = friend.last_name
         self.hideKeyboard()
         setupTable()
         loadChatList()
@@ -124,7 +124,6 @@ extension DialogPageController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //тут я отслеживаю нужен ли спинер в низу таблицы
         let contentSize = tableView.contentSize.height
         let tableSize = tableView.frame.size.height - tableView.contentInset.top - tableView.contentInset.bottom
         
@@ -135,7 +134,7 @@ extension DialogPageController: UITableViewDataSource {
         if contentSize > tableSize, difference <= -40.0 {
             spinner.startAnimating()
             loadChatList()
-        } // и вот до сюда
+        }
         
         let message = messages?[indexPath.row]
         if message?.out == 1 {
