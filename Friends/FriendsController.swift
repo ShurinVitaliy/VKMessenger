@@ -10,7 +10,7 @@ import UIKit
 import VK_ios_sdk
 
 class FriendsController: UIViewController {
-    private var dataManager = FriendDataManager.shared
+    private var dataManager = FriendDataManager()
     
     private var friends: [Friend]?
     private var tableView: UITableView!

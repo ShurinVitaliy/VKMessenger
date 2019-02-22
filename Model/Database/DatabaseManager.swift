@@ -11,12 +11,7 @@ import RealmSwift
 import Realm
 
 class FriendDataManager {
-    static let shared = FriendDataManager()
     let realm = try! Realm()
-    
-    private init() {
-        
-    }
     
     func getFriends() -> [Friend]{
         var friends: [Friend] = []
@@ -29,7 +24,6 @@ class FriendDataManager {
     }
     
     func setFriends(friends: [Friend]) {
-        
         var friendsDatabase: [FriendDatabase] = []
         try! realm.write {
             realm.deleteAll()
