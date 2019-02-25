@@ -11,9 +11,10 @@ import VK_ios_sdk
 
 class FriendsController: UIViewController {
     private var dataManager = FriendDataManager()
-    
+    private var originalArrayOfFriends: [Friend]? = []
     private var friends: [Friend]?
     private var tableView: UITableView!
+    private var searchBar: UISearchBar!
     private var imageManager = ImageManager.shared
     private var transitionAnimation: CATransition!
     private let cellName = String(describing: FriendTableViewCell.self)
@@ -42,6 +43,7 @@ class FriendsController: UIViewController {
         super.viewDidLoad()
         tableView.addSubview(refreshControl)
         transitionAnimation = createTransitionAnimation()
+        searchBar = createSearchBar()
         setupNavigationController()
     }
     
@@ -55,16 +57,24 @@ class FriendsController: UIViewController {
     }
     
     private func setupNavigationController() {
-        navigationItem.title = "Friends"
+        navigationItem.titleView = searchBar
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.282201767, green: 0.4674475789, blue: 0.6288158894, alpha: 1)
         navigationController?.navigationBar.tintColor = UIColor.white
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+    }
+    
+    private func createSearchBar() -> UISearchBar {
+        let searchBar = UISearchBar()
+        searchBar.placeholder = "friend search"
+        searchBar.delegate = self
+        return searchBar
     }
 
     private func loadFreinds() {
         refreshControl.beginRefreshing()
         FrendsProvider.loadFriends({[weak self] (friends) in
             DispatchQueue.main.async {
+                self?.originalArrayOfFriends = friends
                 self?.friends = friends
                 if self?.friends == nil {
                     self?.refreshControl.endRefreshing()
@@ -110,6 +120,7 @@ extension FriendsController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as! FriendTableViewCell
+        //friends = friends?.sorted(by: { $0.first_name < $1.first_name })
         if let friend = friends?[indexPath.row] {
             cell.loadCell(friend: friend)
             cell.photoImageView.image = nil
@@ -125,5 +136,19 @@ extension FriendsController: UITableViewDelegate {
         self.navigationController?.view.layer.add(transitionAnimation, forKey: nil)
         self.navigationController?.pushViewController(friendPageController, animated: false)
         self.tableView.cellForRow(at: indexPath)?.isSelected = false
+    }
+}
+
+extension FriendsController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard !searchText.isEmpty else {
+            friends = originalArrayOfFriends
+            tableView.reloadData()
+            return
+        }
+        friends = originalArrayOfFriends?.filter({(friends) -> Bool in
+            friends.first_name.lowercased().contains(searchText.lowercased())
+        })
+        tableView.reloadData()
     }
 }

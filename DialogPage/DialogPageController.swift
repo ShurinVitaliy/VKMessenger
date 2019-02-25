@@ -176,16 +176,7 @@ extension UIView {
         let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
         animation.duration = 0.6
-        animation.values = [-20.0, 20.0, -15.0, 15.0, -10.0, 10.0, -5.0, 5.0, 0.0 ]
+        animation.values = [-20.0, 20.0, -15.0, 15.0, -10.0, 10.0, -5.0, 5.0, 0.0]
         layer.add(animation, forKey: "shake")
     }
 }
- /*
- возможно сделать - добавление и удаление элементов из нашего массива сообщений(сравниваем наш массив с пришедшим - отслеживаем элементы которые изменились) вставляем и удаляем ячейки (
- let indexPath = IndexPath(row: messages.count - 1, section: 0)
- 
- tableView.beginUpdates()
- tableView.insertRows(as: ,with .automatic)
- tableView.endUpdates()
- ) по сути пользователь не увидит существенной разницы, так как после обновления у нас просто пропадёт самый последний элемент массива messages и таблица перезагрузится
-*/

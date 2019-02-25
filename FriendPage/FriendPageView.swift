@@ -14,14 +14,12 @@ protocol FriendPageViewDeleage: class {
 }
 
 class FriendPageView: UIView {
-
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var stackView: UIStackView!
     @IBOutlet var bodyImageCollectionView: UICollectionView!
     @IBOutlet var friendPageHeader: FriendPageHeader? = FriendPageHeader()
     private let cellName = FriendPageCollectionViewCell.cellName
     weak var delegate: FriendPageViewDeleage?
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -45,4 +43,3 @@ extension FriendPageView: UICollectionViewDelegate, UICollectionViewDataSource {
         return delegate?.countOfImage() ?? 0
     }
 }
-

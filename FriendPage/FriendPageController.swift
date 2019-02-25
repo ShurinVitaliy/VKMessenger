@@ -46,9 +46,7 @@ class FriendPageController: UIViewController {
     
     @objc private func sendMessage(_ sender: UIButton) {
         let dialogPageController = DialogPageController(friend: friend)
-        
         self.navigationController?.pushViewController(dialogPageController, animated: true)
-        
     }
 }
 

@@ -26,8 +26,6 @@ class FriendPageHeader: UIView {
         userLabel.text = friend.first_name + " " + friend.last_name
         onlineLabel.text = (friend.online == 1 ? "online" : "ofline" )
         regionLabel.text = "not Found"
-        
-        
     }
     
     override func awakeFromNib() {
@@ -111,5 +109,4 @@ class FriendPageHeader: UIView {
         imageView.clipsToBounds = true
         return imageView
     }
-    
 }

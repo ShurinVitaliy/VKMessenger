@@ -37,4 +37,3 @@ extension NibLoadableTableViewCell where Self: UITableViewCell {
         return String(describing: self)
     }
 }
-

@@ -14,7 +14,6 @@ class ImageManager {
     private lazy var imageCache: FriendImageCache? = CustomImageCache()
     static let shared = ImageManager()
     private init() {}
-
     
     func getImage(imageURL: String, complete: @escaping(_ image: UIImage)-> Void) {
         let nameOfImage = URL(string: imageURL)?.lastPathComponent
@@ -31,6 +30,7 @@ class ImageManager {
             }
         })
     }
+    
     func clearCache() {
         imageCache?.deleteCacheImage()
     }
