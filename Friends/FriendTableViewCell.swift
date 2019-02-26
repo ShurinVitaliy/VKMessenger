@@ -28,6 +28,8 @@ class FriendTableViewCell: UITableViewCell, NibLoadableTableViewCell {
     }
 }
 
+//TODO: This should be in a separate file
+
 public protocol NibLoadableTableViewCell: class {
     static var cellName: String { get }
 }

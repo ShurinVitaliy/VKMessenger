@@ -14,7 +14,8 @@ class DialogPageController: UIViewController {
     @IBOutlet var dialogTextField: UITextField!
     @IBOutlet var dialogTableView: UITableView!
     private var timer = Timer()
-    
+
+    //TODO: What is the reason to have those constants?
     private let leftCellName = LeftTableViewCell.cellName
     private let rightCellName = RightTableViewCell.cellName
     
@@ -44,6 +45,7 @@ class DialogPageController: UIViewController {
         loadChatList()
         setupObserverKeyboard()
         dialogSendMessageButton.layer.cornerRadius = dialogSendMessageButton.bounds.height/2
+        //TODO: You init timer on view did load and invalidate it on viewWillDissapear the problem is that if you present some controller from from dialog page and then dismiss it your timer won't work.
         timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(loadChatList), userInfo: nil, repeats: true)
     }
     
@@ -94,12 +96,14 @@ class DialogPageController: UIViewController {
     private func setupObserverKeyboard() {
         observerShowKeyBoard = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main, using: {[weak self] notification in
             if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                //TODO: Use UItableView.contentInset instead of frame
                 if self?.view.frame.origin.y == 0 {
                     self?.view.frame.origin.y -= keyboardSize.height
                 }
             }
         })
         observerHideKeyBoard = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main, using:{[weak self] notification in
+            //TODO: Use UItableView.contentInset instead of frame
             if self?.view.frame.origin.y != 0 {
                 self?.view.frame.origin.y = 0
             }
@@ -124,6 +128,7 @@ extension DialogPageController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //TODO: That is not the right place to add spinner. Please check methods of UIScrollViewDelegate. And find more accurate place
         let contentSize = tableView.contentSize.height
         let tableSize = tableView.frame.size.height - tableView.contentInset.top - tableView.contentInset.bottom
         
@@ -148,6 +153,8 @@ extension DialogPageController: UITableViewDataSource {
         }
     }
 }
+
+//TODO: Should be in a separate file
 
 extension UITableView {
     func scrollToBottom() {

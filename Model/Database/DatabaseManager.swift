@@ -17,6 +17,7 @@ class FriendDataManager {
         var friends: [Friend] = []
         let friendsDatabase = realm.objects(FriendDatabase.self)
         for friendDatabase in friendsDatabase {
+            //TODO: As I mentioned it will be better to use protocols so you don't need to map Friend to FriendDatabase. Instead you will have Friend protocol and two different implementation of this protocol
             let friend = Friend.init(first_name: friendDatabase.first_name, id: friendDatabase.id, last_name: friendDatabase.last_name, online: friendDatabase.online, photo_100: friendDatabase.photo_100)
             friends.append(friend)
         }
