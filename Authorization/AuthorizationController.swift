@@ -11,6 +11,8 @@ import UIKit
 import VK_ios_sdk
 
 class AuthorizationController: UIViewController {
+    
+    private var mainTabBarController: UITabBarController!
     private var authorizationProvider: AuthorizationProvider!
     private var authorizationView: AuthorizationView? {
         return (view as? AuthorizationView)
@@ -30,6 +32,7 @@ class AuthorizationController: UIViewController {
         let authotizationView = AuthorizationView()
         authotizationView.buttonLogIn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(logIn)))
         self.view = authotizationView
+        
     }
     
     @objc private func logIn(_ sender: UIButton) {
@@ -47,6 +50,28 @@ class AuthorizationController: UIViewController {
             self.authorizationProvider.logIn()
         })
     }
+    
+    private func createTabBarController() -> UITabBarController {
+        let tabBarController = UITabBarController()
+        tabBarController.view.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        tabBarController.tabBar.barTintColor = #colorLiteral(red: 0.282201767, green: 0.4674475789, blue: 0.6288158894, alpha: 1)
+        
+        
+        let friendNavigationController = UINavigationController()
+        let friendController = FriendsController()
+        friendNavigationController.viewControllers = [friendController]
+        friendController.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarItem.SystemItem.contacts, tag: 1)
+        
+        let messagesNavigationController = UINavigationController()
+        let messagesController = MessagesController()
+        messagesNavigationController.viewControllers = [messagesController]
+        messagesController.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarItem.SystemItem.recents, tag: 1)
+        
+        let myTabs = NSArray(objects: friendNavigationController, messagesNavigationController)
+        tabBarController.setViewControllers(myTabs as? [UIViewController], animated: true)
+        
+        return tabBarController
+    }
 }
 
 extension AuthorizationController: AuthorizationProviderDelegate {
@@ -55,10 +80,12 @@ extension AuthorizationController: AuthorizationProviderDelegate {
     }
     
     func authorizationСompleted() {
-        let controller = UINavigationController()
+        /*let controller = UINavigationController()
         let friendController = FriendsController()
         controller.viewControllers = [friendController]
-        present(controller, animated: true, completion: nil)
+        present(controller, animated: true, completion: nil)*/
+        mainTabBarController = createTabBarController()
+        present(mainTabBarController, animated: true, completion: nil)
     }
 }
 

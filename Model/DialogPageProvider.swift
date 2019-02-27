@@ -23,7 +23,7 @@ class DialogPageProvider {
         }
     }
     
-    static func loadFriendPageImage(friendId: String, _ completionHandler: @escaping(_ friendListResponse: [DialogListItems]?) -> Void) {
+    static func loadDialogPageMessage(friendId: String, _ completionHandler: @escaping(_ friendListResponse: [DialogListItems]?) -> Void) {
         let urlString: String = Constants.apiVk + Constants.userDialogURL(ownerId: friendId)
         let url = URL(string: urlString)
         URLSession.shared.dataTask(with: url!) {(data, response, error) in

@@ -48,7 +48,7 @@ class DialogPageController: UIViewController {
     }
     
     @objc private func loadChatList() {
-        DialogPageProvider.loadFriendPageImage(friendId:String(friend.id), {[weak self] (messages) in
+        DialogPageProvider.loadDialogPageMessage(friendId:String(friend.id), {[weak self] (messages) in
             DispatchQueue.main.async {
                 self?.messages = messages
                 self?.dialogTableView.reloadData()

@@ -40,4 +40,12 @@ struct Constants {
     static func sendMessage(ownerId: String, message: String) -> String {
         return "messages.send?user_id=\(ownerId)&random_id=\(Int(arc4random()))&message=\(message)&v=5.68&access_token=\(accessToken)"
     }
+    
+    static func getMessages() -> String {
+        return "messages.getDialogs?count=50&offset=1&v=5.64&access_token=\(accessToken)"
+    }
+    
+    static func getUser(ownerId: String) -> String {
+        return "users.get?user_id=\(ownerId)&fields=photo_100&v=5.8&access_token=\(accessToken)"
+    }
 }
