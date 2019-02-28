@@ -10,18 +10,20 @@ import Foundation
 import RealmSwift
 import Realm
 
+protocol Friend {
+    var first_name: String {get set}
+    var id: Int {get set}
+    var last_name: String {get set}
+    var online: Int {get set}
+    var photo_100: String {get set}
+}
+
 class FriendDataManager {
     let realm = try! Realm()
     
-    func getFriends() -> [Friend]{
-        var friends: [Friend] = []
-        let friendsDatabase = realm.objects(FriendDatabase.self)
-        for friendDatabase in friendsDatabase {
-            //TODO: As I mentioned it will be better to use protocols so you don't need to map Friend to FriendDatabase. Instead you will have Friend protocol and two different implementation of this protocol
-            let friend = Friend.init(first_name: friendDatabase.first_name, id: friendDatabase.id, last_name: friendDatabase.last_name, online: friendDatabase.online, photo_100: friendDatabase.photo_100)
-            friends.append(friend)
-        }
-        return friends
+    func getFriends() -> [Friend] {
+        let friendsDatabase = Array(realm.objects(FriendDatabase.self))
+        return friendsDatabase
     }
     
     func setFriends(friends: [Friend]) {
@@ -34,14 +36,13 @@ class FriendDataManager {
             let currentFriend = FriendDatabase(first_name: friend.first_name, id: friend.id, last_name: friend.last_name, online: friend.online, photo_100: friend.photo_100)
             friendsDatabase.append(currentFriend)
         }
-        
         try! realm.write {
             realm.add(friendsDatabase)
         }
     }
 }
 
-class FriendDatabase: Object {
+class FriendDatabase: Object, Friend {
     @objc dynamic var first_name: String = ""
     @objc dynamic var id: Int = 0
     @objc dynamic var last_name: String = ""

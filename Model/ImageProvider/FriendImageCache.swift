@@ -78,7 +78,9 @@ class CustomImageCache: FriendImageCache {
     }
     
     deinit {
-        //TODO: I've already mentioned it multiple times - DO NOT USE FORCE UNWRAP!!!! use guard let observer = observer
-        NotificationCenter.default.removeObserver(observer!)
+        guard let observer = observer else {
+            return
+        }
+        NotificationCenter.default.removeObserver(observer)
     }
 }

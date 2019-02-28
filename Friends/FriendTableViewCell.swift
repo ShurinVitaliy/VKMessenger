@@ -27,15 +27,3 @@ class FriendTableViewCell: UITableViewCell, NibLoadableTableViewCell {
         onlineLabel.text = (friend.online == 1 ? "online" : "ofline" )
     }
 }
-
-//TODO: This should be in a separate file
-
-public protocol NibLoadableTableViewCell: class {
-    static var cellName: String { get }
-}
-
-extension NibLoadableTableViewCell where Self: UITableViewCell {
-    static var cellName: String {
-        return String(describing: self)
-    }
-}

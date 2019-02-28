@@ -10,10 +10,13 @@ import Foundation
 
 class FrendsProvider {
     
-    static func loadFriends(_ completionHandler: @escaping(_ friendListResponse: [Friend]?) -> Void) {
+    static func loadFriends(_ completionHandler: @escaping(_ friendListResponse: [FriendImp]?) -> Void) {
         let urlString: String = Constants.apiVk + Constants.friendsURL
-        let url = URL(string: urlString)
-        URLSession.shared.dataTask(with: url!) {(data, response, error) in
+        guard let url = URL(string: urlString) else {
+            completionHandler(nil)
+            return
+        }
+        URLSession.shared.dataTask(with: url) {(data, response, error) in
             do {
                 guard let data = data else {
                     completionHandler(nil)
@@ -34,10 +37,10 @@ private struct FriendList: Decodable {
 
 private struct FriendListResponseItems: Decodable {
     var count: Int?
-    var items: [Friend]?
+    var items: [FriendImp]?
 }
 
-struct Friend: Decodable {
+struct FriendImp: Decodable, Friend {
     var first_name: String
     var id: Int
     var last_name: String

@@ -15,10 +15,6 @@ class DialogPageController: UIViewController {
     @IBOutlet var dialogTableView: UITableView!
     private var timer = Timer()
 
-    //TODO: What is the reason to have those constants?
-    private let leftCellName = LeftTableViewCell.cellName
-    private let rightCellName = RightTableViewCell.cellName
-    
     private var friend: Friend
     private var messages: [DialogListItems]?
     
@@ -46,6 +42,7 @@ class DialogPageController: UIViewController {
         setupObserverKeyboard()
         dialogSendMessageButton.layer.cornerRadius = dialogSendMessageButton.bounds.height/2
         //TODO: You init timer on view did load and invalidate it on viewWillDissapear the problem is that if you present some controller from from dialog page and then dismiss it your timer won't work.
+        // но я так и пологал, чтобы дизэйблить таймер и у меня у меня удалялся из памяти мой контроллер, если я не буду диэйблить таймер - контроллер не будет удаляться
         timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(loadChatList), userInfo: nil, repeats: true)
     }
     
@@ -78,11 +75,12 @@ class DialogPageController: UIViewController {
     }
     
     private func setupTable() {
-        dialogTableView.register(UINib(nibName: leftCellName, bundle: nil), forCellReuseIdentifier: leftCellName)
-        dialogTableView.register(UINib(nibName: rightCellName, bundle: nil), forCellReuseIdentifier: rightCellName)
+        dialogTableView.register(UINib(nibName: "LeftTableViewCell", bundle: nil), forCellReuseIdentifier: "LeftTableViewCell")
+        dialogTableView.register(UINib(nibName: "RightTableViewCell", bundle: nil), forCellReuseIdentifier: "RightTableViewCell")
         dialogTableView.separatorColor = .clear
         dialogTableView.allowsSelection = false
         dialogTableView.dataSource = self
+        (dialogTableView as UIScrollView).delegate = self
         dialogTableView.tableFooterView = spinner
     }
     
@@ -97,15 +95,26 @@ class DialogPageController: UIViewController {
         observerShowKeyBoard = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main, using: {[weak self] notification in
             if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
                 //TODO: Use UItableView.contentInset instead of frame
+                //print(self?.dialogTableView.contentInset)
+                
+                if self?.dialogTableView.contentInset.top == 0 {
+                    self?.dialogTableView.contentInset.top -= keyboardSize.height
+                }
+                /*
                 if self?.view.frame.origin.y == 0 {
                     self?.view.frame.origin.y -= keyboardSize.height
-                }
+                }*/
             }
         })
         observerHideKeyBoard = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main, using:{[weak self] notification in
             //TODO: Use UItableView.contentInset instead of frame
-            if self?.view.frame.origin.y != 0 {
+            //но мне же нужно поднимать и опускать вьюху а не таблицу
+            //print(self?.dialogTableView.contentInset)
+           /* if self?.view.frame.origin.y != 0 {
                 self?.view.frame.origin.y = 0
+            }*/
+            if self?.dialogTableView.contentInset.top != 0 {
+                self?.dialogTableView.contentInset.top = 0
             }
         })
     }
@@ -120,7 +129,6 @@ class DialogPageController: UIViewController {
     }
 }
 
-
 extension DialogPageController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -128,62 +136,32 @@ extension DialogPageController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //TODO: That is not the right place to add spinner. Please check methods of UIScrollViewDelegate. And find more accurate place
-        let contentSize = tableView.contentSize.height
-        let tableSize = tableView.frame.size.height - tableView.contentInset.top - tableView.contentInset.bottom
-        
-        let currentOffset = tableView.contentOffset.y
-        let maximumOffset = contentSize - tableView.frame.size.height
-        let difference = maximumOffset - currentOffset
-        
-        if contentSize > tableSize, difference <= -40.0 {
-            spinner.startAnimating()
-            loadChatList()
-        }
-        
+
         let message = messages?[indexPath.row]
         if message?.out == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: rightCellName, for: indexPath) as? RightTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RightTableViewCell", for: indexPath) as? DialogTableViewCell
             cell?.messageLabel.text = message?.body
             return cell!
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: leftCellName, for: indexPath) as? LeftTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LeftTableViewCell", for: indexPath) as? DialogTableViewCell
             cell?.messageLabel.text = message?.body
             return cell!
         }
     }
 }
 
-//TODO: Should be in a separate file
-
-extension UITableView {
-    func scrollToBottom() {
-        let sections = self.numberOfSections
-        let rows = self.numberOfRows(inSection: sections - 1)
-        if (rows > 0){
-            self.scrollToRow(at: NSIndexPath(row: rows - 1, section: sections - 1) as IndexPath, at: .bottom, animated: false)
+extension DialogPageController: UIScrollViewDelegate {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let contentSize = scrollView.contentSize.height
+        let tableSize = scrollView.frame.size.height - scrollView.contentInset.top - scrollView.contentInset.bottom
+        
+        let currentOffset = scrollView.contentOffset.y
+        let maximumOffset = contentSize - scrollView.frame.size.height
+        let difference = maximumOffset - currentOffset
+        
+        if contentSize > tableSize, difference <= -80.0 {
+            spinner.startAnimating()
+            loadChatList()
         }
-    }
-}
-
-extension UIViewController
-{
-    func hideKeyboard() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-}
-
-extension UIView {
-    func shake() {
-        let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
-        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
-        animation.duration = 0.6
-        animation.values = [-20.0, 20.0, -15.0, 15.0, -10.0, 10.0, -5.0, 5.0, 0.0]
-        layer.add(animation, forKey: "shake")
     }
 }

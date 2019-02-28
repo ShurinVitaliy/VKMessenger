@@ -14,9 +14,8 @@
 		F4149D4C2209720200A13D77 /* FriendPageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4149D4B2209720200A13D77 /* FriendPageHeader.swift */; };
 		F41A3B27221ACD3600E9391F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F41A3B25221ACD3600E9391F /* Localizable.strings */; };
 		F41A3B35221AE02F00E9391F /* DialogPageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A3B34221AE02F00E9391F /* DialogPageProvider.swift */; };
-		F41A3B39221BE7F000E9391F /* LeftTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A3B37221BE7F000E9391F /* LeftTableViewCell.swift */; };
 		F41A3B3A221BE7F000E9391F /* LeftTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F41A3B38221BE7F000E9391F /* LeftTableViewCell.xib */; };
-		F41A3B3D221BE80C00E9391F /* RightTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A3B3B221BE80C00E9391F /* RightTableViewCell.swift */; };
+		F41A3B3D221BE80C00E9391F /* DialogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A3B3B221BE80C00E9391F /* DialogTableViewCell.swift */; };
 		F41A3B3E221BE80C00E9391F /* RightTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F41A3B3C221BE80C00E9391F /* RightTableViewCell.xib */; };
 		F41A3B46221C3E3600E9391F /* DialogPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A3B44221C3E3600E9391F /* DialogPageController.swift */; };
 		F41A3B47221C3E3600E9391F /* DialogPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F41A3B45221C3E3600E9391F /* DialogPageController.xib */; };
@@ -27,6 +26,7 @@
 		F41A3B9722253FE800E9391F /* MessagesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A3B9622253FE800E9391F /* MessagesProvider.swift */; };
 		F41A3B992225799400E9391F /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A3B982225799300E9391F /* UserProvider.swift */; };
 		F41A3B9C2226753F00E9391F /* MessagesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A3B9B2226753F00E9391F /* MessagesManager.swift */; };
+		F41A3B9E2226853700E9391F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A3B9D2226853700E9391F /* Extensions.swift */; };
 		F41C828821F8B1610084B6F0 /* FriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F41C828721F8B1600084B6F0 /* FriendTableViewCell.xib */; };
 		F42FCFD321E8F0D800890BC0 /* FriendsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42FCFD221E8F0D800890BC0 /* FriendsProvider.swift */; };
 		F42FCFD621EC6EA200890BC0 /* AuthorizationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42FCFD521EC6EA200890BC0 /* AuthorizationProvider.swift */; };
@@ -75,9 +75,8 @@
 		F4149D4B2209720200A13D77 /* FriendPageHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPageHeader.swift; sourceTree = "<group>"; };
 		F41A3B26221ACD3600E9391F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F41A3B34221AE02F00E9391F /* DialogPageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogPageProvider.swift; sourceTree = "<group>"; };
-		F41A3B37221BE7F000E9391F /* LeftTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftTableViewCell.swift; sourceTree = "<group>"; };
 		F41A3B38221BE7F000E9391F /* LeftTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeftTableViewCell.xib; sourceTree = "<group>"; };
-		F41A3B3B221BE80C00E9391F /* RightTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightTableViewCell.swift; sourceTree = "<group>"; };
+		F41A3B3B221BE80C00E9391F /* DialogTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogTableViewCell.swift; sourceTree = "<group>"; };
 		F41A3B3C221BE80C00E9391F /* RightTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RightTableViewCell.xib; sourceTree = "<group>"; };
 		F41A3B44221C3E3600E9391F /* DialogPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogPageController.swift; sourceTree = "<group>"; };
 		F41A3B45221C3E3600E9391F /* DialogPageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DialogPageController.xib; sourceTree = "<group>"; };
@@ -88,6 +87,7 @@
 		F41A3B9622253FE800E9391F /* MessagesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesProvider.swift; sourceTree = "<group>"; };
 		F41A3B982225799300E9391F /* UserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
 		F41A3B9B2226753F00E9391F /* MessagesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesManager.swift; sourceTree = "<group>"; };
+		F41A3B9D2226853700E9391F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F41C828721F8B1600084B6F0 /* FriendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FriendTableViewCell.xib; path = "../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/VKMessenger 4.32.40 PM/Friends/FriendTableViewCell.xib"; sourceTree = "<group>"; };
 		F42FCFD221E8F0D800890BC0 /* FriendsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsProvider.swift; sourceTree = "<group>"; };
 		F42FCFD521EC6EA200890BC0 /* AuthorizationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationProvider.swift; sourceTree = "<group>"; };
@@ -193,9 +193,8 @@
 		F41A3B36221BE72F00E9391F /* CustomCell */ = {
 			isa = PBXGroup;
 			children = (
-				F41A3B37221BE7F000E9391F /* LeftTableViewCell.swift */,
 				F41A3B38221BE7F000E9391F /* LeftTableViewCell.xib */,
-				F41A3B3B221BE80C00E9391F /* RightTableViewCell.swift */,
+				F41A3B3B221BE80C00E9391F /* DialogTableViewCell.swift */,
 				F41A3B3C221BE80C00E9391F /* RightTableViewCell.xib */,
 			);
 			path = CustomCell;
@@ -334,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				F479D26221F082320070F9C0 /* Constants.swift */,
+				F41A3B9D2226853700E9391F /* Extensions.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -530,7 +530,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F41A3B3D221BE80C00E9391F /* RightTableViewCell.swift in Sources */,
+				F41A3B3D221BE80C00E9391F /* DialogTableViewCell.swift in Sources */,
+				F41A3B9E2226853700E9391F /* Extensions.swift in Sources */,
 				F4B4DCCC220DD4C400BDA99E /* FriendPageView.swift in Sources */,
 				F41A3B35221AE02F00E9391F /* DialogPageProvider.swift in Sources */,
 				F42FCFD621EC6EA200890BC0 /* AuthorizationProvider.swift in Sources */,
@@ -540,7 +541,6 @@
 				F42FCFD321E8F0D800890BC0 /* FriendsProvider.swift in Sources */,
 				F4149D332201FD4000A13D77 /* FriendImageLoader.swift in Sources */,
 				F4B4DCCA220DAA8500BDA99E /* UserPageProvider.swift in Sources */,
-				F41A3B39221BE7F000E9391F /* LeftTableViewCell.swift in Sources */,
 				F42FCFD821EC6EB300890BC0 /* AuthorizationController.swift in Sources */,
 				F479D26021EE03D40070F9C0 /* AuthorizationView.swift in Sources */,
 				F479D25D21EDDDCE0070F9C0 /* FriendTableViewCell.swift in Sources */,

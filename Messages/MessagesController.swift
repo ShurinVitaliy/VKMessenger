@@ -51,7 +51,6 @@ class MessagesController: UIViewController {
         let messagesManager = MessagesManager()
         messagesManager.getFullMessagesList({[weak self] (fullStructMessages) in
             DispatchQueue.main.async {
-                print(fullStructMessages)
                 self?.messages = fullStructMessages ?? []
                 self?.tableView.reloadData()
             }
@@ -80,14 +79,14 @@ class MessagesController: UIViewController {
     }
     
     private func setupCellInfo(message: Message, indexPath: IndexPath) {
-        if let userId = message.user_id {
-            /*UserProvider.loadUser(userId: userId, {[weak self] (user) in
+        /*if let userId = message.user_id {
+            UserProvider.loadUser(userId: userId, {[weak self] (user) in
                 DispatchQueue.main.async {
                     (self?.tableView.cellForRow(at: indexPath) as? MessageTableViewCell)?.dialogName.text = (user?.first_name ?? "" ) + " " + (user?.last_name ?? "")
                     self?.messages[indexPath.row].message?.userName = (user?.first_name ?? "" ) + " " + (user?.last_name ?? "")
                 }
-            })*/
-        }
+            })
+        }*/
     }
 }
 

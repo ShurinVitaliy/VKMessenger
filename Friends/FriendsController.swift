@@ -45,7 +45,6 @@ class FriendsController: UIViewController {
         transitionAnimation = createTransitionAnimation()
         searchBar = createSearchBar()
         setupNavigationController()
-        
     }
     
     override func loadView() {
@@ -80,7 +79,7 @@ class FriendsController: UIViewController {
                 if self?.friends == nil {
                     self?.refreshControl.endRefreshing()
                     let alert = UIAlertController(title: "error connection", message: "friends not found, try again", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "ok", style: .default, handler: {[weak self] (action) in
+                    alert.addAction(UIAlertAction(title: "ok", style: .default, handler: { (action) in
                         self?.loadFreinds()
                     }))
                     alert.addAction(UIAlertAction(title: "no", style: .cancel, handler: { (action) in
@@ -121,7 +120,6 @@ extension FriendsController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as! FriendTableViewCell
-        //friends = friends?.sorted(by: { $0.first_name < $1.first_name })
         if let friend = friends?[indexPath.row] {
             cell.loadCell(friend: friend)
             cell.photoImageView.image = nil

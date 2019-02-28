@@ -80,10 +80,6 @@ extension AuthorizationController: AuthorizationProviderDelegate {
     }
     
     func authorizationСompleted() {
-        /*let controller = UINavigationController()
-        let friendController = FriendsController()
-        controller.viewControllers = [friendController]
-        present(controller, animated: true, completion: nil)*/
         mainTabBarController = createTabBarController()
         present(mainTabBarController, animated: true, completion: nil)
     }
