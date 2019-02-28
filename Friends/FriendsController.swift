@@ -28,7 +28,6 @@ class FriendsController: UIViewController {
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         loadFreinds()
-        imageManager.clearCache()
     }
 
     init() {

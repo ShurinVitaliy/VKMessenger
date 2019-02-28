@@ -96,26 +96,27 @@ class DialogPageController: UIViewController {
             if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
                 //TODO: Use UItableView.contentInset instead of frame
                 //print(self?.dialogTableView.contentInset)
-                
+                /*
                 if self?.dialogTableView.contentInset.top == 0 {
                     self?.dialogTableView.contentInset.top -= keyboardSize.height
-                }
-                /*
+                }*/
+                
                 if self?.view.frame.origin.y == 0 {
                     self?.view.frame.origin.y -= keyboardSize.height
-                }*/
+                }
             }
         })
         observerHideKeyBoard = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main, using:{[weak self] notification in
             //TODO: Use UItableView.contentInset instead of frame
             //но мне же нужно поднимать и опускать вьюху а не таблицу
             //print(self?.dialogTableView.contentInset)
-           /* if self?.view.frame.origin.y != 0 {
+            if self?.view.frame.origin.y != 0 {
                 self?.view.frame.origin.y = 0
-            }*/
+            }
+            /*
             if self?.dialogTableView.contentInset.top != 0 {
                 self?.dialogTableView.contentInset.top = 0
-            }
+            }*/
         })
     }
     

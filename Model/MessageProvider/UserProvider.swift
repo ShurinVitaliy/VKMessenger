@@ -9,7 +9,7 @@
 import Foundation
 
 class UserProvider {
-    func loadUser(userId: Int, _ completionHandler: @escaping(_ userListResponse: User?) -> Void) {
+    static func loadUser(userId: Int, _ completionHandler: @escaping(_ userListResponse: User?) -> Void) {
         let urlString: String = Constants.apiVk + Constants.getUser(ownerId: String(userId))
         let url = URL(string: urlString)
         URLSession.shared.dataTask(with: url!) {(data, response, error) in
@@ -19,7 +19,7 @@ class UserProvider {
                     return
                 }
                 let user = try JSONDecoder().decode(UserList.self, from: data)
-                completionHandler(user.response.first )
+                completionHandler(user.response?.first )
             } catch {
                 print(error)
             }
@@ -28,10 +28,11 @@ class UserProvider {
 }
 
 private struct UserList: Decodable {
-    var response: [User]
+    var response: [User]?
 }
 
 struct User: Decodable {
+    var online: Int?
     var first_name: String
     var id: Int
     var last_name: String

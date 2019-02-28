@@ -25,7 +25,6 @@
 		F41A3B94222537DD00E9391F /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A3B92222537DD00E9391F /* MessagesController.swift */; };
 		F41A3B9722253FE800E9391F /* MessagesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A3B9622253FE800E9391F /* MessagesProvider.swift */; };
 		F41A3B992225799400E9391F /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A3B982225799300E9391F /* UserProvider.swift */; };
-		F41A3B9C2226753F00E9391F /* MessagesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A3B9B2226753F00E9391F /* MessagesManager.swift */; };
 		F41A3B9E2226853700E9391F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A3B9D2226853700E9391F /* Extensions.swift */; };
 		F41C828821F8B1610084B6F0 /* FriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F41C828721F8B1600084B6F0 /* FriendTableViewCell.xib */; };
 		F42FCFD321E8F0D800890BC0 /* FriendsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42FCFD221E8F0D800890BC0 /* FriendsProvider.swift */; };
@@ -86,7 +85,6 @@
 		F41A3B92222537DD00E9391F /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
 		F41A3B9622253FE800E9391F /* MessagesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesProvider.swift; sourceTree = "<group>"; };
 		F41A3B982225799300E9391F /* UserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
-		F41A3B9B2226753F00E9391F /* MessagesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesManager.swift; sourceTree = "<group>"; };
 		F41A3B9D2226853700E9391F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F41C828721F8B1600084B6F0 /* FriendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FriendTableViewCell.xib; path = "../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/VKMessenger 4.32.40 PM/Friends/FriendTableViewCell.xib"; sourceTree = "<group>"; };
 		F42FCFD221E8F0D800890BC0 /* FriendsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsProvider.swift; sourceTree = "<group>"; };
@@ -232,7 +230,6 @@
 			children = (
 				F41A3B9622253FE800E9391F /* MessagesProvider.swift */,
 				F41A3B982225799300E9391F /* UserProvider.swift */,
-				F41A3B9B2226753F00E9391F /* MessagesManager.swift */,
 			);
 			path = MessageProvider;
 			sourceTree = "<group>";
@@ -549,7 +546,6 @@
 				F479D26321F082320070F9C0 /* Constants.swift in Sources */,
 				F4E637B72212A77F00B61563 /* FriendPageCollectionViewCell.swift in Sources */,
 				F4E637B3221176DD00B61563 /* FriendPageController.swift in Sources */,
-				F41A3B9C2226753F00E9391F /* MessagesManager.swift in Sources */,
 				F41A3B992225799400E9391F /* UserProvider.swift in Sources */,
 				F41A3B902225378400E9391F /* MessageTableViewCell.swift in Sources */,
 				F4149D4C2209720200A13D77 /* FriendPageHeader.swift in Sources */,

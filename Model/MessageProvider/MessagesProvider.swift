@@ -9,7 +9,7 @@
 import Foundation
 
 class MessagesProvider {
-    func loadMessagesListItems(_ completionHandler: @escaping(_ messagesListResponse: [MessageListItem]?) -> Void) {
+    static func loadMessagesListItems(_ completionHandler: @escaping(_ messagesListResponse: [MessageListItem]?) -> Void) {
         let urlString: String = Constants.apiVk + Constants.getMessages()
         let url = URL(string: urlString)
         
@@ -54,8 +54,3 @@ struct Message: Decodable{
     var userName: String?
     var imageURL: String?
 }
-
-
-
-
-

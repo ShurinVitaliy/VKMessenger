@@ -36,6 +36,7 @@ class FriendDataManager {
             let currentFriend = FriendDatabase(first_name: friend.first_name, id: friend.id, last_name: friend.last_name, online: friend.online, photo_100: friend.photo_100)
             friendsDatabase.append(currentFriend)
         }
+
         try! realm.write {
             realm.add(friendsDatabase)
         }
