@@ -33,8 +33,10 @@ class FriendPageController: UIViewController {
         friendPageView?.delegate = self
         friendPageView?.friendPageHeader?.setupData(friend: friend)
         friendPageView?.friendPageHeader?.sendMessageButton.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
+        friendPageView?.friendPageHeader?.infoImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pickImage)))
     }
 
+    
     private func loadImagesUrl() {
         UserPageProvider.loadFriendPageImage(friendId: String(friend.id), {[weak self] (images) in
             DispatchQueue.main.async {
@@ -42,6 +44,32 @@ class FriendPageController: UIViewController {
                 self?.friendPageView?.bodyImageCollectionView.reloadData()
             }
         })
+    }
+    
+    @objc private func pickImage(sender: UITapGestureRecognizer) {
+        
+        UserProvider.loadUser(userId: friend.id, {[weak self] (user) in
+            DispatchQueue.main.async {
+                guard var user = user else {
+                    return
+                }
+                if user.bdate.isEmpty {
+                    user.bdate = "private information"
+                }
+                if user.status.isEmpty {
+                    user.status = "private information"
+                }
+        
+                let infoPageController = InfoPageController(status: user.status, bdata: user.bdate)
+                self?.navigationController?.pushViewController(infoPageController, animated: false)
+            }
+        })
+        /*
+        let infoPageController = InfoPageController(status: "ds", bdata: "qwe")
+        navigationController?.pushViewController(infoPageController, animated: false)
+        //present(infoPageController, animated: true, completion: nil)
+        let infoPageController = InfoPageController()
+        present(infoPageController, animated: true, completion: nil)*/
     }
     
     @objc private func sendMessage(_ sender: UIButton) {

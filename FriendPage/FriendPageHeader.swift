@@ -106,6 +106,7 @@ class FriendPageHeader: UIView {
         let imageView = UIImageView(frame: CGRect(x: 281, y: 49, width: 20, height: 20))
         imageView.layer.cornerRadius = imageView.frame.height / 2
         imageView.image = #imageLiteral(resourceName: "info")
+        imageView.isUserInteractionEnabled = true
         imageView.clipsToBounds = true
         return imageView
     }

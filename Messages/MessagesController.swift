@@ -71,10 +71,11 @@ class MessagesController: UIViewController {
         return tableView
     }
     
-    private func setupCellInfo(userId: Int, indexPath: IndexPath) {
+    private func setupCellInfo(userId: Int, indexPath: IndexPath) { //"error_msg" = "Too many requests per second";
         UserProvider.loadUser(userId: userId, {[weak self] (user) in
             DispatchQueue.main.async {
                 guard let user = user else {
+                    print("user - nil " + String(indexPath.row))
                     return
                 }
                 self?.userDictionary[userId] = (user.first_name + " " + user.last_name, user.photo_100)
@@ -115,7 +116,6 @@ extension MessagesController: UITableViewDataSource {
                     })
                 } else {
                     setupCellInfo(userId: userId, indexPath: indexPath)
-                    print(userDictionary)
                 }
             }
         }

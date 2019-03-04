@@ -46,6 +46,7 @@ struct Constants {
     }
     
     static func getUser(ownerId: String) -> String {
-        return "users.get?user_id=\(ownerId)&fields=photo_100&v=5.8&access_token=\(accessToken)"
+        return "users.get?user_id=\(ownerId)&fields=photo_100,status,bdate&v=5.8&access_token=\(accessToken)"
     }
 }
+//https://api.vk.com/method/users.get?user_id=57371608&fields=photo_100,status,bdate&v=5.8&access_token=997464b84cc584176cabe447acd33a48774623951d9271053d6b5c240a605d273faaa460922846fb37cf0

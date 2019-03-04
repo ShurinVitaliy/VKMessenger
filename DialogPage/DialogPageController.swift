@@ -13,7 +13,7 @@ class DialogPageController: UIViewController {
     @IBOutlet var dialogSendMessageButton: UIButton!
     @IBOutlet var dialogTextField: UITextField!
     @IBOutlet var dialogTableView: UITableView!
-    private var timer = Timer()
+    private var timer: Timer?
 
     private var friend: Friend
     private var messages: [DialogListItems]?
@@ -43,7 +43,6 @@ class DialogPageController: UIViewController {
         dialogSendMessageButton.layer.cornerRadius = dialogSendMessageButton.bounds.height/2
         //TODO: You init timer on view did load and invalidate it on viewWillDissapear the problem is that if you present some controller from from dialog page and then dismiss it your timer won't work.
         // но я так и пологал, чтобы дизэйблить таймер и у меня у меня удалялся из памяти мой контроллер, если я не буду диэйблить таймер - контроллер не будет удаляться
-        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(loadChatList), userInfo: nil, repeats: true)
     }
     
     @objc private func loadChatList() {
@@ -100,9 +99,8 @@ class DialogPageController: UIViewController {
                 if self?.dialogTableView.contentInset.top == 0 {
                     self?.dialogTableView.contentInset.top -= keyboardSize.height
                 }*/
-                
                 if self?.view.frame.origin.y == 0 {
-                    self?.view.frame.origin.y -= keyboardSize.height
+                    self?.view.frame.origin.y -= (keyboardSize.height - (self?.tabBarController?.tabBar.frame.height ?? 0))
                 }
             }
         })
@@ -110,6 +108,7 @@ class DialogPageController: UIViewController {
             //TODO: Use UItableView.contentInset instead of frame
             //но мне же нужно поднимать и опускать вьюху а не таблицу
             //print(self?.dialogTableView.contentInset)
+            
             if self?.view.frame.origin.y != 0 {
                 self?.view.frame.origin.y = 0
             }
@@ -119,9 +118,12 @@ class DialogPageController: UIViewController {
             }*/
         })
     }
+    override func viewWillAppear(_ animated: Bool) {
+        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(loadChatList), userInfo: nil, repeats: true)
+    }
     
     override func viewWillDisappear(_ animated: Bool) {
-        timer.invalidate()
+        timer?.invalidate()
     }
     
     deinit {

@@ -19,6 +19,13 @@ class UserProvider {
                     return
                 }
                 let user = try JSONDecoder().decode(UserList.self, from: data)
+                if user.response?.first == nil {
+                   /* let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    print(json)
+                    print(user)
+                    print(response)
+                    print(data)*/
+                }
                 completionHandler(user.response?.first )
             } catch {
                 print(error)
@@ -37,4 +44,6 @@ struct User: Decodable {
     var id: Int
     var last_name: String
     var photo_100: String
+    var status: String
+    var bdate: String
 }

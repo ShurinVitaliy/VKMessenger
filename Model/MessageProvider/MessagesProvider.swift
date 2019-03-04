@@ -19,7 +19,10 @@ class MessagesProvider {
                     completionHandler(nil)
                     return
                 }
+                let json = try JSONSerialization.jsonObject(with: data!, options: [])
+                print(json)
                 let messages = try JSONDecoder().decode(MessageList.self, from: data!)
+                print(messages)
                 completionHandler(messages.response.items)
             } catch {
                 print(error)

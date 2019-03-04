@@ -27,6 +27,10 @@
 		F41A3B992225799400E9391F /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A3B982225799300E9391F /* UserProvider.swift */; };
 		F41A3B9E2226853700E9391F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41A3B9D2226853700E9391F /* Extensions.swift */; };
 		F41C828821F8B1610084B6F0 /* FriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F41C828721F8B1600084B6F0 /* FriendTableViewCell.xib */; };
+		F41FD4CB22293F0B0097E036 /* InfoPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = F41FD4C922293F0B0097E036 /* InfoPageController.m */; };
+		F41FD4CC22293F0B0097E036 /* InfoPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F41FD4CA22293F0B0097E036 /* InfoPageController.xib */; };
+		F41FD4D1222D349B0097E036 /* InfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F41FD4CF222D349B0097E036 /* InfoTableViewCell.m */; };
+		F41FD4D2222D349B0097E036 /* InfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F41FD4D0222D349B0097E036 /* InfoTableViewCell.xib */; };
 		F42FCFD321E8F0D800890BC0 /* FriendsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42FCFD221E8F0D800890BC0 /* FriendsProvider.swift */; };
 		F42FCFD621EC6EA200890BC0 /* AuthorizationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42FCFD521EC6EA200890BC0 /* AuthorizationProvider.swift */; };
 		F42FCFD821EC6EB300890BC0 /* AuthorizationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42FCFD721EC6EB300890BC0 /* AuthorizationController.swift */; };
@@ -87,6 +91,13 @@
 		F41A3B982225799300E9391F /* UserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
 		F41A3B9D2226853700E9391F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F41C828721F8B1600084B6F0 /* FriendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FriendTableViewCell.xib; path = "../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/VKMessenger 4.32.40 PM/Friends/FriendTableViewCell.xib"; sourceTree = "<group>"; };
+		F41FD4C2222939C90097E036 /* VKMessenger-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VKMessenger-Bridging-Header.h"; sourceTree = "<group>"; };
+		F41FD4C822293F0B0097E036 /* InfoPageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoPageController.h; sourceTree = "<group>"; };
+		F41FD4C922293F0B0097E036 /* InfoPageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoPageController.m; sourceTree = "<group>"; };
+		F41FD4CA22293F0B0097E036 /* InfoPageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoPageController.xib; sourceTree = "<group>"; };
+		F41FD4CE222D349B0097E036 /* InfoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoTableViewCell.h; sourceTree = "<group>"; };
+		F41FD4CF222D349B0097E036 /* InfoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoTableViewCell.m; sourceTree = "<group>"; };
+		F41FD4D0222D349B0097E036 /* InfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoTableViewCell.xib; sourceTree = "<group>"; };
 		F42FCFD221E8F0D800890BC0 /* FriendsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsProvider.swift; sourceTree = "<group>"; };
 		F42FCFD521EC6EA200890BC0 /* AuthorizationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationProvider.swift; sourceTree = "<group>"; };
 		F42FCFD721EC6EB300890BC0 /* AuthorizationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationController.swift; sourceTree = "<group>"; };
@@ -234,6 +245,28 @@
 			path = MessageProvider;
 			sourceTree = "<group>";
 		};
+		F41FD4B8222927860097E036 /* InfoPage */ = {
+			isa = PBXGroup;
+			children = (
+				F41FD4CD222D347F0097E036 /* CustomCell */,
+				F41FD4C2222939C90097E036 /* VKMessenger-Bridging-Header.h */,
+				F41FD4C822293F0B0097E036 /* InfoPageController.h */,
+				F41FD4C922293F0B0097E036 /* InfoPageController.m */,
+				F41FD4CA22293F0B0097E036 /* InfoPageController.xib */,
+			);
+			path = InfoPage;
+			sourceTree = "<group>";
+		};
+		F41FD4CD222D347F0097E036 /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				F41FD4CE222D349B0097E036 /* InfoTableViewCell.h */,
+				F41FD4CF222D349B0097E036 /* InfoTableViewCell.m */,
+				F41FD4D0222D349B0097E036 /* InfoTableViewCell.xib */,
+			);
+			path = CustomCell;
+			sourceTree = "<group>";
+		};
 		F42FCFCB21E8CF8D00890BC0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -263,6 +296,7 @@
 				F479D26121F082070070F9C0 /* Constants */,
 				F42FCFCB21E8CF8D00890BC0 /* Model */,
 				F41A3B28221AD21A00E9391F /* DialogPage */,
+				F41FD4B8222927860097E036 /* InfoPage */,
 				F4149D482209717F00A13D77 /* FriendPage */,
 				F41A3B8B22252E6F00E9391F /* Messages */,
 				F479D24E21ECC5830070F9C0 /* Friends */,
@@ -405,6 +439,7 @@
 				TargetAttributes = {
 					F46DBE0621DD038900C1277A = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 					F46DBE1A21DD038A00C1277A = {
 						CreatedOnToolsVersion = 10.1;
@@ -443,8 +478,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F41A3B3E221BE80C00E9391F /* RightTableViewCell.xib in Resources */,
+				F41FD4D2222D349B0097E036 /* InfoTableViewCell.xib in Resources */,
 				F41C828821F8B1610084B6F0 /* FriendTableViewCell.xib in Resources */,
 				F41A3B27221ACD3600E9391F /* Localizable.strings in Resources */,
+				F41FD4CC22293F0B0097E036 /* InfoPageController.xib in Resources */,
 				F46DBE1521DD038A00C1277A /* LaunchScreen.storyboard in Resources */,
 				F4E637AE220DE94800B61563 /* FriendPageController.xib in Resources */,
 				F41A3B47221C3E3600E9391F /* DialogPageController.xib in Resources */,
@@ -537,6 +574,7 @@
 				F46DBE0B21DD038900C1277A /* AppDelegate.swift in Sources */,
 				F42FCFD321E8F0D800890BC0 /* FriendsProvider.swift in Sources */,
 				F4149D332201FD4000A13D77 /* FriendImageLoader.swift in Sources */,
+				F41FD4CB22293F0B0097E036 /* InfoPageController.m in Sources */,
 				F4B4DCCA220DAA8500BDA99E /* UserPageProvider.swift in Sources */,
 				F42FCFD821EC6EB300890BC0 /* AuthorizationController.swift in Sources */,
 				F479D26021EE03D40070F9C0 /* AuthorizationView.swift in Sources */,
@@ -548,6 +586,7 @@
 				F4E637B3221176DD00B61563 /* FriendPageController.swift in Sources */,
 				F41A3B992225799400E9391F /* UserProvider.swift in Sources */,
 				F41A3B902225378400E9391F /* MessageTableViewCell.swift in Sources */,
+				F41FD4D1222D349B0097E036 /* InfoTableViewCell.m in Sources */,
 				F4149D4C2209720200A13D77 /* FriendPageHeader.swift in Sources */,
 				F41A3B46221C3E3600E9391F /* DialogPageController.swift in Sources */,
 				F41A3B88221EDB9D00E9391F /* DatabaseManager.swift in Sources */,
@@ -664,7 +703,11 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/vitalyshurin/Desktop/VKMessenger/InfoPage/VKMessenger-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
+				SWIFT_REFLECTION_METADATA_LEVEL = all;
 			};
 			name = Debug;
 		};
@@ -719,7 +762,11 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/vitalyshurin/Desktop/VKMessenger/InfoPage/VKMessenger-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
+				SWIFT_REFLECTION_METADATA_LEVEL = all;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -729,6 +776,7 @@
 			baseConfigurationReference = B9B6C7C0D593FFB0B9A63277 /* Pods-VKMessenger.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L74P54Q3GP;
 				INFOPLIST_FILE = VKMessenger/Info.plist;
@@ -739,6 +787,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = c.VKMessenger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "InfoPage/VKMessenger-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -749,6 +799,7 @@
 			baseConfigurationReference = 54A77DCFAF450168CD22A719 /* Pods-VKMessenger.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L74P54Q3GP;
 				INFOPLIST_FILE = VKMessenger/Info.plist;
@@ -759,6 +810,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = c.VKMessenger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "InfoPage/VKMessenger-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
