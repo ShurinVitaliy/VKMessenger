@@ -71,20 +71,22 @@ class MessagesController: UIViewController {
         return tableView
     }
     
-    private func setupCellInfo(userId: Int, indexPath: IndexPath) { //"error_msg" = "Too many requests per second";
+    private func setupCellInfo(userId: Int, indexPath: IndexPath) {
         UserProvider.loadUser(userId: userId, {[weak self] (user) in
             DispatchQueue.main.async {
                 guard let user = user else {
-                    print("user - nil " + String(indexPath.row))
                     return
                 }
                 self?.userDictionary[userId] = (user.first_name + " " + user.last_name, user.photo_100)
                 (self?.tableView.cellForRow(at: indexPath) as? MessageTableViewCell)?.dialogName.text = user.first_name + " " + user.last_name
-                
-                self?.imageManager.getImage(imageURL: user.photo_100, complete: {[weak self] (image) in
-                    (self?.tableView.cellForRow(at: indexPath) as? MessageTableViewCell)?.dialogImage.image = image
-                })
+                self?.getImage(indexPath: indexPath,imageURL: user.photo_100)
             }
+        })
+    }
+    
+    private func getImage(indexPath: IndexPath,imageURL: String) {
+        imageManager.getImage(imageURL: imageURL, complete: {[weak self] (image) in
+            (self?.tableView.cellForRow(at: indexPath) as? FriendTableViewCell)?.photoImageView.image = image
         })
     }
 }
@@ -111,9 +113,7 @@ extension MessagesController: UITableViewDataSource {
                 }
                 if let userInfo = userDictionary[userId] {
                     cell.dialogName.text = userInfo.name
-                    imageManager.getImage(imageURL: userInfo.image, complete: {(image) in
-                        cell.dialogImage.image = image
-                    })
+                    getImage(indexPath: indexPath,imageURL: userInfo.image)
                 } else {
                     setupCellInfo(userId: userId, indexPath: indexPath)
                 }

@@ -47,7 +47,6 @@ class FriendPageController: UIViewController {
     }
     
     @objc private func pickImage(sender: UITapGestureRecognizer) {
-        
         UserProvider.loadUser(userId: friend.id, {[weak self] (user) in
             DispatchQueue.main.async {
                 guard var user = user else {
@@ -64,18 +63,14 @@ class FriendPageController: UIViewController {
                 self?.navigationController?.pushViewController(infoPageController, animated: false)
             }
         })
-        /*
-        let infoPageController = InfoPageController(status: "ds", bdata: "qwe")
-        navigationController?.pushViewController(infoPageController, animated: false)
-        //present(infoPageController, animated: true, completion: nil)
-        let infoPageController = InfoPageController()
-        present(infoPageController, animated: true, completion: nil)*/
     }
     
     @objc private func sendMessage(_ sender: UIButton) {
         let dialogPageController = DialogPageController(friend: friend)
         self.navigationController?.pushViewController(dialogPageController, animated: true)
     }
+    
+    
 }
 
 extension FriendPageController: FriendPageViewDeleage {

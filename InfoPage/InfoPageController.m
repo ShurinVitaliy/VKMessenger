@@ -18,7 +18,7 @@
 
 - (instancetype)init {
     self = [self initWithStatus:@""
-                        bdata:@""];
+                          bdata:@""];
     return self;
 }
 
@@ -41,7 +41,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"infoCell";
     InfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: cellIdentifier];
-    
     if (cell == nil) {
         [tableView registerNib: [UINib nibWithNibName: @"InfoTableViewCell" bundle: nil] forCellReuseIdentifier:cellIdentifier];
         cell = [tableView dequeueReusableCellWithIdentifier: cellIdentifier];
@@ -53,7 +52,6 @@
         cell.titleLabel.text = @"Date of Birth";
         cell.bodyLabel.text = _bdata;
     }
-    
     return cell;
 }
 
