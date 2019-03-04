@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface InfoPageController : UIViewController
 @property (strong, nonatomic) NSString * status;
 @property (strong, nonatomic) NSString * bdata;
-- (instancetype) init;
 
 - (instancetype)initWithStatus: (NSString *)status
                   bdata:(NSString *)bdata;
