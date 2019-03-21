@@ -36,7 +36,6 @@ class FriendPageController: UIViewController {
         friendPageView?.friendPageHeader?.infoImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(pickImage)))
     }
 
-    
     private func loadImagesUrl() {
         UserPageProvider.loadFriendPageImage(friendId: String(friend.id), {[weak self] (images) in
             DispatchQueue.main.async {
@@ -69,8 +68,6 @@ class FriendPageController: UIViewController {
         let dialogPageController = DialogPageController(friend: friend)
         self.navigationController?.pushViewController(dialogPageController, animated: true)
     }
-    
-    
 }
 
 extension FriendPageController: FriendPageViewDeleage {
